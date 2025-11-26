@@ -1,0 +1,1184 @@
+%  LaTeX support: latex@mdpi.com 
+%  For support, please attach all files needed for compiling as well as the log file, and specify your operating system, LaTeX version, and LaTeX editor.
+
+%=================================================================
+\documentclass[journal,article,submit,pdftex,moreauthors]{Definitions/mdpi} 
+%\documentclass[preprints,article,submit,pdftex,moreauthors]{Definitions/mdpi} 
+% For posting an early version of this manuscript as a preprint, you may use "preprints" as the journal. Changing "submit" to "accept" before posting will remove line numbers.
+
+% Below journals will use APA reference format:
+% admsci, behavsci, businesses, econometrics, economies, education, ejihpe, famsci, games, humans, ijcs, ijfs, journalmedia, jrfm, languages, psycholint, publications, tourismhosp, youth
+
+% Below journals will use Chicago reference format:
+% arts, genealogy, histories, humanities, jintelligence, laws, literature, religions, risks, socsci
+
+%--------------------
+% Class Options:
+%--------------------
+%----------
+% journal
+%----------
+% Choose between the following MDPI journals:
+% accountaudit, acoustics, actuators, addictions, adhesives, admsci, adolescents, aerobiology, aerospace, agriculture, agriengineering, agrochemicals, agronomy, ai, air, algorithms, allergies, alloys, amh, analytica, analytics, anatomia, anesthres, animals, antibiotics, antibodies, antioxidants, applbiosci, appliedchem, appliedmath, appliedphys, applmech, applmicrobiol, applnano, applsci, aquacj, architecture, arm, arthropoda, arts, asc, asi, astronomy, atmosphere, atoms, audiolres, automation, axioms, bacteria, batteries, bdcc, behavsci, beverages, biochem, bioengineering, biologics, biology, biomass, biomechanics, biomed, biomedicines, biomedinformatics, biomimetics, biomolecules, biophysica, biosensors, biosphere, biotech, birds, blockchains, bloods, blsf, brainsci, breath, buildings, businesses, cancers, carbon, cardiogenetics, catalysts, cells, ceramics, challenges, chemengineering, chemistry, chemosensors, chemproc, children, chips, cimb, civileng, cleantechnol, climate, clinbioenerg, clinpract, clockssleep, cmd, cmtr, coasts, coatings, colloids, colorants, commodities, complications, compounds, computation, computers, condensedmatter, conservation, constrmater, cosmetics, covid, crops, cryo, cryptography, crystals, csmf, ctn, curroncol, cyber, dairy, data, ddc, dentistry, dermato, dermatopathology, designs, devices, diabetology, diagnostics, dietetics, digital, disabilities, diseases, diversity, dna, drones, dynamics, earth, ebj, ecm, ecologies, econometrics, economies, education, eesp, ejihpe, electricity, electrochem, electronicmat, electronics, encyclopedia, endocrines, energies, eng, engproc, ent, entomology, entropy, environments, epidemiologia, epigenomes, esa, est, famsci, fermentation, fibers, fintech, fire, fishes, fluids, foods, forecasting, forensicsci, forests, fossstud, foundations, fractalfract, fuels, future, futureinternet, futureparasites, futurepharmacol, futurephys, futuretransp, galaxies, games, gases, gastroent, gastrointestdisord, gastronomy, gels, genealogy, genes, geographies, geohazards, geomatics, geometry, geosciences, geotechnics, geriatrics, glacies, grasses, greenhealth, gucdd, hardware, hazardousmatters, healthcare, hearts, hemato, hematolrep, heritage, higheredu, highthroughput, histories, horticulturae, hospitals, humanities, humans, hydrobiology, hydrogen, hydrology, hygiene, idr, iic, ijerph, ijfs, ijgi, ijmd, ijms, ijns, ijpb, ijt, ijtm, ijtpp, ime, immuno, informatics, information, infrastructures, inorganics, insects, instruments, inventions, iot, j, jal, jcdd, jcm, jcp, jcs, jcto, jdad, jdb, jeta, jfb, jfmk, jimaging, jintelligence, jlpea, jmahp, jmmp, jmms, jmp, jmse, jne, jnt, jof, joitmc, joma, jop, jor, journalmedia, jox, jpbi, jpm, jrfm, jsan, jtaer, jvd, jzbg, kidney, kidneydial, kinasesphosphatases, knowledge, labmed, laboratories, land, languages, laws, life, lights, limnolrev, lipidology, liquids, literature, livers, logics, logistics, lubricants, lymphatics, machines, macromol, magnetism, magnetochemistry, make, marinedrugs, materials, materproc, mathematics, mca, measurements, medicina, medicines, medsci, membranes, merits, metabolites, metals, meteorology, methane, metrics, metrology, micro, microarrays, microbiolres, microelectronics, micromachines, microorganisms, microplastics, microwave, minerals, mining, mmphys, modelling, molbank, molecules, mps, msf, mti, multimedia, muscles, nanoenergyadv, nanomanufacturing, nanomaterials, ncrna, ndt, network, neuroglia, neurolint, neurosci, nitrogen, notspecified, nursrep, nutraceuticals, nutrients, obesities, oceans, ohbm, onco, oncopathology, optics, oral, organics, organoids, osteology, oxygen, parasites, parasitologia, particles, pathogens, pathophysiology, pediatrrep, pets, pharmaceuticals, pharmaceutics, pharmacoepidemiology, pharmacy, philosophies, photochem, photonics, phycology, physchem, physics, physiologia, plants, plasma, platforms, pollutants, polymers, polysaccharides, populations, poultry, powders, preprints, proceedings, processes, prosthesis, proteomes, psf, psych, psychiatryint, psychoactives, psycholint, publications, purification, quantumrep, quaternary, qubs, radiation, reactions, realestate, receptors, recycling, regeneration, religions, remotesensing, reports, reprodmed, resources, rheumato, risks, robotics, rsee, ruminants, safety, sci, scipharm, sclerosis, seeds, sensors, separations, sexes, signals, sinusitis, siuj, skins, smartcities, sna, societies, socsci, software, soilsystems, solar, solids, spectroscj, sports, standards, stats, std, stresses, surfaces, surgeries, suschem, sustainability, symmetry, synbio, systems, tae, targets, taxonomy, technologies, telecom, test, textiles, thalassrep, therapeutics, thermo, timespace, tomography, tourismhosp, toxics, toxins, transplantology, transportation, traumacare, traumas, tropicalmed, universe, urbansci, uro, vaccines, vehicles, venereology, vetsci, vibration, virtualworlds, viruses, vision, waste, water, wem, wevj, wild, wind, women, world, youth, zoonoticdis
+
+%---------
+% article
+%---------
+% The default type of manuscript is "article", but can be replaced by: 
+% abstract, addendum, article, benchmark, book, bookreview, briefcommunication, briefreport, casereport, changes, clinicopathologicalchallenge, comment, commentary, communication, conceptpaper, conferenceproceedings, correction, conferencereport, creative, datadescriptor, discussion, entry, expressionofconcern, extendedabstract, editorial, essay, erratum, fieldguide, hypothesis, interestingimages, letter, meetingreport, monograph, newbookreceived, obituary, opinion, proceedingpaper, projectreport, reply, retraction, review, perspective, protocol, shortnote, studyprotocol, supfile, systematicreview, technicalnote, viewpoint, guidelines, registeredreport, tutorial,  giantsinurology, urologyaroundtheworld
+% supfile = supplementary materials
+
+%----------
+% submit
+%----------
+% The class option "submit" will be changed to "accept" by the Editorial Office when the paper is accepted. This will only make changes to the frontpage (e.g., the logo of the journal will get visible), the headings, and the copyright information. Also, line numbering will be removed. Journal info and pagination for accepted papers will also be assigned by the Editorial Office.
+
+%------------------
+% moreauthors
+%------------------
+% If there is only one author the class option oneauthor should be used. Otherwise use the class option moreauthors.
+
+%---------
+% pdftex
+%---------
+% The option pdftex is for use with pdfLaTeX. Remove "pdftex" for (1) compiling with LaTeX & dvi2pdf (if eps figures are used) or for (2) compiling with XeLaTeX.
+
+%=================================================================
+% MDPI internal commands - do not modify
+\firstpage{1} 
+\makeatletter 
+\setcounter{page}{\@firstpage} 
+\makeatother
+\pubvolume{1}
+\issuenum{1}
+\articlenumber{0}
+\pubyear{2025}
+\copyrightyear{2025}
+%\externaleditor{Firstname Lastname} % More than 1 editor, please add `` and '' before the last editor name
+\datereceived{ } 
+\daterevised{ } % Comment out if no revised date
+\dateaccepted{ } 
+\datepublished{ } 
+%\datecorrected{} % For corrected papers: "Corrected: XXX" date in the original paper.
+%\dateretracted{} % For retracted papers: "Retracted: XXX" date in the original paper.
+\hreflink{https://doi.org/} % If needed use \linebreak
+%\doinum{}
+%\pdfoutput=1 % Uncommented for upload to arXiv.org
+%\CorrStatement{yes}  % For updates
+%\longauthorlist{yes} % For many authors that exceed the left citation part
+
+%=================================================================
+% Add packages and commands here. The following packages are loaded in our class file: fontenc, inputenc, calc, indentfirst, fancyhdr, graphicx, epstopdf, lastpage, ifthen, float, amsmath, amssymb, lineno, setspace, enumitem, mathpazo, booktabs, titlesec, etoolbox, tabto, xcolor, colortbl, soul, multirow, microtype, tikz, totcount, changepage, attrib, upgreek, array, tabularx, pbox, ragged2e, tocloft, marginnote, marginfix, enotez, amsthm, natbib, hyperref, cleveref, scrextend, url, geometry, newfloat, caption, draftwatermark, seqsplit
+% cleveref: load \crefname definitions after \begin{document}
+\usepackage{makecell}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric,shadows,arrows.meta,positioning}
+
+% Define styles
+\tikzstyle{process} = [
+  rectangle, 
+  minimum width=3cm, 
+  minimum height=1cm, 
+  text centered, 
+  draw=black, 
+  fill=gray!30,
+  rounded corners,
+  align=center
+]
+\tikzstyle{decision} = [
+  diamond, 
+  minimum width=3cm, 
+  minimum height=1cm, 
+  text centered, 
+  draw=black, 
+  fill=gray!30,
+  align=center
+]
+\tikzstyle{arrow} = [
+  thick, 
+  ->, 
+  >=Stealth
+]
+%=================================================================
+% Please use the following mathematics environments: Theorem, Lemma, Corollary, Proposition, Characterization, Property, Problem, Example, ExamplesandDefinitions, Hypothesis, Remark, Definition, Notation, Assumption
+%% For proofs, please use the proof environment (the amsthm package is loaded by the MDPI class).
+
+%=================================================================
+% Full title of the paper (Capitalized)
+\Title{GeoVault: Leveraging Human Spatial Memory for Secure Cryptographic Key Management}
+
+% MDPI internal command: Title for citation in the left column
+\TitleCitation{Title}
+
+% Author Orchid ID: enter ID or remove command
+\newcommand{\orcidauthorA}{0000-0000-0000-000X} % Add \orcidA{} behind the author's name
+%\newcommand{\orcidauthorB}{0000-0000-0000-000X} % Add \orcidB{} behind the author's name
+
+% Authors, for the paper (add full first names)
+\Author{Firstname Lastname $^{1,\dagger,\ddagger}$\orcidA{}, Firstname Lastname $^{2,\ddagger}$ and Firstname Lastname $^{2,}$*}
+
+%\longauthorlist{yes}
+
+% MDPI internal command: Authors, for metadata in PDF
+\AuthorNames{Firstname Lastname, Firstname Lastname and Firstname Lastname}
+
+% MDPI internal command: Authors, for citation in the left column, only choose below one of them according to the journal style
+% If this is a Chicago style journal 
+% (arts, genealogy, histories, humanities, jintelligence, laws, literature, religions, risks, socsci): 
+% Lastname, Firstname, Firstname Lastname, and Firstname Lastname.
+
+% If this is a APA style journal 
+% (admsci, behavsci, businesses, econometrics, economies, education, ejihpe, games, humans, ijfs, journalmedia, jrfm, languages, psycholint, publications, tourismhosp, youth): 
+% Lastname, F., Lastname, F., \& Lastname, F.
+
+% If this is a ACS style journal (Except for the above Chicago and APA journals, all others are in the ACS format): 
+% Lastname, F.; Lastname, F.; Lastname, F.
+\isAPAStyle{%
+       \AuthorCitation{Lastname, F., Lastname, F., \& Lastname, F.}
+         }{%
+        \isChicagoStyle{%
+        \AuthorCitation{Lastname, Firstname, Firstname Lastname, and Firstname Lastname.}
+        }{
+        \AuthorCitation{Lastname, F.; Lastname, F.; Lastname, F.}
+        }
+}
+
+% Affiliations / Addresses (Add [1] after \address if there is only one affiliation.)
+\address{%
+$^{1}$ \quad Affiliation 1; e-mail@e-mail.com\\
+$^{2}$ \quad Affiliation 2; e-mail@e-mail.com}
+
+% Contact information of the corresponding author
+\corres{Correspondence: e-mail@e-mail.com; Tel.: (optional; include country code; if there are multiple corresponding authors, add author initials) +xx-xxxx-xxx-xxxx (F.L.)}
+
+% Current address and/or shared authorship
+\firstnote{Current address: Affiliation.}  % Current address should not be the same as any items in the Affiliation section.
+\secondnote{These authors contributed equally to this work.}
+% The commands \thirdnote{} till \eighthnote{} are available for further notes
+
+%\simplesumm{} % Simple summary
+
+%\conference{} % An extended version of a conference paper
+
+% Abstract (Do not insert blank lines, i.e. \\) 
+\abstract{
+% A single paragraph of about 200 words maximum. For research articles, abstracts should give a pertinent overview of the work. We strongly encourage authors to use the following style of structured abstracts, but without headings: (1) Background: place the question addressed in a broad context and highlight the purpose of the study; (2) Methods: describe briefly the main methods or treatments applied; (3) Results: summarize the article's main findings; (4) Conclusions: indicate the main conclusions or interpretations. The abstract should be an objective representation of the article, it must not contain results which are not presented and substantiated in the main text and should not exaggerate the main conclusions.
+}
+
+% Keywords
+\keyword{keyword 1; keyword 2; keyword 3 (List three to ten pertinent keywords specific to the article; yet reasonably common within the subject discipline.)} 
+
+% The fields PACS, MSC, and JEL may be left empty or commented out if not applicable
+%\PACS{J0101}
+%\MSC{}
+%\JEL{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Only for the journal Diversity
+%\LSID{\url{http://}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Only for the journal Applied Sciences
+%\featuredapplication{Authors are encouraged to provide a concise description of the specific application or a potential application of the work. This section is not mandatory.}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Only for the journal Data
+%\dataset{DOI number or link to the deposited data set if the data set is published separately. If the data set shall be published as a supplement to this paper, this field will be filled by the journal editors. In this case, please submit the data set as a supplement.}
+%\datasetlicense{License under which the data set is made available (CC0, CC-BY, CC-BY-SA, CC-BY-NC, etc.)}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Only for the journal Toxins
+%\keycontribution{The breakthroughs or highlights of the manuscript. Authors can write one or two sentences to describe the most important part of the paper.}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Only for the journal Encyclopedia
+%\encyclopediadef{For entry manuscripts only: please provide a brief overview of the entry title instead of an abstract.}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Only for the journal Advances in Respiratory Medicine, Smart Cities and Sensors
+%\addhighlights{yes}
+%\renewcommand{\addhighlights}{%
+%
+%\noindent This is an obligatory section in “Advances in Respiratory Medicine'' and ``Smart Cities”, whose goal is to increase the discoverability and readability of the article via search engines and other scholars. Highlights should not be a copy of the abstract, but a simple text allowing the reader to quickly and simplified find out what the article is about and what can be cited from it. Each of these parts should be devoted up to 2~bullet points.\vspace{3pt}\\
+%\textbf{What are the main findings?}
+% \begin{itemize}[labelsep=2.5mm,topsep=-3pt]
+% \item First bullet.
+% \item Second bullet.
+% \end{itemize}\vspace{3pt}
+%\textbf{What is the implication of the main finding?}
+% \begin{itemize}[labelsep=2.5mm,topsep=-3pt]
+% \item First bullet.
+% \item Second bullet.
+% \end{itemize}
+%}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setcounter{section}{-1} %% Remove this when starting to work on the template.
+% \section{
+% How to Use this Template}
+
+% The template details the sections that can be used in a manuscript. Note that the order and names of article sections may differ from the requirements of the journal (e.g., the positioning of the Materials and Methods section). Please check the instructions on the authors' page of the journal to verify the correct order and names. For any questions, please contact the editorial office of the journal or support@mdpi.com. For LaTeX-related questions please contact latex@mdpi.com.
+
+%\endnote{This is an endnote.} % To use endnotes, please un-comment \printendnotes below (before References). Only journal Laws uses \footnote.
+
+% The order of the section titles is different for some journals. Please refer to the "Instructions for Authors” on the journal homepage.
+
+\section{Introduction}
+
+% The introduction should briefly place the study in a broad context and highlight why it is important. It should define the purpose of the work and its significance. The current state of the research field should be reviewed carefully and key publications cited. Please highlight controversial and diverging hypotheses when necessary. Finally, briefly mention the main aim of the work and highlight the principal conclusions. As far as possible, please keep the introduction comprehensible to scientists outside your particular field of research. Citing a journal paper \citep{ref-journal}.  Now citing a book reference \citep{ref-book1,ref-book2} or other reference types \citep{ref-unpublish,ref-url}. Please use the command \citep{ref-proceeding,ref-thesis} for the following MDPI journals, which use author--date citation: Administrative Sciences, Arts, Behavioral Sciences, Businesses, Econometrics, Economies, Education Sciences, European Journal of Investigation in Health, Psychology and Education, Games, Genealogy, Histories, Humanities, Humans, IJFS, Journal of Intelligence, Journalism and Media, JRFM, Languages, Laws, Literature, Psychology International, Publications, Religions, Risks, Social Sciences, Tourism and Hospitality, Youth. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Related Work}
+
+\subsection{Brainwallets and Their Weaknesses}
+
+Brainwallets represent a form of deterministic cryptocurrency wallets derived directly from user-generated passphrases. The fundamental assumption is that users can memorize complex secrets, thus eliminating the need for physical or digital storage of private keys~\cite{Das2019, Vasek2017}. However, numerous studies have shown critical security and usability limitations associated with these passphrase-based systems.
+
+The core vulnerability in brainwallets arises from the predictable nature of user-chosen passphrases. Vasek et al.~\cite{Vasek2017} conducted an extensive empirical analysis revealing that users tend to select easily guessable phrases, significantly reducing effective entropy. Their findings indicated that most brainwallets became compromised rapidly after being funded, often within minutes, highlighting the severe risk of offline dictionary attacks.
+
+Kuo et al.~\cite{Kuo2006} had already demonstrated a similar vulnerability in mnemonic phrase-based passwords, showing that users frequently employ common phrases found online. Yang et al.~\cite{Yang2016} provided empirical evidence that mnemonic-based password strategies, despite their promise of memorability, often yield passwords that are vulnerable to statistical guessing attacks.
+
+The vulnerability is compounded by users' cognitive limitations in memorizing secure passphrases. Bonneau~\cite{Bonneau2012,6234435} illustrated that despite numerous efforts to encourage stronger password practices, most users fail to achieve sufficient entropy. Adams and Sasse~\cite{Adams1999, Sasse2001} further explained this phenomenon from a usability perspective, arguing that increasing password complexity requirements directly conflict with human memory constraints, inevitably pushing users towards insecure practices.
+
+Kävrestad and Nohlberg~\cite{Kavrestad2020} attempted to mitigate these risks through context-based training but found limited effectiveness, as security training alone failed to significantly increase real-world passphrase security. This highlights the broader tension between security demands and human cognitive limitations.
+
+Alternative graphical authentication schemes, aiming to leverage human visual memory, have similarly encountered vulnerabilities. Tari et al.~\cite{Tari2006} and Golla et al.~\cite{Golla2017} explored graphical and emoji-based passwords, identifying vulnerabilities such as susceptibility to shoulder-surfing and predictable user choices, respectively. Although these methods show improved memorability, they remain susceptible to targeted attacks and fail to offer robust security guarantees.
+
+Emerging methods designed to overcome the vulnerabilities of brainwallets include hierarchical deterministic (HD) wallets~\cite{DiLuzio2020,Gutoski2015} and hardware-based wallets, often termed cold wallets~\cite{Das2019,8726762}. HD wallets, standardized in BIP32, generate keys from a single master seed through deterministic derivation paths, significantly simplifying key management. However, Di Luzio et al.~\cite{DiLuzio2020} highlighted potential vulnerabilities in standard HD wallets, notably privilege escalation attacks in multi-user scenarios. Similarly, Gutoski and Stebila~\cite{Gutoski2015} revealed that typical HD wallet implementations could be susceptible to critical master-key recovery attacks if an attacker acquires even a limited subset of derived keys. This vulnerability exposes a fundamental limitation—key leakage in deterministic schemes can propagate back to compromise the entire wallet hierarchy.
+
+Cold wallets, which store private keys offline to mitigate network-based attacks, offer an alternative security model. Das et al.~\cite{Das2019} formally analyzed the hot/cold wallet paradigm, identifying rigorous conditions under which such systems maintain security. Despite these advantages, cold wallets are susceptible to specialized attacks, including private key exfiltration through physical side-channels. Guri~\cite{8726762} empirically demonstrated multiple side-channel methods capable of rapidly extracting keys from air-gapped wallets through electromagnetic, acoustic, optical, and thermal signals. This type of attack notably challenges the assumed invulnerability of hardware-based wallets, highlighting that even isolated systems remain vulnerable to sufficiently advanced threats.
+
+Thus, although HD and cold wallets offer practical mitigations against many brainwallet-related risks, they inherently introduce increased system complexity, new attack surfaces, and unique vulnerabilities that need careful consideration and management.
+
+In summary, brainwallets and mnemonic-based password schemes consistently suffer from two core weaknesses: predictability due to human-chosen phrases, and usability barriers stemming from cognitive limitations~\cite{Kuo2006, Vasek2017, Yang2016}. While emerging approaches such as hierarchical deterministic wallets and cold wallets address some of these limitations, they introduce their own trade-offs—namely increased complexity and vulnerability to advanced attacks such as master-key leakage~\cite{Gutoski2015, DiLuzio2020} or physical side-channel exfiltration~\cite{Das2019,8726762}. These limitations motivate the search for alternative strategies that align more closely with human cognitive strengths. In particular, leveraging spatial memory—a faculty known for its robustness and retention—offers a promising direction for secure yet user-friendly key management.
+
+\subsection{Human Spatial Memory as a Cryptographic Asset}
+
+Human memory is notoriously unreliable when it comes to memorizing abstract information such as complex alphanumeric strings or passphrases~\cite{Pals2018, Akaygun2014}. However, decades of cognitive psychology research have shown that humans exhibit a disproportionately strong ability to encode, recall, and retain spatial information~\cite{montello1998new, McNamara2003}. This observation underpins the “method of loci,” an ancient memory technique that leverages imagined spatial environments to recall information by placing memories at physical locations within a mental map~\cite{Yates2013}.
+
+Neurological evidence also supports the unique role of spatial memory in human cognition. The hippocampus, a brain structure critical for memory formation, is also central to spatial navigation~\cite{McNaughton1991}. The dual-use of this brain region suggests a strong evolutionary and functional link between spatial awareness and memory encoding. Studies in cognitive neuroscience confirm that people can recall spatial configurations with high accuracy even after long periods, particularly when these memories are grounded in visual or map-based stimuli~\cite{Konkle2010, Lukavsky2017}.
+
+More recently, spatial interfaces have been proposed in password systems and digital authentication~\cite{Bauer1993}. Although graphical passwords do not directly translate to geographic locations, their effectiveness demonstrates that spatially anchored memory cues are more durable than abstract password recall. In usability studies, users retained spatially-based authentication secrets for longer durations and with fewer errors compared to textual passphrases~\cite{Garden2002}.
+
+These findings suggest that spatial memory may provide a superior foundation for cryptographic key storage and retrieval mechanisms. Unlike traditional brainwallets that rely on memorized strings, a system that anchors a seed derivation process to a spatial coordinate or map location would naturally exploit this cognitive strength. Such systems could offer both better security and usability, reducing the cognitive load while maintaining high entropy—especially when combined with computational functions that bind access to the correct location and effort.
+
+\subsection{Geospatial Encoding Systems}
+
+Geospatial encoding systems provide a structured way to represent geographic locations using codes or identifiers, facilitating applications such as navigation, logistics, and, in the context of this research, secure mnemonic storage based on spatial memory. These systems translate physical locations into a format that can be easily shared and processed, making them a critical component of the proposed \textit{GeoVault} protocol.
+
+A widely recognized example is What3Words (w3w), which partitions the globe into 3m x 3m squares, each assigned a unique three-word identifier. This system excels in usability due to its intuitive word-based format, reducing errors compared to traditional coordinates, and supports multiple languages \cite{Jiang2018a}. However, its fixed resolution limits its flexibility for applications requiring finer granularity or three-dimensional encoding, such as indoor environments \cite{Lee2009}. Moreover, recent critiques highlight potential confusion between similar word triplets, posing risks in critical applications like emergency response or secure storage \cite{Arthur2023}. These limitations are particularly relevant to \textit{GeoVault}, where precise and unambiguous location encoding directly impacts mnemonic security.
+
+Alternative systems include Geohash, Google's Open Location Code (OLC), and Google S2. Geohash employs a hierarchical grid with alphanumeric codes, offering variable precision but suffering from complexity and potential user confusion due to its base32 encoding \cite{Mai2022}. Open Location Code, designed for offline use, provides a more accessible alphanumeric approach, balancing usability and scalability \cite{Mai2022}. Google S2, optimized for spatial indexing, uses a cell-based structure that supports efficient querying and could enhance the protocol's computational efficiency \cite{Mai2022}. Each system presents distinct characteristics: Geohash and OLC prioritize flexibility, while S2 emphasizes performance in large-scale applications.
+
+The choice of a geospatial encoding system for \textit{GeoVault} involves several trade-offs. Usability is critical for enabling users to recall and input locations accurately, favoring systems like What3Words \cite{Jiang2018a}. Granularity, or the size of the encoded area, affects the entropy of the system---a finer grid increases the number of possible locations, strengthening security against brute-force attacks. Encoding precision also influences the integration with computation-hard derivation functions like Argon2, as higher precision demands greater computational effort to protect the mnemonic seed. Additionally, reliability and accuracy are paramount, as geocoding errors can compromise the protocol's integrity. Studies reveal significant variability in geocoding accuracy across services and regions, necessitating robust validation frameworks \cite{Goldberg2013, Zandbergen2008a}.
+
+In this research, geospatial encoding systems underpin the spatial anchoring of mnemonic seeds. What3Words offers a compelling starting point due to its balance of usability and precision, yet its fixed resolution and potential for confusion \cite{Arthur2023} suggest the need for enhancements, such as variable resolution or three-dimensional support \cite{Jiang2018a, Lee2009}. Alternatives like Google S2 could improve scalability and precision, while custom schemes might better align with the protocol's security requirements \cite{Mai2022}. Furthermore, address extraction and matching techniques from web data, as explored in \cite{Efremova2018}, could enhance location selection, ensuring users choose memorable yet secure burial sites.
+
+Ultimately, the selected system must integrate seamlessly with the protocol's threat model, resisting attacks such as map scanning or brute-forcing while maintaining user-friendliness. Future work will explore hybrid approaches, potentially combining What3Words' simplicity with S2's flexibility, and evaluate their performance in real-world mnemonic recovery scenarios.
+
+\subsection{Encryption Techniques for Burying Secrets}
+
+Secure storage of mnemonic seeds in the \textit{GeoVault} protocol relies on cryptographic techniques that impose significant computational barriers to unauthorized recovery while ensuring practical access for legitimate users. This section examines four mechanisms---memory-hard key derivation functions (KDFs), verifiable delay functions (VDFs), time-lock puzzles, and proofs of sequential work (PoSW)---that protect against brute-force attacks by leveraging memory, time, or sequential computation. Each technique is illustrated with a scientific example to demonstrate its role in securing spatially anchored mnemonic seeds.
+
+Memory-hard KDFs, such as Argon2, transform inputs like spatial coordinates into cryptographic keys through processes that require substantial memory resources, thereby resisting optimization by hardware accelerators such as ASICs or GPUs~\cite{7467361,Wetzels2016}. For instance, Argon2d with parameters set to use 1 GB of memory and 10,000 iterations generates a 256-bit key from coordinates (e.g., 40.7128° N, 74.0060° W) by filling a 1 GB array with pseudorandom values and iteratively referencing it in a dependent pattern. An adversary with only 100 MB of memory must recompute missing blocks, increasing their runtime by a factor of 10,000 compared to a system with the full 1 GB. This memory-computation trade-off ensures that brute-forcing keys across multiple locations is resource-intensive, making large-scale attacks impractical. However, emerging compute-capable memory technologies, such as near-data processing, may reduce memory access costs, potentially weakening memory-hard functions like scrypt~\cite{Choe2019}, underscoring the need for adaptable KDFs.
+
+Verifiable delay functions (VDFs) enforce a fixed number of sequential computational steps, with efficient verification of the result~\cite{Boneh2018,Wesolowski2019}. Consider a VDF based on repeated squaring: computing \( y = x^{2^t} \mod N \), where \( N \) is a 2048-bit RSA modulus, \( x \) is derived from the coordinates, and \( t = 10^6 \). On a 3 GHz CPU, each squaring takes approximately 1 microsecond, totaling 1 second for 1 million squarings. Even with 1,000 parallel CPUs, the sequential dependency ensures the computation still takes 1 second. Verification, however, is a single modular exponentiation, completed in milliseconds. This property is ideal for \textit{GeoVault}, as it imposes a mandatory delay on seed derivation, preventing rapid attacks while allowing quick validation. Recent VDF constructions achieve tight efficiency and reduce prover storage via incremental computation~\cite{Dottling2020,Dottling2019}, though their reliance on groups of unknown order may complicate implementation~\cite{Wesolowski2019}.
+
+Time-lock puzzles encrypt data, such as a mnemonic seed, to be unlocked only after a predefined computational effort, typically through sequential operations~\cite{Mahmoody2011}. For example, a puzzle requiring \( t = 10^9 \) squarings modulo a 2048-bit \( N \) takes approximately 17 minutes on a high-end CPU performing 1 million squarings per second. The encryption might be structured as \( c = m + H(k)^{2^t} \mod N \), where \( m \) is the seed and \( H(k) \) is a hash of the coordinates. Decryption requires computing \( H(k)^{2^t} \) sequentially, with no parallelization benefit. This ensures that the seed remains inaccessible until the full computational effort is expended, mirroring the burial of a secret in \textit{GeoVault}. While constructions using repeated squaring or bilinear pairings offer provable security, they are vulnerable to advances in factoring or quantum attacks~\cite{Mahmoody2011,Cheon2008}. Non-interactive timed-release encryption schemes avoid server dependency but often rely on identity-based encryption, introducing additional complexity~\cite{Cathalo2005,Choi2020}.
+
+Proofs of sequential work (PoSW) enable verification of sequential computational effort, with applications in blockchain consensus and time-stamping~\cite{Cohen2018,Abusalah2019}. Consider a PoSW where a sequence of hashes is computed: \( h_0 = H(\text{coordinates}) \), \( h_1 = H(h_0) \), ..., \( h_{10^6} = H(h_{10^5}) \), using SHA-256, taking approximately 1 second. A Merkle tree over this sequence allows the prover to present a compact proof (the root and a path to \( h_{10^6} \)), which can be verified in microseconds. This proves that the solver performed 1 million sequential hashes tied to the coordinates, ensuring that only users at the correct location who complete the required work can retrieve the seed. Efficient PoSW designs reduce prover space to logarithmic levels using hash-based structures in the random oracle model~\cite{Cohen2018,Abusalah2019}, enhancing \textit{GeoVault}'s defenses against map-scanning attacks.
+
+Collectively, these techniques address the cryptographic needs of \textit{GeoVault}: memory-hard KDFs resist hardware-accelerated attacks, VDFs enforce sequential delays, time-lock puzzles provide temporal protection, and PoSW verify location-specific computational effort. Challenges remain, including calibrating computational difficulty to match the 128-bit entropy of a 12-word BIP-39 mnemonic and mitigating risks from hardware advancements~\cite{Choe2019, Nguyen2019}. Future work could explore hybrid approaches that combine these mechanisms to optimize security, usability, and resistance to parallelized attacks in spatially anchored mnemonic storage.
+
+\section{Theoretical Background}
+
+\subsection{Entropy in Mnemonic and Brainwallets Based  Secure Storage}
+
+Cryptocurrency wallets that follow the BIP-39 standard derive their private keys from a
+machine-generated mnemonic, a sequence of words selected uniformly at random. The security of such a wallet is governed by the entropy of that mnemonic. Shannon entropy~\cite{Shannon1948}, defined as:
+\begin{equation}
+    H(\mathcal{A}) = -\sum_{a_i \in \mathcal{A}} P(a_i)\log_2 P(a_i),
+\end{equation}
+quantifies the unpredictability of passphrase selection, where \(\mathcal{A}\) denotes the set of all possible passphrase elements (e.g., words or characters) and \(P(a_i)\) is the selection probability of an element \(a_i\).
+
+In an ideal BIP-39 mnemonic phrase, composed of 12 randomly selected words from a fixed dictionary of 2048 words, entropy reaches \(128\) bits. This implies \(2^{128}\) possible mnemonic combinations, providing robust cryptographic security against brute-force attacks. 
+
+To illustrate the cryptographic strength of this entropy, consider a brute-force scenario using modern GPU hardware optimized for hashing operations. A high-end consumer GPU can typically perform on the order of \(10^{9}\) (one billion) guesses per second \cite{Choi2024, Qiu2016, Durmuth2015}. Under this assumption, the total time required to exhaustively search all possible combinations of a \(128\)-bit mnemonic phrase would be:
+
+\begin{equation}
+T = \frac{2^{128}}{10^{9}} \text{ seconds} \approx 3.4 \times 10^{29} \text{ seconds}
+\end{equation}
+
+This duration is astronomically large, translating to approximately \(1.08 \times 10^{22}\) years—far surpassing the age of the universe (\(\approx 1.38 \times 10^{10}\) years). Therefore, purely random 12-word BIP-39 mnemonic phrases provide exceptionally robust protection against brute-force attacks, effectively ensuring cryptographic security even in the presence of substantial GPU computational resources.
+
+Unlike BIP-39, a brainwallet lets the user choose \emph{any} sequence of words, characters, or even full sentences.  
+If the words are chosen \emph{uniformly at random} from a dictionary of size \(N\), each word contributes 
+\(\log_2 N\) bits of entropy.  Hence the minimum number of words \(w\) needed to reach the 128-bit
+security target is 
+\[
+w \;=\; \Bigl\lceil \frac{128}{\log_2 N}\Bigr\rceil .
+\]
+Table~\ref{tab:words_for_entropy} shows typical values:
+
+\begin{table}[H]
+\caption{Dictionary size vs.\ words required for \(\ge128\) bits of entropy.}
+\label{tab:words_for_entropy}
+\centering
+\begin{tabular}{ccc}
+\toprule
+\textbf{Dictionary size \(N\)} & \(\log_2 N\;\) (bits/word) & \textbf{Words needed \(w\)} \\
+\midrule
+2048 (BIP-39)       & \(11.0\)  & 12 (gives 132 bits, BIP-39) \\
+7776 (Diceware)     & \(12.9\)  & 10 \\
+58000 (common English lemmas) & \(15.8\) & 9  \\
+100000 (large English set)    & \(16.6\) & 8  \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\noindent Table~\ref{tab:words_for_entropy} underscores the inverse relationship between alphabet size and mnemonic length required to attain the 128-bit target. With the fixed 2048-word BIP-39 list, each token carries exactly \(\log_2 2048 = 11\) bits, so the default 12-word phrase delivers \(12 \times 11 = 132\) bits of entropy. Enlarging the alphabet to the 7776-entry Diceware list raises the per-word contribution to \(12.9\) bits, reducing the required length to \(w=\lceil 128/12.9\rceil = 10\) words. A uniform draw from roughly \(5.8 \times 10^{4}\) common English lemmas provides \(15.8\) bits per word and needs only nine words, while a 100 000-word lexicon lowers the figure to eight. These numbers constitute \emph{upper bounds}: they presume perfectly uniform, independent selection of words—assumptions that break down once human memory and linguistic bias enter the picture, as discussed in the following subsection.
+
+Thus, in theory, a truly random eight-word phrase drawn from a 100,000-word dictionary already
+surpasses 128 bits of entropy, and even a nine-word phrase chosen from the 58,000 most common English
+lemmas meets the target.  
+
+However, empirical research consistently reveals that user-generated mnemonic phrases significantly deviate from uniform randomness due to human cognitive limitations and biases~\cite{Vasek2017, Bonneau2012, Kuo2006}. 
+
+\subsection{Entropy in Spatial Memory-Based Systems}
+
+The cryptographic strength of spatially anchored mnemonic systems, such as the proposed \textit{GeoVault}, fundamentally depends on the entropy derived from spatial resolution. Geospatial encoding schemes discretize a continuous spatial domain, such as the Earth's surface or any arbitrary mapped region, into finite sets of discrete grids or cells. Each cell then becomes a unique, selectable element within the mnemonic generation process. Consequently, the entropy provided by these spatial encoding schemes is directly determined by the granularity (resolution) of the discretization as shown in equation \ref{eq:spatial_entropy_final}.
+
+\begin{equation}
+    H = \log_2\left(\frac{A_{\mathcal{M}}}{A_{\text{cell}}}\right)
+    \label{eq:spatial_entropy_final}
+\end{equation}
+Where \(A_{\mathcal{M}}\) represents the total surface area of the spatial domain, and \(A_{\text{cell}}\) denotes the area of a single discrete cell defined by the encoding scheme.
+
+As illustrated in Equation~\eqref{eq:spatial_entropy_final}, the entropy \(H\) directly depends on the granularity of the spatial discretization. Finer resolutions (smaller \(A_{\text{cell}}\)) yield higher entropy, thus enhancing cryptographic strength by increasing the unpredictability of cell selection.
+
+To achieve a commonly recommended cryptographic security target of \(128\) bits of entropy, the required cell size \(A_{\text{cell}}\) can be determined by rearranging Equation~\eqref{eq:spatial_entropy_final}:
+
+\begin{equation}
+    A_{\text{cell}} = \frac{A_{\mathcal{M}}}{2^{H}}.
+    \label{eq:required_cell_area}
+\end{equation}
+
+For example, considering Earth's total surface area (\(A_{\mathcal{M}} \approx 510.1 \times 10^{12}\,\text{m}^{2}\)), the cell size required to achieve \(128\) bits of entropy would be:
+
+\begin{equation}
+    A_{\text{cell}} = \frac{510.1 \times 10^{12}\,\text{m}^{2}}{2^{128}} \approx 1.5 \times 10^{-24}\,\text{m}^{2}.
+    \label{eq:earth_cell_area_128bit}
+\end{equation}
+
+This calculated cell area (Equation~\eqref{eq:earth_cell_area_128bit}) is unrealistically small, indicating that achieving \(128\)-bit entropy through a single cell selection on Earth's surface is infeasible at any practical spatial resolution.
+
+Established encoding systems such as What3Words, which uses a fixed cell size of \(3\times3\,\text{m}\), can instead achieve sufficient entropy by selecting multiple distinct cells. The entropy provided by a single What3Words cell (\(A_{\text{cell}} = 9\,\text{m}^2\)) is calculated using Equation~\eqref{eq:spatial_entropy_final} as follows:
+
+\begin{equation}
+    H_{\text{w3w}} = \log_2\left(\frac{510.1 \times 10^{12}\,\text{m}^2}{9\,\text{m}^2}\right) \approx 45.7\,\text{bits}.
+    \label{eq:entropy_single_w3w}
+\end{equation}
+
+Thus, as shown in Equation~\eqref{eq:entropy_single_w3w}, a single What3Words cell provides approximately \(45.7\,\text{bits}\) of entropy. To reach \(128\,\text{bits}\) of entropy, the number of cells \(n\) required is calculated as:
+
+\begin{equation}
+    n = \frac{128\,\text{bits}}{45.7\,\text{bits/cell}} \approx 2.80.
+    \label{eq:number_of_cells_w3w}
+\end{equation}
+
+Since the number of cells must be an integer, at least \(3\) distinct What3Words cells must be selected to achieve or surpass the \(128\,\text{bits}\) entropy threshold, as indicated by Equation~\eqref{eq:number_of_cells_w3w}.
+
+However, achieving the desired entropy through multiple spatial cells poses additional challenges. Human users typically do not select locations uniformly at random; instead, they tend to choose familiar or easily memorable locations. Consequently, this inherent human bias significantly reduces the effective entropy of spatial selection, much like the vulnerabilities found in conventional brainwallets~\cite{Vasek2017, Bonneau2012}. Therefore, even selecting multiple cells from established encoding systems such as What3Words may not reliably provide the theoretical entropy calculated above. This critical limitation emphasizes the need for entropy-boosting methods, combining spatial selection with computationally intensive cryptographic techniques to ensure practical security.
+
+
+\subsection{Entropy Boosting Techniques}
+
+Given the practical limitations of achieving sufficient cryptographic entropy from spatial resolution alone, spatially anchored mnemonic systems such as \textit{GeoVault} rely on entropy-boosting methods to enhance security. These techniques do not depend on increasing the number of spatial elements but instead amplify security by artificially increasing the computational cost of each guess. This allows the system to reach high effective entropy levels without requiring impractically fine-grained spatial encoding or large numbers of selected locations.
+
+One widely used approach to implement entropy boosting is through a \textit{Key Derivation Function (KDF)}—a cryptographic algorithm that transforms an input (e.g., a spatial code) into a secure key using computationally expensive operations. By increasing the time and memory required for each guess, KDFs make brute-force attacks significantly more difficult. Memory-hard KDFs such as Argon2 are particularly effective, as they reduce the advantage of attackers using parallel hardware like GPUs or ASICs, thereby strengthening the practical resistance of the system.
+
+To quantify the total resistance against brute-force attacks, we define the \emph{attacker-adjusted work factor}, denoted \(\mathcal{W}_{\text{attacker}}\), as the expected time required for an adversary to exhaust the key space. This depends on both the size of the search space and the computational cost of evaluating each guess. The total work is given in Equation~\ref{eq:work_factor_attacker_hash}:
+
+\begin{equation}
+    \mathcal{W}_{\text{attacker}} = \frac{N \times C}{R},
+    \label{eq:work_factor_attacker_hash}
+\end{equation}
+
+Where \(N = 2^H\) is the number of possible spatial combinations, derived from spatial entropy \(H\), \(C\) is the number of hash evaluations required to process a single guess (i.e., the cost of one KDF evaluation) and \(R\) is the attacker’s hashing capability, measured in hashes per second.
+
+The value \(\mathcal{W}_{\text{attacker}}\) represents the expected time, in seconds, that a brute-force attacker would require to search the entire space of possible spatial codes.
+
+A detailed numerical comparison of representative parameter choices for BIP-39 and GeoVault-style spatial mnemonics are presented in Section~\ref{sec: results}.
+
+% We now compute this work factor for two representative systems.
+
+% \paragraph{Example: BIP-39.}  
+% The BIP-39 standard produces a 12-word seed phrase with a total entropy of \(H = 128\) bits. If no additional computational hardening is applied (\(C = 1\)), and assuming an attacker has access to a modern GPU capable of computing \(R = 10^9\) hashes per second (\cite{Choi2024}), the expected attack time is calculated in Equation \ref{eq:work_bip39}
+
+% \begin{equation}
+%     \mathcal{W}_{attacker_{BIP-39}} = \frac{2^{128} \times 1}{10^9} \approx 3.4 \times 10^{29} \,\text{seconds}.
+%     \label{eq:work_bip39}
+% \end{equation}
+
+% As Equation~\eqref{eq:work_bip39} shows, this provides exceptionally strong protection against brute-force attacks.
+
+% \paragraph{Example: What3Words (no KDF).}  
+% A single What3Words cell provides approximately \(H = 45.7\) bits of entropy. If no key derivation function is applied (\(C = 1\)), and the attacker uses a GPU capable of computing \(R = 10^9\) hashes per second~\cite{Choi2024}, the expected brute-force time is given by Equation~\eqref{eq:work_w3w_nokdf}.
+
+% \begin{equation}
+%     \mathcal{W}_{attacker_{W3W (no KDF)}} = \frac{2^{45.7} \times 1}{10^9} \approx \frac{5.09 \times 10^{13}}{10^9} = 50{,}900 \,\text{seconds} \approx 14.1\,\text{hours}.
+%     \label{eq:work_w3w_nokdf}
+% \end{equation}
+
+% As Equation~\eqref{eq:work_w3w_nokdf} shows, a single-cell What3Words mnemonic without computational hardening can be fully brute-forced in under a day using a commodity GPU, rendering it insecure on its own.
+
+% \paragraph{Example: What3Words with strong KDF.}  
+
+% To address this vulnerability, a strong memory-hard key derivation function (such as Argon2) can be used to increase the cost of each guess. For instance, if the KDF is configured with a cost of \(C = 2^{73} \approx 9.44 \times 10^{21}\) hash-equivalent operations, the attacker-adjusted work factor becomes:
+
+% \begin{equation}
+%     \mathcal{W}_{attacker_{W3W (KDF)}} = \frac{2^{45.7} \times 2^{73}}{10^9} \approx \frac{5.09 \times 10^{13} \times 9.44 \times 10^{21}}{10^9} \approx 4.8 \times 10^{26} \,\text{seconds}.
+%     \label{eq:work_w3w_kdf}
+% \end{equation}
+
+% As shown in Equation~\eqref{eq:work_w3w_kdf}, this KDF-hardened version achieves brute-force resistance on par with a 128-bit BIP-39 seed. While the use of a strong KDF enables the system to rely on just a single memorized location, the overall security still depends heavily on the unpredictability of that location. In practice, users tend to choose familiar places—such as their home, workplace, or well-known landmarks—which introduces semantic bias and significantly narrows the effective search space. To compensate, the KDF must be configured with a sufficiently high cost to counteract the loss of entropy due to such non-random selection.
+
+% \begin{table}[ht]
+% \centering
+% \caption{Comparison of security models for mnemonic-based systems.}
+% \label{tab:security_models}
+% \begin{tabular}{|l|c|c|c|c|}
+% \hline
+% \textbf{Model} &
+% \makecell{\textbf{Entropy} \\ \textbf{(bits)}} &
+% \makecell{\textbf{KDF Cost} \\ \textbf{ ($C$)}} & 
+% \makecell{\textbf{Guess Rate} \\ \textbf{ $R$ (1/s)}} &
+% \makecell{\textbf{Estimated Work} \\ \textbf{Factor($\mathcal{W}_{\text{attacker}}$)}} \\
+% \hline
+% BIP-39 (12-word) & 128 & $2^0$ (none) & $10^9$ & $\approx 10^{29}$ sec \\
+% \hline
+% W3W (1 cell, no KDF) & 45.7 & $2^0$ (none) & $10^9$ & $ \approx 5 \times 10^4$ sec \\
+% \hline
+% W3W (1 cell, strong KDF) & 45.7 & $2^{73}$ & $10^9$ & $ \approx 4.8 \times 10^{26}$ sec \\
+% \hline
+% W3W (3 cells, no KDF) & 137.1 & $2^0$ (none) & $10^9$ & $ \approx 2.8 \times 10^{31}$ sec \\
+% \hline
+% \end{tabular}
+% \end{table}
+
+
+% Table~\ref{tab:security_models} compares mnemonic-based security models in terms of entropy, KDF cost, attacker hash rate, and the resulting attacker-adjusted work factor \(\mathcal{W}_{\text{attacker}}\). A BIP-39 12-word phrase provides 128 bits of entropy and strong resistance even without a KDF. A single What3Words cell, by contrast, is easily guessed unless hardened. Applying a strong KDF (e.g., Argon2 with cost \(2^{73}\)) can elevate its security to near BIP-39 levels. Using multiple W3W cells (e.g., three) increases raw entropy without a KDF, but raises usability and memorability concerns. Moreover, user bias in location choice can still weaken security. 
+
+
+
+\section{Materials and Methods}
+
+\subsection{Protocol design}
+
+The GeoVault protocol integrates human spatial memory and advanced cryptographic methods to securely derive cryptographic keys anchored to spatial locations. 
+
+% ---- Flowchart ----
+\begin{center}
+\begin{tikzpicture}[
+  node distance=1cm and 1cm
+]
+    \node[process] (A) {Spatial selection};
+    \node[process, below=of A] (B) {Geospatial encoding};
+    \node[process, below=of B] (C) {Entropy boosting};
+    \node[decision, below=of C] (D) {n < \\boost cycles};
+    \node[process, below=of D] (E) {Mnemonic extraction};
+
+    \draw[arrow] (A) -- (B);
+    \draw[arrow] (B) -- (C);
+    \draw[arrow] (C) -- (D);
+    \draw[arrow] (D.east) -- ++(1.5,0) -- ++(0,3.05) node[midway, left]{no} -- (C.east);
+    \draw[arrow] (D) -- node[anchor=east] {yes} (E);
+\end{tikzpicture}
+\end{center}
+
+\subsection{Spatial Selection}
+
+GeoVault assumes that each user chooses a single geographic \emph{point} as shown in Equation \ref{eq:spatial_point}.
+
+\begin{equation}
+    p = (\varphi,\lambda) \in \mathcal{M}
+    \label{eq:spatial_point}
+\end{equation}
+
+Where \(\mathcal{M}\subset\mathbb{R}^2\) is the spatial domain of the
+application.  In the baseline implementation \(\mathcal{M}\) is the
+WGS-84 model of the Earth’s surface, but the definition is deliberately
+abstract: \(\mathcal{M}\) may just as well be a fictional continent, a game
+map, or any other two-dimensional world with a well defined coordinate
+system.  No randomness or grid quantisation is imposed at this stage; the
+point \(p\) is treated as an exact element of \(\mathcal{M}\).
+
+\paragraph{Security warning.}
+Because the selection of \(p\) is unrestricted, its entropy is determined
+solely by user unpredictability.  Choosing semantically obvious points—home,
+office, iconic landmarks, or well‑known locations in a virtual world—shrinks
+the effective search space and can nullify the theoretical entropy of any
+subsequent geocode.  Unless explicitly mitigated, this bias must be
+counter‑balanced by a sufficiently costly key‑derivation step.
+
+\subsection{Geospatial Encoding}
+
+After a user fixes a point \(p\in\mathcal{M}\), GeoVault must deterministically map that point
+to a unique quantised cell and produce a string identifier.  We formalise an
+encoding scheme as the composition shown in Equation \ref{eq:encode_composition}, 
+
+\begin{equation}
+    E \;=\; \mathsf{code}\circ\mathsf{snap},
+    \label{eq:encode_composition}
+\end{equation}
+
+where  \(\mathsf{snap}: \mathcal{M}\rightarrow\mathcal{C}\) partitions the domain into equal‑area cells and returns the cell that contains \(p\) and
+ \(\mathsf{code} : \mathcal{C}\rightarrow\Sigma^{*}\) assigns that cell a deterministic identifier. The identifier may be
+ human‑friendly, but GeoVault does not rely on it for entropy; the spatial point itself is the sole source of unpredictability.
+
+\paragraph{Baseline encoder (What3Words).}
+The reference implementation fixes both
+\(\mathsf{snap}\) and \(\mathsf{code}\) to the \emph{What3Words} grid and
+lexicon: every \(3\times3\,\text{m}\) square is a cell, and the three‑word
+phrase returned by W3W is the identifier.  Substituting Earth’s
+\(A_{\mathcal{M}}\approx 5.1\times10^{14}\,\text{m}^2\) and
+\(A_{\text{cell}} = 9\,\text{m}^2\) into
+Equation~\eqref{eq:spatial_entropy_final} yields the single‑cell entropy $\approx 45.7\;\text{bits}$ according to equation \ref{eq:entropy_single_w3w}.
+
+This \(\approx46\)-bit baseline is insufficient for 128‑bit security, so
+subsequent stages add computational hardening via entropy boosting process described in subsection (Section~\ref{sec:entropy_boosting}. Crucially, GeoVault’s cryptographic core is encoder‑agnostic: any scheme that satisfies injectivity, determinism, and offline resolvability can replace the What3Words encoding system.\ 
+
+\subsection{Entropy boosting}
+\label{sec:entropy_boosting}
+
+In GeoVault, the baseline entropy derived from a single geospatial cell (e.g., approximately 46 bits using What3Words as per Equation~\ref{eq:entropy}) is insufficient for high-security applications requiring 128-bit or higher effective security levels. To address this, we introduce an entropy boosting mechanism that amplifies the inherent unpredictability of the user's chosen spatial location(s) through iterative cryptographic processing. This process not only increases the effective entropy but also incorporates computational hardness to resist brute-force attacks, particularly those accelerated by GPUs or ASICs.
+
+The core of our entropy boosting implementation relies on Argon2~\cite{}, a memory-hard key derivation function (KDF) designed to be resistant to parallelized attacks. Argon2 is selected for its proven security properties, including resistance to side-channel attacks and tunable parameters for time, memory, and parallelism costs. Specifically, we employ Argon2id, the hybrid variant that balances data-dependent (Argon2d) and data-independent (Argon2i) modes, providing robust protection against both offline guessing and timing attacks.
+
+\subsection{Security Evaluation Methodology}
+\label{sec:security_evaluation}
+
+The goal of our evaluation is to quantify how much practical protection a user gains
+from a given key-derivation cost when the defender derives keys on a CPU while the
+attacker mounts a brute-force attack on a GPU. In particular, we are interested in
+answers of the form: \emph{``if a user is willing to spend \(T_{\text{CPU}}\) seconds on
+Argon2, what level of brute-force resistance does this provide against a realistic
+GPU-equipped attacker?''}
+
+Our methodology decomposes the problem into three components: a defender (user) cost
+model, an attacker cost model, and a derived work factor that combines both.
+
+\subsubsection{Defender (User) Cost Model}
+
+On the defender side, we assume that the user derives keys using Argon2 on a
+commodity CPU. For a given choice of Argon2 parameters
+\((t, m, p)\), where \(t\) is the number of iterations, \(m\) the memory cost, and
+\(p\) the degree of parallelism, we measure the wall-clock time required to compute
+one KDF evaluation:
+\begin{equation}
+    T_{\text{CPU}}(t, m, p) \;\;=\;\; \text{runtime per Argon2 invocation on the user CPU}.
+    \label{eq:cpu_runtime}
+\end{equation}
+
+This quantity directly captures the usability cost: large values of
+\(T_{\text{CPU}}(t, m, p)\) make the system more resistant to brute-force attacks but
+also increase the delay experienced by legitimate users during key derivation or
+recovery. In our evaluation, we restrict attention to parameter sets for which
+\(T_{\text{CPU}}\) remains within an acceptable latency budget (e.g., below one second)
+for interactive use.
+
+\subsubsection{Attacker (GPU) Cost Model}
+
+On the attacker side, we assume access to a modern GPU and distinguish between two
+types of operations:
+
+\begin{itemize}
+    \item \textbf{Fast hash evaluations} (e.g., SHA-256), relevant for attacking
+          BIP-39-style schemes without additional hardening.
+    \item \textbf{Memory-hard KDF evaluations} (Argon2) with the \emph{same} parameters
+          \((t, m, p)\) as used by the defender, relevant for attacking GeoVault-style
+          spatial mnemonics protected by Argon2.
+\end{itemize}
+
+For each case we empirically measure the attacker’s guess rate on a representative GPU:
+\begin{align}
+    R_{\text{GPU,hash}} &= \text{hashes per second for a fast hash function (e.g., SHA-256)}, \label{eq:gpu_hash_rate} \\
+    R_{\text{GPU,Argon2}}(t, m, p) &= \text{Argon2 evaluations per second with parameters }(t, m, p).
+    \label{eq:gpu_argon2_rate}
+\end{align}
+
+These rates are obtained using standard benchmarking tools (e.g., \texttt{openssl speed}
+for SHA-256 and the reference Argon2 implementation for KDF evaluations) under sustained
+load, averaging over multiple runs to reduce noise.
+
+\subsubsection{Derived Security Metric: Attacker-Adjusted Work Factor}
+
+Given the spatial or mnemonic entropy \(H\) of a scheme and the attacker’s effective
+guess rate \(R\), the theoretical attacker-adjusted work factor
+\(\mathcal{W}_{\text{attacker}}\) was defined in
+Equation~\eqref{eq:work_factor_attacker_hash} as:
+\begin{equation}
+    \mathcal{W}_{\text{attacker}} = \frac{N \times C}{R} \;\;=\;\; \frac{2^{H} \times C}{R},
+\end{equation}
+where \(C\) is the computational cost per guess expressed in hash-equivalent operations
+and \(R\) is the attacker’s guess rate in guesses per second.
+
+In the empirical setting, we instantiate \(R\) with the measured GPU rates from
+Equations~\eqref{eq:gpu_hash_rate} and~\eqref{eq:gpu_argon2_rate}, and interpret
+\(C\) as the effective cost associated with a single KDF invocation. For a given
+mnemonic model with entropy \(H\) and Argon2 parameters \((t, m, p)\), the practical
+work factor against a GPU-equipped attacker becomes
+\begin{equation}
+    \mathcal{W}_{\text{attacker}}(H, t, m, p) \;\approx\;
+    \frac{2^{H}}{R_{\text{GPU,Argon2}}(t, m, p)}.
+    \label{eq:empirical_workfactor}
+\end{equation}
+
+For baseline schemes that do not use a memory-hard KDF (e.g., a BIP-39 mnemonic checked
+with a single SHA-256 evaluation), we analogously obtain
+\begin{equation}
+    \mathcal{W}_{\text{attacker}}^{\text{baseline}}(H) \;\approx\;
+    \frac{2^{H}}{R_{\text{GPU,hash}}}.
+    \label{eq:empirical_workfactor_baseline}
+\end{equation}
+
+\subsubsection{Interpreting KDF Cost as User-Visible Protection Level}
+
+This two-sided model allows us to express the protection offered by a given Argon2
+configuration in terms that are directly meaningful to users. For each candidate
+parameter set \((t, m, p)\) we:
+
+\begin{enumerate}
+    \item Measure \(T_{\text{CPU}}(t, m, p)\) to ensure that the user-side latency
+          remains acceptable.
+    \item Measure or estimate \(R_{\text{GPU,Argon2}}(t, m, p)\) on a realistic GPU.
+    \item Compute \(\mathcal{W}_{\text{attacker}}(H, t, m, p)\) using
+          Equation~\eqref{eq:empirical_workfactor} for the relevant entropy \(H\)
+          (e.g., \(H = 45.7\) bits for a single W3W cell).
+\end{enumerate}
+
+The resulting work factor can then be reported in the Results section as an
+\emph{effective protection level}: for example, ``a user who accepts a
+\(T_{\text{CPU}} \approx 400\,\text{ms}\) Argon2 derivation time obtains an estimated
+brute-force resistance of \(\mathcal{W}_{\text{attacker}} \approx 10^{26}\) seconds
+against a GPU attacker with measured rate
+\(R_{\text{GPU,Argon2}}(t, m, p)\).'' This bridges the gap between abstract entropy
+calculations and concrete, hardware-dependent security guarantees.
+
+\subsection{Experimental Setup}
+\label{sec:experimental_setup}
+
+All measurements in this paper---including PBKDF2--HMAC--SHA512 (BIP-39) and
+Argon2id (location-based mnemonics)---were obtained on the same controlled
+workstation and software environment to ensure methodological consistency.
+The goal of this setup is to empirically characterize both defender-side
+computation costs and attacker-side throughput under optimized CPU and GPU
+kernels. No tuning beyond vendor-recommended defaults was applied.
+
+\paragraph{Hardware and Software Environment.}
+Table~\ref{tab:exp_setup} lists the hardware, operating system, GPU driver stack,
+and cryptographic benchmarking tools used throughout the study. Hashcat was used
+for both PBKDF2 (mode 12100) and Argon2id (mode 8200) benchmarks to guarantee
+comparability across KDFs.
+
+\begin{table}[h]
+\centering
+\caption{Hardware and software configuration used for all KDF benchmarks
+(PBKDF2--HMAC--SHA512 and Argon2id).}
+\label{tab:exp_setup}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Category} & \textbf{Specification} \\
+\hline
+\multicolumn{2}{|c|}{\textbf{Hardware}} \\
+\hline
+CPU & Intel Xeon Gold 6338 (Ice Lake), 32 cores @ 2.0\,GHz \\
+GPU & NVIDIA RTX A6000 (GA102GL), 48\,GB GDDR6 \\
+System Memory & 128\,GB DDR4 ECC \\
+Storage & NVMe SSD \\
+\hline
+\multicolumn{2}{|c|}{\textbf{Operating System \& Drivers}} \\
+\hline
+OS & Ubuntu 24.04 LTS \\
+Kernel & Linux 6.x (distribution default) \\
+NVIDIA Driver & CUDA 12.4 / driver 550.xx \\
+OpenCL (CPU) & PoCL 5.0 (LLVM 16) \\
+\hline
+\multicolumn{2}{|c|}{\textbf{Software Tools}} \\
+\hline
+Hashcat & v6.2.6 (benchmark mode) \\
+Benchmark mode (PBKDF2) & \texttt{-b -m 12100} \\
+Benchmark mode (Argon2id) & \texttt{-b -m 8200} \\
+OpenSSL & v3.x (reference PBKDF2 implementation) \\
+Shell environment & GNU bash 5.x \\
+\hline
+\multicolumn{2}{|c|}{\textbf{Benchmark Configuration}} \\
+\hline
+PBKDF2 algorithm & PBKDF2--HMAC--SHA512 (BIP-39 standard) \\
+PBKDF2 iteration baseline & 999 (hashcat default) \\
+PBKDF2 target scaling & 2048 iterations (BIP-39 spec) \\
+Argon2 algorithm & Argon2id \\
+Argon2 parameters & \((t, m, p)\) chosen in Section~\ref{sec:argon2_parameters} \\
+Salt (PBKDF2) & \texttt{"mnemonic"} (BIP-39 standard) \\
+Password input & Fixed test vectors for reproducibility \\
+Backend selection & CPU-only: \texttt{-D 1}; GPU: default CUDA device \\
+\hline
+
+\end{tabular}
+\end{table}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Results}
+
+In this section, we instantiate the analytical framework of
+Section~\ref{sec:entropy_boosting} for concrete mnemonic schemes and quantify their
+resistance against brute-force attacks. We focus on four representative models:
+(i) a machine-generated 12-word BIP-39 mnemonic, (ii) a single What3Words (W3W) cell
+without computational hardening, (iii) a single W3W cell protected by a strong
+memory-hard KDF (Argon2), and (iv) a three-cell W3W configuration. For each model,
+we compute the attacker-adjusted work factor \(\mathcal{W}_{\text{attacker}}\) under
+the assumptions introduced in Equation~\eqref{eq:work_factor_attacker_hash}.
+
+
+
+\subsection{BIP--39 Security Under Empirical CPU and GPU Measurements}
+
+We now instantiate the attacker work factor model of
+Section~\ref{sec:entropy_boosting} for the BIP--39 mnemonic scheme using
+\emph{empirically measured} PBKDF2--HMAC--SHA512 evaluation rates.
+The measurements come from \texttt{hashcat} benchmarks on our evaluation
+system (Xeon Gold 6338 CPU and NVIDIA RTX A6000 GPU), described in
+Section~\ref{sec:methodology}. Since hashcat reports performance for
+999 iterations, we rescale the measurement linearly to the BIP--39 cost
+of 2048 iterations using
+
+\begin{equation}
+\label{eq:bip39_scale}
+R_{2048} = R_{999} \cdot \frac{999}{2048}.
+\end{equation}
+
+The time per PBKDF2 evaluation then follows directly:
+
+\begin{equation}
+\label{eq:bip39_latency}
+T_{2048} = \frac{1}{R_{2048}}.
+\end{equation}
+
+\subsubsection{Defender cost (legitimate user)}
+A defender performs exactly one PBKDF2 evaluation during wallet access.
+Using the CPU measurement \(R_{999} = 126{,}700~\mathrm{H/s}\), we obtain
+via~\eqref{eq:bip39_scale}:
+
+\[
+R_{2048}^{\mathrm{CPU}} \approx 61{,}803~\mathrm{H/s},
+\qquad
+T_{2048}^{\mathrm{CPU}} \approx 0.01618~\mathrm{ms}.
+\]
+
+The GPU result is even faster:
+
+\[
+R_{2048}^{\mathrm{GPU}} \approx 666{,}276~\mathrm{H/s},
+\qquad
+T_{2048}^{\mathrm{GPU}} \approx 0.00150~\mathrm{ms}.
+\]
+
+The defender overhead is therefore negligible on all devices.
+
+\subsubsection{Attacker cost (offline brute force)}
+An offline attacker must perform PBKDF2 for every candidate mnemonic.  
+Using the fastest measured value \(R^{\mathrm{GPU}}_{2048}\), the
+attacker's per-guess cost is set by~\eqref{eq:bip39_latency}.
+
+BIP--39 12-word mnemonics contain exactly
+
+\begin{equation}
+\label{eq:bip39_entropy}
+H = 2^{128}
+\end{equation}
+
+possible combinations.
+The attacker-adjusted work factor follows directly from
+Equation~\eqref{eq:work_factor_attacker_hash}, which we restate here as
+
+\begin{equation}
+\label{eq:bip39_workfactor}
+\mathcal{W}_{\mathrm{attacker}} =
+\frac{2^{128}}{R_{2048}}.
+\end{equation}
+
+Substituting the GPU rate:
+
+\[
+\mathcal{W}_{\mathrm{attacker}}^{\mathrm{GPU}}
+=
+\frac{2^{128}}{6.66 \times 10^{5}}
+\approx
+1.62 \times 10^{32}~\mathrm{s}
+\approx
+5.1 \times 10^{24}~\mathrm{years}.
+\]
+
+Even with one million RTX A6000 GPUs:
+
+\[
+\mathcal{W}_{\mathrm{attacker}}^{10^6 \mathrm{GPU}}
+=
+\frac{1.62 \times 10^{32}}{10^{6}}
+\approx
+1.62 \times 10^{26}~\mathrm{s}
+\approx
+5.1 \times 10^{18}~\mathrm{years}.
+\]
+
+This exceeds the age of the universe by roughly 11 orders of magnitude.
+
+
+\subsection{Single What3Words cell without KDF.}
+A single What3Words cell provides approximately \(H = 45.7\) bits of entropy. If no
+key derivation function is applied (\(C = 1\)), and the attacker uses a GPU capable of
+computing \(R = 10^9\) hashes per second~\cite{Choi2024}, the expected brute-force
+time is
+
+\begin{equation}
+    \mathcal{W}_{attacker_{W3W (no KDF)}} = \frac{2^{45.7} \times 1}{10^9} \approx \frac{5.09 \times 10^{13}}{10^9} = 50{,}900 \,\text{seconds} \approx 14.1\,\text{hours}.
+    \label{eq:work_w3w_nokdf}
+\end{equation}
+
+As Equation~\eqref{eq:work_w3w_nokdf} shows, a single-cell What3Words mnemonic without
+computational hardening can be fully brute-forced in under a day using a commodity GPU,
+rendering it insecure on its own.
+
+\paragraph{Single What3Words cell with strong KDF.}
+To address this vulnerability, a strong memory-hard key derivation function (such as
+Argon2) can be used to increase the cost of each guess. For instance, if the KDF is
+configured with a cost of \(C = 2^{73} \approx 9.44 \times 10^{21}\) hash-equivalent
+operations, the attacker-adjusted work factor becomes
+
+\begin{equation}
+    \mathcal{W}_{attacker_{W3W (KDF)}} = \frac{2^{45.7} \times 2^{73}}{10^9} \approx \frac{5.09 \times 10^{13} \times 9.44 \times 10^{21}}{10^9} \approx 4.8 \times 10^{26} \,\text{seconds}.
+    \label{eq:work_w3w_kdf}
+\end{equation}
+
+As shown in Equation~\eqref{eq:work_w3w_kdf}, this KDF-hardened version achieves
+brute-force resistance on par with a 128-bit BIP-39 seed. While the use of a strong
+KDF enables the system to rely on just a single memorized location, the overall
+security still depends heavily on the unpredictability of that location. In practice,
+users tend to choose familiar places—such as their home, workplace, or well-known
+landmarks—which introduces semantic bias and significantly narrows the effective
+search space. To compensate, the KDF must be configured with a sufficiently high cost
+to counteract the loss of entropy due to such non-random selection.
+
+\begin{table}[ht]
+\centering
+\caption{Comparison of security models for mnemonic-based systems.}
+\label{tab:security_models}
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+\textbf{Model} &
+\makecell{\textbf{Entropy} \\ \textbf{(bits)}} &
+\makecell{\textbf{KDF Cost} \\ \textbf{ ($C$)}} & 
+\makecell{\textbf{Guess Rate} \\ \textbf{ $R$ (1/s)}} &
+\makecell{\textbf{Estimated Work} \\ \textbf{Factor($\mathcal{W}_{\text{attacker}}$)}} \\
+\hline
+BIP-39 (12-word) & 128 & $2^0$ (none) & $10^9$ & $\approx 10^{29}$ sec \\
+\hline
+W3W (1 cell, no KDF) & 45.7 & $2^0$ (none) & $10^9$ & $ \approx 5 \times 10^4$ sec \\
+\hline
+W3W (1 cell, strong KDF) & 45.7 & $2^{73}$ & $10^9$ & $ \approx 4.8 \times 10^{26}$ sec \\
+\hline
+W3W (3 cells, no KDF) & 137.1 & $2^0$ (none) & $10^9$ & $ \approx 2.8 \times 10^{31}$ sec \\
+\hline
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:security_models} compares mnemonic-based security models in terms of
+entropy, KDF cost, attacker hash rate, and the resulting attacker-adjusted work factor
+\(\mathcal{W}_{\text{attacker}}\). A BIP-39 12-word phrase provides 128 bits of entropy
+and strong resistance even without a KDF. A single What3Words cell, by contrast, is
+easily guessed unless hardened. Applying a strong KDF (e.g., Argon2 with cost \(2^{73}\))
+can elevate its security to near BIP-39 levels. Using multiple W3W cells (e.g., three)
+increases raw entropy without a KDF, but raises usability and memorability concerns.
+Moreover, user bias in location choice can still weaken security.
+
+\paragraph{Single What3Words cell without KDF.}
+A single What3Words cell provides approximately \(H = 45.7\) bits of entropy.
+Without a key-derivation function (\(C = 1\)), an attacker only needs to evaluate
+a plain hash for each candidate. On our evaluation system, hashcat in CPU-only
+mode (\texttt{-b -m 1400 -D 1}) achieves a throughput of
+\(R_{\text{CPU,hash}} \approx 7.87 \times 10^{8}\) SHA-256 hashes per second,
+corresponding to a full brute-force time of approximately \(20.18\) hours for
+the entire \(2^{45.7}\) space. In contrast, hashcat on the RTX A6000 GPU
+(\texttt{-b -m 1400}) achieves
+\(R_{\text{GPU,hash}} \approx 9.58 \times 10^{9}\) hashes per second,
+yielding an attacker work factor of
+
+\begin{equation}
+    \mathcal{W}_{\mathrm{attacker,\,W3W(no\,KDF)}} 
+    = \frac{2^{45.7}}{R_{\text{GPU,hash}}}
+    \approx \frac{5.72 \times 10^{13}}{9.58 \times 10^{9}}
+    \approx 5.96 \times 10^{3} \,\text{seconds}
+    \approx 1.66 \,\text{hours}.
+    \label{eq:work_w3w_nokdf_empirical}
+\end{equation}
+
+Equation~\eqref{eq:work_w3w_nokdf_empirical} shows that, under the measured GPU
+throughput, a single-cell What3Words mnemonic without computational hardening
+can be exhaustively searched in under two hours, confirming that this configuration
+is cryptographically inadequate on its own.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Discussion}
+
+Authors should discuss the results and how they can be interpreted from the perspective of previous studies and of the working hypotheses. The findings and their implications should be discussed in the broadest context possible. Future research directions may also be highlighted.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Conclusions}
+
+This section is not mandatory, but can be added to the manuscript if the discussion is unusually long or complex.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Patents}
+
+This section is not mandatory, but may be added if there are patents resulting from the work reported in this manuscript.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{6pt} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% optional
+%\supplementary{The following supporting information can be downloaded at:  \linksupplementary{s1}, Figure S1: title; Table S1: title; Video S1: title.}
+
+% Only for journal Methods and Protocols:
+% If you wish to submit a video article, please do so with any other supplementary material.
+% \supplementary{The following supporting information can be downloaded at: \linksupplementary{s1}, Figure S1: title; Table S1: title; Video S1: title. A supporting video article is available at doi: link.}
+
+% Only used for preprtints:
+% \supplementary{The following supporting information can be downloaded at the website of this paper posted on \href{https://www.preprints.org/}{Preprints.org}.}
+
+% Only for journal Hardware:
+% If you wish to submit a video article, please do so with any other supplementary material.
+% \supplementary{The following supporting information can be downloaded at: \linksupplementary{s1}, Figure S1: title; Table S1: title; Video S1: title.\vspace{6pt}\\
+%\begin{tabularx}{\textwidth}{lll}
+%\toprule
+%\textbf{Name} & \textbf{Type} & \textbf{Description} \\
+%\midrule
+%S1 & Python script (.py) & Script of python source code used in XX \\
+%S2 & Text (.txt) & Script of modelling code used to make Figure X \\
+%S3 & Text (.txt) & Raw data from experiment X \\
+%S4 & Video (.mp4) & Video demonstrating the hardware in use \\
+%... & ... & ... \\
+%\bottomrule
+%\end{tabularx}
+%}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\authorcontributions{For research articles with several authors, a short paragraph specifying their individual contributions must be provided. The following statements should be used ``Conceptualization, X.X. and Y.Y.; methodology, X.X.; software, X.X.; validation, X.X., Y.Y. and Z.Z.; formal analysis, X.X.; investigation, X.X.; resources, X.X.; data curation, X.X.; writing---original draft preparation, X.X.; writing---review and editing, X.X.; visualization, X.X.; supervision, X.X.; project administration, X.X.; funding acquisition, Y.Y. All authors have read and agreed to the published version of the manuscript.'', please turn to the  \href{http://img.mdpi.org/data/contributor-role-instruction.pdf}{CRediT taxonomy} for the term explanation. Authorship must be limited to those who have contributed substantially to the work~reported.}
+
+\funding{Please add: ``This research received no external funding'' or ``This research was funded by NAME OF FUNDER grant number XXX.'' and  and ``The APC was funded by XXX''. Check carefully that the details given are accurate and use the standard spelling of funding agency names at \url{https://search.crossref.org/funding}, any errors may affect your future funding.}
+
+\institutionalreview{In this section, you should add the Institutional Review Board Statement and approval number, if relevant to your study. You might choose to exclude this statement if the study did not require ethical approval. Please note that the Editorial Office might ask you for further information. Please add “The study was conducted in accordance with the Declaration of Helsinki, and approved by the Institutional Review Board (or Ethics Committee) of NAME OF INSTITUTE (protocol code XXX and date of approval).” for studies involving humans. OR “The animal study protocol was approved by the Institutional Review Board (or Ethics Committee) of NAME OF INSTITUTE (protocol code XXX and date of approval).” for studies involving animals. OR “Ethical review and approval were waived for this study due to REASON (please provide a detailed justification).” OR “Not applicable” for studies not involving humans or animals.}
+
+\informedconsent{Any research article describing a study involving humans should contain this statement. Please add ``Informed consent was obtained from all subjects involved in the study.'' OR ``Patient consent was waived due to REASON (please provide a detailed justification).'' OR ``Not applicable'' for studies not involving humans. You might also choose to exclude this statement if the study did not involve humans.
+
+Written informed consent for publication must be obtained from participating patients who can be identified (including by the patients themselves). Please state ``Written informed consent has been obtained from the patient(s) to publish this paper'' if applicable.}
+
+\dataavailability{We encourage all authors of articles published in MDPI journals to share their research data. In this section, please provide details regarding where data supporting reported results can be found, including links to publicly archived datasets analyzed or generated during the study. Where no new data were created, or where data is unavailable due to privacy or ethical restrictions, a statement is still required. Suggested Data Availability Statements are available in section ``MDPI Research Data Policies'' at \url{https://www.mdpi.com/ethics}.} 
+
+% Only for journal Drones
+%\durcstatement{Current research is limited to the [please insert a specific academic field, e.g., XXX], which is beneficial [share benefits and/or primary use] and does not pose a threat to public health or national security. Authors acknowledge the dual-use potential of the research involving xxx and confirm that all necessary precautions have been taken to prevent potential misuse. As an ethical responsibility, authors strictly adhere to relevant national and international laws about DURC. Authors advocate for responsible deployment, ethical considerations, regulatory compliance, and transparent reporting to mitigate misuse risks and foster beneficial outcomes.}
+
+% Only for journal Nursing Reports
+%\publicinvolvement{Please describe how the public (patients, consumers, carers) were involved in the research. Consider reporting against the GRIPP2 (Guidance for Reporting Involvement of Patients and the Public) checklist. If the public were not involved in any aspect of the research add: ``No public involvement in any aspect of this research''.}
+%
+%% Only for journal Nursing Reports
+%\guidelinesstandards{Please add a statement indicating which reporting guideline was used when drafting the report. For example, ``This manuscript was drafted against the XXX (the full name of reporting guidelines and citation) for XXX (type of research) research''. A complete list of reporting guidelines can be accessed via the equator network: \url{https://www.equator-network.org/}.}
+%
+%% Only for journal Nursing Reports
+%\useofartificialintelligence{Please describe in detail any and all uses of artificial intelligence (AI) or AI-assisted tools used in the preparation of the manuscript. This may include, but is not limited to, language translation, language editing and grammar, or generating text. Alternatively, please state that “AI or AI-assisted tools were not used in drafting any aspect of this manuscript”.}
+
+\acknowledgments{In this section you can acknowledge any support given which is not covered by the author contribution or funding sections. This may include administrative and technical support, or donations in kind (e.g., materials used for experiments). Where GenAI has been used for purposes such as generating text, data, or graphics, or for study design, data collection, analysis, or interpretation of data, please add “During the preparation of this manuscript/study, the author(s) used [tool name, version information] for the purposes of [description of use]. The authors have reviewed and edited the output and take full responsibility for the content of this publication.”}
+
+\conflictsofinterest{Declare conflicts of interest or state ``The authors declare no conflicts of interest.'' Authors must identify and declare any personal circumstances or interest that may be perceived as inappropriately influencing the representation or interpretation of reported research results. Any role of the funders in the design of the study; in the collection, analyses or interpretation of data; in the writing of the manuscript; or in the decision to publish the results must be declared in this section. If there is no role, please state ``The funders had no role in the design of the study; in the collection, analyses, or interpretation of data; in the writing of the manuscript; or in the decision to publish the results''.} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Optional
+
+%% Only for journal Encyclopedia
+%\entrylink{The Link to this entry published on the encyclopedia platform.}
+
+\abbreviations{Abbreviations}{
+The following abbreviations are used in this manuscript:
+\\
+
+\noindent 
+\begin{tabular}{@{}ll}
+MDPI & Multidisciplinary Digital Publishing Institute\\
+DOAJ & Directory of open access journals\\
+TLA & Three letter acronym\\
+LD & Linear dichroism
+\end{tabular}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Optional
+\appendixtitles{no} % Leave argument "no" if all appendix headings stay EMPTY (then no dot is printed after "Appendix A"). If the appendix sections contain a heading then change the argument to "yes".
+\appendixstart
+\appendix
+\section[\appendixname~\thesection]{}
+\subsection[\appendixname~\thesubsection]{}
+The appendix is an optional section that can contain details and data supplemental to the main text---for example, explanations of experimental details that would disrupt the flow of the main text but nonetheless remain crucial to understanding and reproducing the research shown; figures of replicates for experiments of which representative data are shown in the main text can be added here if brief, or as Supplementary Data. Mathematical proofs of results not central to the paper can be added as an appendix.
+
+\begin{table}[H] 
+\caption{This is a table caption.\label{tab5}}
+%\newcolumntype{C}{>{\centering\arraybackslash}X}
+\begin{tabularx}{\textwidth}{CCC}
+\toprule
+\textbf{Title 1}	& \textbf{Title 2}	& \textbf{Title 3}\\
+\midrule
+Entry 1		& Data			& Data\\
+Entry 2		& Data			& Data\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section[\appendixname~\thesection]{}
+All appendix sections must be cited in the main text. In the appendices, Figures, Tables, etc. should be labeled, starting with ``A''---e.g., Figure A1, Figure A2, etc.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\isPreprints{}{% This command is only used for ``preprints''.
+\begin{adjustwidth}{-\extralength}{0cm}
+%} % If the paper is ``preprints'', please uncomment this parenthesis.
+%\printendnotes[custom] % Un-comment to print a list of endnotes
+
+\reftitle{References}
+
+% Please provide either the correct journal abbreviation (e.g. according to the “List of Title Word Abbreviations” http://www.issn.org/services/online-services/access-to-the-ltwa/) or the full name of the journal.
+% Citations and References in Supplementary files are permitted provided that they also appear in the reference list here. 
+
+%=====================================
+% References, variant A: external bibliography
+%=====================================
+\bibliography{references}
+
+%=====================================
+% References, variant B: internal bibliography
+%=====================================
+
+% ACS format
+% \isAPAandChicago{}{%
+% \begin{thebibliography}{999}
+% % Reference 1
+% \bibitem[Author1(year)]{ref-journal}
+% Author~1, T. The title of the cited article. {\em Journal Abbreviation} {\bf 2008}, {\em 10}, 142--149.
+% % Reference 2
+% \bibitem[Author2(year)]{ref-book1}
+% Author~2, L. The title of the cited contribution. In {\em The Book Title}; Editor 1, F., Editor 2, A., Eds.; Publishing House: City, Country, 2007; pp. 32--58.
+% % Reference 3
+% \bibitem[Author1 and Author2 (year)]{ref-book2}
+% Author 1, A.; Author 2, B. \textit{Book Title}, 3rd ed.; Publisher: Publisher Location, Country, 2008; pp. 154--196.
+% % Reference 4
+% \bibitem[Author4(year)]{ref-unpublish}
+% Author 1, A.B.; Author 2, C. Title of Unpublished Work. \textit{Abbreviated Journal Name} year, \textit{phrase indicating stage of publication (submitted; accepted; in press)}.
+% % Reference 5
+% \bibitem[Author8(year)]{ref-url}
+% Title of Site. Available online: URL (accessed on Day Month Year).
+% % Reference 6
+% \bibitem[Author6(year)]{ref-proceeding}
+% Author 1, A.B.; Author 2, C.D.; Author 3, E.F. Title of presentation. In Proceedings of the Name of the Conference, Location of Conference, Country, Date of Conference (Day Month Year); Abstract Number (optional), Pagination (optional).
+% % Reference 7
+% \bibitem[Author7(year)]{ref-thesis}
+% Author 1, A.B. Title of Thesis. Level of Thesis, Degree-Granting University, Location of University, Date of Completion.
+% \end{thebibliography}
+% }
+
+% % Chicago format (Used for journal: arts, genealogy, histories, humanities, jintelligence, laws, literature, religions, risks, socsci)
+% \isChicagoStyle{%
+% \begin{thebibliography}{999}
+% % Reference 1
+% \bibitem[Aranceta-Bartrina(1999a)]{ref-journal}
+% Aranceta-Bartrina, Javier. 1999a. Title of the cited article. \textit{Journal Title} 6: 100--10.
+% % Reference 2
+% \bibitem[Aranceta-Bartrina(1999b)]{ref-book1}
+% Aranceta-Bartrina, Javier. 1999b. Title of the chapter. In \textit{Book Title}, 2nd ed. Edited by Editor 1 and Editor 2. Publication place: Publisher, vol. 3, pp. 54–96.
+% % Reference 3
+% \bibitem[Baranwal and Munteanu {[1921]}(1955)]{ref-book2}
+% Baranwal, Ajay K., and Costea Munteanu. 1955. \textit{Book Title}. Publication place: Publisher, pp. 154--96. First published 1921 (op-tional).
+% % Reference 4
+% \bibitem[Berry and Smith(1999)]{ref-thesis}
+% Berry, Evan, and Amy M. Smith. 1999. Title of Thesis. Level of Thesis, Degree-Granting University, City, Country. Identifi-cation information (if available).
+% % Reference 5
+% \bibitem[Cojocaru et al.(1999)]{ref-unpublish}
+% Cojocaru, Ludmila, Dragos Constatin Sanda, and Eun Kyeong Yun. 1999. Title of Unpublished Work. \textit{Journal Title}, phrase indicating stage of publication.
+% % Reference 6
+% \bibitem[Driver et al.(2000)]{ref-proceeding}
+% Driver, John P., Steffen Rohrs, and Sean Meighoo. 2000. Title of Presentation. In \textit{Title of the Collected Work} (if available). Paper presented at Name of the Conference, Location of Conference, Date of Conference.
+% % Reference 7
+% \bibitem[Harwood(2008)]{ref-url}
+% Harwood, John. 2008. Title of the cited article. Available online: URL (accessed on Day Month Year).
+% \end{thebibliography}
+% }{}
+
+% % APA format (Used for journal: admsci, behavsci, businesses, econometrics, economies, education, ejihpe, games, humans, ijfs, journalmedia, jrfm, languages, psycholint, publications, tourismhosp, youth)
+% \isAPAStyle{%
+% \begin{thebibliography}{999}
+% % Reference 1
+% \bibitem[\protect\citeauthoryear{Azikiwe \BBA\ Bello}{{2020a}}]{ref-journal}
+% Azikiwe, H., \& Bello, A. (2020a). Title of the cited article. \textit{Journal Title}, \textit{Volume}(Issue), 
+% Firstpage--Lastpage/Article Number.
+% % Reference 2
+% \bibitem[\protect\citeauthoryear{Azikiwe \BBA\ Bello}{{2020b}}]{ref-book1}
+% Azikiwe, H., \& Bello, A. (2020b). \textit{Book title}. Publisher Name.
+% % Reference 3
+% \bibitem[Davison(1623/2019)]{ref-book2}
+% Davison, T. E. (2019). Title of the book chapter. In A. A. Editor (Ed.), \textit{Title of the book: Subtitle} 
+% (pp. Firstpage--Lastpage). Publisher Name. (Original work published 1623) (Optional).
+% % Reference 4
+% \bibitem[Fistek et al.(2017)]{ref-proceeding}
+% Fistek, A., Jester, E., \& Sonnenberg, K. (2017, Month Day). Title of contribution [Type of contribution]. Conference Name, Conference City, Conference Country.
+% % Reference 5
+% \bibitem[Hutcheson(2012)]{ref-thesis}
+% Hutcheson, V. H. (2012). \textit{Title of the thesis} [XX Thesis, Name of Institution Awarding the Degree].
+% % Reference 6
+% \bibitem[Lippincott \& Poindexter(2019)]{ref-unpublish}
+% Lippincott, T., \& Poindexter, E. K. (2019). \textit{Title of the unpublished manuscript} [Unpublished manuscript/Manuscript in prepara-tion/Manuscript submitted for publication]. Department Name, Institution Name.
+% % Reference 7
+% \bibitem[Harwood(2008)]{ref-url}
+% Harwood, J. (2008). \textit{Title of the cited article}. Available online: URL (accessed on Day Month Year).
+% \end{thebibliography}
+% }{}
+
+% If authors have biography, please use the format below
+%\section*{Short Biography of Authors}
+%\bio
+%{\raisebox{-0.35cm}{\includegraphics[width=3.5cm,height=5.3cm,clip,keepaspectratio]{Definitions/author1.pdf}}}
+%{\textbf{Firstname Lastname} Biography of first author}
+%
+%\bio
+%{\raisebox{-0.35cm}{\includegraphics[width=3.5cm,height=5.3cm,clip,keepaspectratio]{Definitions/author2.jpg}}}
+%{\textbf{Firstname Lastname} Biography of second author}
+
+% For the MDPI journals use author-date citation, please follow the formatting guidelines on http://www.mdpi.com/authors/references
+% To cite two works by the same author: \citeauthor{ref-journal-1a} (\citeyear{ref-journal-1a}, \citeyear{ref-journal-1b}). This produces: Whittaker (1967, 1975)
+% To cite two works by the same author with specific pages: \citeauthor{ref-journal-3a} (\citeyear{ref-journal-3a}, p. 328; \citeyear{ref-journal-3b}, p.475). This produces: Wong (1999, p. 328; 2000, p. 475)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% for journal Sci
+%\reviewreports{\\
+%Reviewer 1 comments and authors’ response\\
+%Reviewer 2 comments and authors’ response\\
+%Reviewer 3 comments and authors’ response
+%}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\PublishersNote{}
+%\isPreprints{}{% This command is only used for ``preprints''.
+\end{adjustwidth}
+%} % If the paper is ``preprints'', please uncomment this parenthesis.
+\end{document}
