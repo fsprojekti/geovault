@@ -1,5 +1,5 @@
 #!/bin/bash
-# bip39-gpu.sh
+# bip39_gpu_pbkdf2_hashcat.sh
 # GPU PBKDF2 performance:
 #   - Hashcat PBKDF2-HMAC-SHA512 benchmark (mode 12100, 999 iterations),
 #     scaled to 2048 iterations (BIP-39 cost).

@@ -1,5 +1,5 @@
 #!/bin/bash
-# bip39-cpu.sh
+# bip39_cpu_pbkdf2_hashcat.sh
 # CPU PBKDF2 performance:
 #   1) Python PBKDF2-HMAC-SHA512, 2048 iterations (BIP-39 cost)
 #   2) Optional: hashcat PBKDF2-HMAC-SHA512 benchmark in CPU-only mode (mode 12100, 999 iterations),
