@@ -1508,6 +1508,143 @@ volume = {13},
 year = {2024}
 }
 
+@misc{RFC9106,
+  author       = {Biryukov, Alex and Dinu, Daniel and Khovratovich, Dmitry},
+  title        = {{Argon2} Memory-Hard Function for Password Hashing and Proof-of-Work Applications},
+  year         = {2021},
+  howpublished = {RFC 9106},
+  institution  = {Internet Engineering Task Force (IETF)},
+  url          = {https://www.rfc-editor.org/rfc/rfc9106},
+  urldate      = {2026-01-15}
+}
+
+
+@inproceedings{barros_memory-hard_2023,
+	address = {Brasil},
+	title = {A {Memory}-{Hard} {Function} for {Password} {Hashing} and {Key} {Derivation}},
+	url = {https://sol.sbc.org.br/index.php/sbseg/article/view/27233},
+	doi = {10.5753/sbseg.2023.232827},
+	abstract = {Key derivation and password scrambling are crucial procedures in cryptographic applications, and the security of these methods against brute-force attacks is a critical concern in face of the increasing computational power available to perform these attacks. This paper proposes a candidate memory-hard function for password scrambling and key derivation, based on some design principles such as flexibility, variable-length output, adjustable parametrization to achieve high cache miss rates and dynamic update of the internal buffer.},
+	urldate = {2026-01-15},
+	booktitle = {Anais do {XXIII} {Simpósio} {Brasileiro} de {Segurança} da {Informação} e de {Sistemas} {Computacionais} ({SBSeg} 2023)},
+	publisher = {Sociedade Brasileira de Computação - SBC},
+	author = {Barros, Charles F. De},
+	month = sep,
+	year = {2023},
+	pages = {522--527},
+}
+
+@article{eum_optimized_2023,
+	title = {Optimized {Implementation} of {Argon2} {Utilizing} the {Graphics} {Processing} {Unit}},
+	volume = {13},
+	issn = {2076-3417},
+	url = {https://www.mdpi.com/2076-3417/13/16/9295},
+	doi = {10.3390/app13169295},
+	abstract = {In modern information technology systems, secure storage and transmission of personal and sensitive data are recognized as important tasks. These requirements are achieved through secure and robust encryption methods. Argon2 is an advanced cryptographic algorithm that emerged as the winner in the Password Hashing Competition (PHC), offering a concrete and secure measure. Argon2 also provides a secure mechanism against side-channel attacks and cracking attacks using parallel processing (e.g., GPU). In this paper, we analyze the existing GPU-based implementation of the Argon2 algorithm and further optimize the implementation by improving the performance of the hashing function during the computation process. The proposed method focuses on enhancing performance by distributing tasks between CPU and GPU units, reducing the data transfer cost for efficient GPU-based parallel processing. By shifting several stages from the CPU to the GPU, the data transfer cost is significantly reduced, resulting in faster processing times, particularly when handling a larger number of passwords and higher levels of parallelism. Additionally, we optimize the utilization of the GPU’s shared memory, which enhances memory access speed, especially in the computation of the hash value generation process. Furthermore, we leverage the parallel processing capabilities of the GPU to perform efficient brute-force attacks. By computing the H function on the GPU, the proposed implementation can generate initial blocks for multiple inputs in a single operation, making brute-force attacks in an efficient way. The proposed implementation outperforms existing methods, especially when processing a larger number of passwords and operating at higher levels of parallelism.},
+	language = {en},
+	number = {16},
+	urldate = {2026-01-15},
+	journal = {Applied Sciences},
+	author = {Eum, Siwoo and Kim, Hyunjun and Song, Minho and Seo, Hwajeong},
+	month = aug,
+	year = {2023},
+	pages = {9295},
+}
+@article{Bonneau2012,
+abstract = {We report on the largest corpus of user-chosen passwords ever studied, consisting of anonymized password histograms representing almost 70 million Yahoo! users, mitigating privacy concerns while enabling analysis of dozens of subpopulations based on demographic factors and site usage characteristics. This large data set motivates a thorough statistical treatment of estimating guessing difficulty by sampling from a secret distribution. In place of previously used metrics such as Shannon entropy and guessing entropy, which cannot be estimated with any realistically sized sample, we develop partial guessing metrics including a new variant of guesswork parameterized by an attacker's desired success rate. Our new metric is comparatively easy to approximate and directly relevant for security engineering. By comparing password distributions with a uniform distribution which would provide equivalent security against different forms of guessing attack, we estimate that passwords provide fewer than 10 bits of security against an online, trawling attack, and only about 20 bits of security against an optimal offline dictionary attack. We find surprisingly little variation in guessing difficulty; every identifiable group of users generated a comparably weak password distribution. Security motivations such as the registration of a payment card have no greater impact than demographic factors such as age and nationality. Even proactive efforts to nudge users towards better password choices with graphical feedback make little difference. More surprisingly, even seemingly distant language communities choose the same weak passwords and an attacker never gains more than a factor of 2 efficiency gain by switching from the globally optimal dictionary to a population-specific lists. {\textcopyright} 2012 IEEE.},
+author = {Bonneau, Joseph},
+doi = {10.1109/SP.2012.49},
+file = {:C\:/Users/Marko/Downloads/The_Science_of_Guessing_Analyzing_an_Anonymized_Corpus_of_70_Million_Passwords.pdf:pdf},
+isbn = {9780769546810},
+issn = {10816011},
+journal = {Proceedings - IEEE Symposium on Security and Privacy},
+keywords = {authentication,computer security,data mining,information theory,statistics},
+mendeley-groups = {GeoVault/brainwallets},
+pages = {538--552},
+publisher = {Institute of Electrical and Electronics Engineers Inc.},
+title = {{The science of guessing: Analyzing an anonymized corpus of 70 million passwords}},
+url = {https://ieeexplore.ieee.org/abstract/document/6234435},
+year = {2012}
+}
+
+@book{WGS84,
+  title={Department of Defense World Geodetic System 1984: its definition and relationships with local geodetic systems},
+  author={United States. Defense Mapping Agency},
+  volume={8350},
+  year={1987},
+  publisher={Defense Mapping Agency}
+}
+
+@article{Venter2016,
+  author = {Venter, Oscar and others},
+  title = {Sixteen years of change in the global terrestrial human footprint},
+  journal = {Nature Communications},
+  year = {2016},
+  volume = {7},
+  pages = {12558}
+}
+
+@article{Konkle2010,
+abstract = {Observers can store thousands of object images in visual long-term memory with high fidelity, but the fidelity of scene representations in long-term memory is not known. Here, we probed scene-representation fidelity by varying the number of studied exemplars in different scene categories and testing memory using exemplar-level foils. Observers viewed thousands of scenes over 5.5 hr and then completed a series of forced-choice tests. Memory performance was high, even with up to 64 scenes from the same category in memory. Moreover, there was only a 2% decrease in accuracy for each doubling of the number of studied scene exemplars. Surprisingly, this degree of categorical interference was similar to the degree previously demonstrated for object memory. Thus, although scenes have often been defined as a superset of objects, our results suggest that scenes and objects may be entities at a similar level of abstraction in visual long-term memory. {\textcopyright} The Author(s) 2010.},
+author = {Konkle, Talia and Brady, Timothy F. and Alvarez, George A. and Oliva, Aude},
+doi = {10.1177/0956797610385359},
+file = {:C\:/Users/Marko/Downloads/konkle-et-al-2010-scene-memory-is-more-detailed-than-you-think.pdf:pdf},
+issn = {1467-9280},
+journal = {Psychological science},
+keywords = {Adult,Attention*,Aude Oliva,Choice Behavior,Discrimination,Female,Humans,MEDLINE,Male,NCBI,NIH,NLM,National Center for Biotechnology Information,National Institutes of Health,National Library of Medicine,Non-P.H.S.,Non-U.S. Gov't,PMC3397240,Pattern Recognition,Practice,Psychological,Psychological*,Psychology,Psychology*,PubMed Abstract,Recognition,Research Support,Retention,Talia Konkle,Timothy F Brady,U.S. Gov't,Visual*,Young Adult,doi:10.1177/0956797610385359,pmid:20921574},
+mendeley-groups = {GeoVault/brainwallets},
+month = {nov},
+number = {11},
+pages = {1551--1556},
+pmid = {20921574},
+publisher = {Psychol Sci},
+title = {{Scene memory is more detailed than you think: the role of categories in visual long-term memory}},
+url = {https://pubmed.ncbi.nlm.nih.gov/20921574/},
+volume = {21},
+year = {2010}
+}
+@article{Montello1998,
+author = {Montello, D.},
+file = {:C\:/Users/Marko/Downloads/konkle-et-al-2010-scene-memory-is-more-detailed-than-you-think.pdf:pdf;:C\:/Users/Marko/Downloads/microgenesis.pdf:pdf},
+mendeley-groups = {GeoVault/brainwallets},
+title = {{A New Framework for Understanding the Acquisition of Spatial Knowledge in Large-Scale Environments}},
+year = {1998}
+}
+
+@article{McNamara2012,
+abstract = {The goal of this chapter is to review empirical and theoretical advancements in the scientific understanding of human spatial memory. I attend primarily to spatial memories acquired from direct experience, such as vision and locomotion, and on spaces sufficiently large to afford movement, such as translation and rotation, although I take the liberty of referring to a few studies that investigated memories of table-top-sized "environments." This chapter is divided into six principal sections. I begin by discussing the elemental types of spatial knowledge: object–place knowledge, route knowledge, environmental shape knowledge, and survey knowledge. In the second section, I investigate classical and current theories of the acquisition of spatial knowledge. The third section discusses properties of spatial knowledge, such as its hierarchical structure and orientation dependence. In the fourth section, I examine the concept of spatial reference systems and the nature of the reference systems used in spatial memory. I then review contemporary cognitive models of spatial memory, with an eye for identifying similarities among them. I close the chapter with a summary and prospectus for future research on human spatial memory. (PsycInfo Database Record (c) 2020 APA, all rights reserved)},
+author = {McNamara, Timothy P.},
+doi = {10.1037/13936-010},
+journal = {Handbook of spatial cognition.},
+mendeley-groups = {GeoVault/brainwallets},
+month = {oct},
+pages = {173--190},
+publisher = {American Psychological Association},
+title = {{Spatial memory: Properties and organization.}},
+year = {2012}
+}
+
+@article{Bonneau2012a,
+abstract = {We evaluate two decades of proposals to replace text passwords for general-purpose user authentication on the web using a broad set of twenty-five usability, deployability and security benefits that an ideal scheme might provide. The scope of proposals we survey is also extensive, including password management software, federated login protocols, graphical password schemes, cognitive authentication schemes, one-time passwords, hardware tokens, phone-aided schemes and biometrics. Our comprehensive approach leads to key insights about the difficulty of replacing passwords. Not only does no known scheme come close to providing all desired benefits: none even retains the full set of benefits that legacy passwords already provide. In particular, there is a wide range from schemes offering minor security benefits beyond legacy passwords, to those offering significant security benefits in return for being more costly to deploy or more difficult to use. We conclude that many academic proposals have failed to gain traction because researchers rarely consider a sufficiently wide range of real-world constraints. Beyond our analysis of current schemes, our framework provides an evaluation methodology and benchmark for future web authentication proposals. {\textcopyright} 2012 IEEE.},
+author = {Bonneau, Joseph and Herley, Cormac and {Van Oorschot}, Paul C. and Stajano, Frank},
+doi = {10.1109/SP.2012.44},
+isbn = {9780769546810},
+issn = {10816011},
+journal = {Proceedings - IEEE Symposium on Security and Privacy},
+keywords = {authentication,computer security,deployability,economics,human computer interaction,security and usability,software engineering},
+mendeley-groups = {GeoVault/brainwallets},
+pages = {553--567},
+publisher = {Institute of Electrical and Electronics Engineers Inc.},
+title = {{The quest to replace passwords: A framework for comparative evaluation of web authentication schemes}},
+url = {https://ieeexplore.ieee.org/document/6234436},
+year = {2012}
+}
+
+
+
+
+
+
 
 
 
