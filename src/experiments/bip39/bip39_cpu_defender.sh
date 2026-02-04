@@ -7,7 +7,7 @@ set -euo pipefail
 
 MNEMONIC="abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon about"
 SALT="mnemonic"
-RUNS=500
+RUNS=10000
 OUT_CSV="bip39_cpu_raw_results.csv"
 
 # ---- Dependency checks ----

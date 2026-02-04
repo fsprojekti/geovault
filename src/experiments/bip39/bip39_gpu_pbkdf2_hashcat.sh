@@ -1,122 +1,131 @@
 #!/bin/bash
-# bip39_gpu_pbkdf2_hashcat_stats.sh
-# GPU PBKDF2 performance:
-#   - Hashcat PBKDF2-HMAC-SHA512 benchmark (mode 12100, 999 iterations),
-#     scaled to 2048 iterations (BIP-39 cost).
-# Adds:
-#   - raw CSV export per run
-#   - mean/stddev stats (AWK)
+# bip39_gpu_pbkdf2_hashcat_raw.sh
+# Collect RAW Hashcat GPU benchmark data for PBKDF2-HMAC-SHA512 (mode 12100).
+# NO calculations are performed here (you will do scaling/stats in MATLAB).
 #
-# NOTE: hashcat -b is a benchmark, not a real mnemonic PBKDF2 run.
-#       This script measures kernel throughput and scales linearly.
+# Output:
+#   1) CSV with one row per run, containing the raw Speed.# line + parsed numeric + unit
+#   2) Plain-text log file with progress + full hashcat output on parse failures
+#
+# CSV columns:
+#   Timestamp,Run,DeviceFilter,Workload,SpeedLine,SpeedNum,SpeedUnit
+#
+# Notes:
+# - Hashcat -b reports performance for its internal benchmark parameters (often 999 iterations for mode 12100).
+# - This script does NOT scale to 2048; do that later in MATLAB.
 
 set -euo pipefail
 
-RUNS=500
-OUT_CSV="bip39_gpu_pbkdf2_raw_results.csv"
+# ---- Config ----
+RUNS="${RUNS:-1000}"
+WARMUP="${WARMUP:-3}"
+OUT_CSV="${OUT_CSV:-bip39_gpu_hashcat_raw.csv}"
+OUT_LOG="${OUT_LOG:-bip39_gpu_hashcat_raw.log}"
+
+# Optional: choose device(s) (hashcat backend device index), e.g. DEVICE=1
+DEVICE="${DEVICE:-}"
+
+# Optional: set workload profile, e.g. WORKLOAD=3 (default), 4=max
+WORKLOAD="${WORKLOAD:-3}"
 
 # ---- Dependency checks ----
-for cmd in hashcat awk bc; do
+for cmd in hashcat awk; do
   if ! command -v "$cmd" >/dev/null 2>&1; then
     echo "Missing dependency: $cmd"
-    echo "Install it, e.g.: sudo apt install hashcat bc gawk"
+    echo "Install it, e.g.: sudo apt install hashcat gawk"
     exit 1
   fi
 done
 
-echo "=== BIP-39 12-word – GPU PBKDF2 performance (Hashcat) ==="
+# ---- Header / environment logging ----
+{
+  echo "=== RAW Hashcat GPU Benchmark Logger (mode 12100) ==="
+  echo "Started: $(date -Is)"
+  echo "Hashcat: $(hashcat --version | head -n1 || true)"
+  echo "RUNS=$RUNS  WARMUP=$WARMUP  WORKLOAD=$WORKLOAD  DEVICE=${DEVICE:-<all>}"
+  if command -v nvidia-smi >/dev/null 2>&1; then
+    echo "GPU(s):"
+    nvidia-smi --query-gpu=index,name,driver_version,pstate,power.limit,clocks.sm,clocks.mem,temperature.gpu --format=csv,noheader || true
+  else
+    echo "nvidia-smi: not found (skipping GPU metadata)"
+  fi
+  echo
+} | tee "$OUT_LOG"
 
-# Try to print GPU model if nvidia-smi exists
-if command -v nvidia-smi >/dev/null 2>&1; then
-  echo "GPU(s):"
-  nvidia-smi --query-gpu=index,name,memory.total --format=csv,noheader
+# ---- CSV header ----
+echo "Timestamp,Run,DeviceFilter,Workload,SpeedLine,SpeedNum,SpeedUnit" > "$OUT_CSV"
+
+# ---- Build hashcat command ----
+HC_CMD=(hashcat -b -m 12100 -w "$WORKLOAD")
+if [ -n "$DEVICE" ]; then
+  HC_CMD+=(--backend-devices "$DEVICE")
 fi
-echo
 
-echo "Saving raw data to: $OUT_CSV"
-echo "Run,R999_hashes_per_s,R2048_hashes_per_s,Time_ms_per_check" > "$OUT_CSV"
-echo "Measuring $RUNS benchmark runs..."
-echo
+# ---- Helper: parse Speed line robustly ----
+# Returns 3 fields:
+#   SpeedLine|SpeedNum|SpeedUnit
+parse_speed_line() {
+  local output="$1"
+  local line num unit
 
-# 1) Benchmark Loop
+  line="$(echo "$output" | grep -m1 "Speed.#" || true)"
+  if [ -z "$line" ]; then
+    return 1
+  fi
+
+  # Parse the first numeric + unit after the colon.
+  # Example:
+  # Speed.#1.........:  1379.3 kH/s (54.04ms) @ ...
+  num="$(echo "$line" | awk -F: '{print $2}' | awk '{print $1}')"
+  unit="$(echo "$line" | awk -F: '{print $2}' | awk '{print $2}')"
+
+  echo "$line|$num|$unit"
+}
+
+# ---- Warmup ----
+if [ "$WARMUP" -gt 0 ]; then
+  echo "--- Warmup ($WARMUP runs, not recorded) ---" | tee -a "$OUT_LOG"
+  for w in $(seq 1 "$WARMUP"); do
+    "${HC_CMD[@]}" >/dev/null 2>&1 || true
+    echo "Warmup $w/$WARMUP done" | tee -a "$OUT_LOG"
+  done
+  echo | tee -a "$OUT_LOG"
+fi
+
+# ---- Main benchmark runs ----
+echo "--- Collecting $RUNS runs (recorded) ---" | tee -a "$OUT_LOG"
+
 for i in $(seq 1 "$RUNS"); do
-  # Run hashcat benchmark (mode 12100 = PBKDF2-HMAC-SHA512)
-  # Hashcat's benchmark uses 999 iterations for this mode (as shown in output).
-  HC_OUTPUT=$(hashcat -b -m 12100 2>&1 || true)
+  ts="$(date -Is)"
+  echo "Run $i/$RUNS @ $ts ..." | tee -a "$OUT_LOG"
 
-  SPEED_LINE=$(echo "$HC_OUTPUT" | grep -m1 "Speed.#" || true)
-  if [ -z "$SPEED_LINE" ]; then
-    echo "ERROR: Could not parse hashcat speed line on run $i. Full output:"
-    echo "$HC_OUTPUT"
+  HC_OUTPUT="$("${HC_CMD[@]}" 2>&1 || true)"
+
+  PARSED="$(parse_speed_line "$HC_OUTPUT" || true)"
+  if [ -z "$PARSED" ]; then
+    echo "ERROR: Could not parse Speed.# line on run $i" | tee -a "$OUT_LOG"
+    echo "---- Hashcat output (run $i) ----" | tee -a "$OUT_LOG"
+    echo "$HC_OUTPUT" | tee -a "$OUT_LOG"
+    echo "---------------------------------" | tee -a "$OUT_LOG"
     exit 1
   fi
 
-  # Example: Speed.#1.........:  1379.3 kH/s (54.04ms) @ ...
-  SPEED_NUM=$(echo "$SPEED_LINE"  | awk '{print $2}')     # e.g. 1379.3
-  SPEED_UNIT=$(echo "$SPEED_LINE" | awk '{print $3}')     # e.g. kH/s, MH/s
+  SPEED_LINE="$(echo "$PARSED" | cut -d'|' -f1)"
+  SPEED_NUM="$(echo "$PARSED"  | cut -d'|' -f2)"
+  SPEED_UNIT="$(echo "$PARSED" | cut -d'|' -f3)"
 
-  case "$SPEED_UNIT" in
-    H/s)  MULT=1 ;;
-    kH/s) MULT=1000 ;;
-    MH/s) MULT=1000000 ;;
-    GH/s) MULT=1000000000 ;;
-    *)
-      echo "Unexpected hashcat unit: $SPEED_UNIT"
-      echo "Full speed line: $SPEED_LINE"
-      MULT=1
-      ;;
-  esac
+  # Escape quotes for CSV safety
+  SPEED_LINE_ESCAPED="$(echo "$SPEED_LINE" | sed 's/"/""/g')"
 
-  # Raw PBKDF2 evaluations per second at 999 iterations
-  R999=$(echo "$SPEED_NUM * $MULT" | bc -l)
+  # Write CSV row (SpeedLine quoted)
+  printf '%s,%s,%s,%s,"%s",%s,%s\n' \
+    "$ts" "$i" "${DEVICE:-}" "$WORKLOAD" "$SPEED_LINE_ESCAPED" "$SPEED_NUM" "$SPEED_UNIT" \
+    >> "$OUT_CSV"
 
-  # Scale linearly to 2048 iterations (BIP-39 cost)
-  R2048=$(echo "$R999 * 999 / 2048" | bc -l)
-
-  # Time per BIP-39 PBKDF2 (in ms)
-  MS_PER_CHECK=$(echo "1000 / $R2048" | bc -l)
-
-  # Save raw row
-  printf "%s,%0.6f,%0.6f,%0.9f\n" "$i" "$R999" "$R2048" "$MS_PER_CHECK" >> "$OUT_CSV"
-
-  # Small progress line
-  printf "Run %2d: R_2048=%0.3f checks/s  T=%0.6f ms\n" "$i" "$R2048" "$MS_PER_CHECK"
+  echo "  Parsed: $SPEED_NUM $SPEED_UNIT" | tee -a "$OUT_LOG"
 done
 
-echo
-
-# 2) Calculate Statistics using AWK
-# We compute mean/stddev for R2048 and Time_ms_per_check.
-STATS=$(awk -F, '
-  NR > 1 {
-    r_sum += $3; r_sq += $3*$3;
-    t_sum += $4; t_sq += $4*$4;
-    n++;
-  }
-  END {
-    if (n > 0) {
-      r_mean = r_sum / n;
-      r_std  = sqrt((r_sq / n) - (r_mean * r_mean));
-      t_mean = t_sum / n;
-      t_std  = sqrt((t_sq / n) - (t_mean * t_mean));
-      printf "%.6f|%.6f|%.9f|%.9f", r_mean, r_std, t_mean, t_std;
-    }
-  }
-' "$OUT_CSV")
-
-R2048_MEAN=$(echo "$STATS" | cut -d'|' -f1)
-R2048_STD=$(echo "$STATS"  | cut -d'|' -f2)
-TMEAN_MS=$(echo "$STATS"   | cut -d'|' -f3)
-TSTD_MS=$(echo "$STATS"    | cut -d'|' -f4)
-
-echo "--- Results (scaled to BIP-39 cost: PBKDF2-HMAC-SHA512, 2048 iterations) ---"
-printf "Average Throughput    : %12.3f checks/second\n" "$R2048_MEAN"
-printf "Throughput Std Dev    : %12.3f checks/second\n" "$R2048_STD"
-printf "Average Time (Mean)   : %12.6f ms\n" "$TMEAN_MS"
-printf "Standard Deviation    : %12.6f ms\n" "$TSTD_MS"
-echo "CSV export complete: $OUT_CSV"
-echo
-
-echo "=== Summary (per BIP-39 PBKDF2 evaluation, 2048 iterations) ==="
-printf "Hashcat GPU kernel :  T_GPU ≈ %0.6f ± %0.6f ms  (%.3f ± %.3f checks/s)\n" \
-  "$TMEAN_MS" "$TSTD_MS" "$R2048_MEAN" "$R2048_STD"
+echo | tee -a "$OUT_LOG"
+echo "Done." | tee -a "$OUT_LOG"
+echo "CSV: $OUT_CSV" | tee -a "$OUT_LOG"
+echo "LOG: $OUT_LOG" | tee -a "$OUT_LOG"

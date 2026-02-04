@@ -1,0 +1,269 @@
+hashcat (v6.2.6) starting
+
+You have enabled --force to bypass dangerous warnings and errors!
+This can hide serious problems and should only be done when debugging.
+Do not report hashcat issues encountered when using --force.
+
+CUDA API (CUDA 13.0)
+====================
+* Device #1: NVIDIA RTX A6000, 48254/48539 MB, 84MCU
+
+OpenCL API (OpenCL 3.0 CUDA 13.0.94) - Platform #1 [NVIDIA Corporation]
+=======================================================================
+* Device #2: NVIDIA RTX A6000, skipped
+
+OpenCL API (OpenCL 3.0 PoCL 5.0+debian  Linux, None+Asserts, RELOC, SPIR, LLVM 16.0.6, SLEEF, DISTRO, POCL_DEBUG) - Platform #2 [The pocl project]
+==================================================================================================================================================
+* Device #3: cpu-skylake-avx512-Intel(R) Xeon(R) Gold 6338 CPU @ 2.00GHz, skipped
+
+Minimum password length supported by kernel: 0
+Maximum password length supported by kernel: 256
+
+Counting lines in target_sha256.hash. Please be patient...Counted lines in target_sha256.hashParsed Hashes: 1/1 (100.00%)Parsed Hashes: 1/1 (100.00%)Sorting hashes. Please be patient...Sorted hashesRemoving duplicate hashes. Please be patient...Removed duplicate hashesSorting salts. Please be patient...Sorted saltsGenerating bitmap tables...Generated bitmap tablesHashes: 1 digests; 1 unique digests, 1 unique salts
+Bitmaps: 16 bits, 65536 entries, 0x0000ffff mask, 262144 bytes, 5/13 rotates
+Rules: 1
+
+Optimizers applied:
+* Zero-Byte
+* Early-Skip
+* Not-Salted
+* Not-Iterated
+* Single-Hash
+* Single-Salt
+* Raw-Hash
+
+ATTENTION! Pure (unoptimized) backend kernels selected.
+Pure kernels can crack longer passwords, but drastically reduce performance.
+If you want to switch to optimized kernels, append -O to your commandline.
+See the above message to find out about the exact limits.
+
+Watchdog: Hardware monitoring interface not found on your system.
+Watchdog: Temperature abort trigger disabled.
+
+Initializing device kernels and memory. Please be patient...Initializing backend runtime for device #1. Please be patient...Initialized backend runtime for device #1Host memory required for this attack: 1475 MB
+
+Initialized device kernels and memoryStarting self-test. Please be patient...Finished self-testStarting autotune. Please be patient...Finished autotuneStarting attack in stdin mode
+
+Session..........: hashcat
+Status...........: Running
+Hash.Mode........: 1400 (SHA2-256)
+Hash.Target......: 22c3c396875e0c79588773c55eed988454a50fd137da09ccf0d...2d2994
+Time.Started.....: Wed Jan 14 10:47:20 2026, (4 secs)
+Time.Estimated...: Wed Jan 14 10:47:24 2026, (0 secs; Runtime limited: 56 secs)
+Kernel.Feature...: Pure Kernel
+Guess.Base.......: Pipe
+Speed.#1.........: 11843.6 kH/s (4.28ms) @ Accel:2048 Loops:1 Thr:32 Vec:1
+Recovered........: 0/1 (0.00%) Digests (total), 0/1 (0.00%) Digests (new)
+Progress.........: 44040192
+Rejected.........: 0
+Restore.Point....: 0
+Restore.Sub.#1...: Salt:0 Amplifier:0-1 Iteration:0-1
+Candidate.Engine.: Device Generator
+Candidates.#1....: 00000000000000.00000000000000.00000038535168 -> 00000000000000.00000000000000.00000044040191
+
+Session..........: hashcat
+Status...........: Running
+Hash.Mode........: 1400 (SHA2-256)
+Hash.Target......: 22c3c396875e0c79588773c55eed988454a50fd137da09ccf0d...2d2994
+Time.Started.....: Wed Jan 14 10:47:20 2026, (9 secs)
+Time.Estimated...: Wed Jan 14 10:47:29 2026, (0 secs; Runtime limited: 51 secs)
+Kernel.Feature...: Pure Kernel
+Guess.Base.......: Pipe
+Speed.#1.........: 11152.9 kH/s (4.28ms) @ Accel:2048 Loops:1 Thr:32 Vec:1
+Recovered........: 0/1 (0.00%) Digests (total), 0/1 (0.00%) Digests (new)
+Progress.........: 93585408
+Rejected.........: 0
+Restore.Point....: 0
+Restore.Sub.#1...: Salt:0 Amplifier:0-1 Iteration:0-1
+Candidate.Engine.: Device Generator
+Candidates.#1....: 00000000000000.00000000000000.00000093585408 -> 00000000000000.00000000000000.00000099090431
+
+Session..........: hashcat
+Status...........: Running
+Hash.Mode........: 1400 (SHA2-256)
+Hash.Target......: 22c3c396875e0c79588773c55eed988454a50fd137da09ccf0d...2d2994
+Time.Started.....: Wed Jan 14 10:47:20 2026, (15 secs)
+Time.Estimated...: Wed Jan 14 10:47:35 2026, (0 secs; Runtime limited: 45 secs)
+Kernel.Feature...: Pure Kernel
+Guess.Base.......: Pipe
+Speed.#1.........: 10942.3 kH/s (4.28ms) @ Accel:2048 Loops:1 Thr:32 Vec:1
+Recovered........: 0/1 (0.00%) Digests (total), 0/1 (0.00%) Digests (new)
+Progress.........: 148635648
+Rejected.........: 0
+Restore.Point....: 0
+Restore.Sub.#1...: Salt:0 Amplifier:0-1 Iteration:0-1
+Candidate.Engine.: Device Generator
+Candidates.#1....: 00000000000000.00000000000000.00000143130624 -> 00000000000000.00000000000000.00000148635647
+
+Session..........: hashcat
+Status...........: Running
+Hash.Mode........: 1400 (SHA2-256)
+Hash.Target......: 22c3c396875e0c79588773c55eed988454a50fd137da09ccf0d...2d2994
+Time.Started.....: Wed Jan 14 10:47:20 2026, (20 secs)
+Time.Estimated...: Wed Jan 14 10:47:40 2026, (0 secs; Runtime limited: 40 secs)
+Kernel.Feature...: Pure Kernel
+Guess.Base.......: Pipe
+Speed.#1.........: 10854.8 kH/s (4.28ms) @ Accel:2048 Loops:1 Thr:32 Vec:1
+Recovered........: 0/1 (0.00%) Digests (total), 0/1 (0.00%) Digests (new)
+Progress.........: 203685888
+Rejected.........: 0
+Restore.Point....: 0
+Restore.Sub.#1...: Salt:0 Amplifier:0-1 Iteration:0-1
+Candidate.Engine.: Device Generator
+Candidates.#1....: 00000000000000.00000000000000.00000198180864 -> 00000000000000.00000000000000.00000203685887
+
+Session..........: hashcat
+Status...........: Running
+Hash.Mode........: 1400 (SHA2-256)
+Hash.Target......: 22c3c396875e0c79588773c55eed988454a50fd137da09ccf0d...2d2994
+Time.Started.....: Wed Jan 14 10:47:20 2026, (25 secs)
+Time.Estimated...: Wed Jan 14 10:47:45 2026, (0 secs; Runtime limited: 35 secs)
+Kernel.Feature...: Pure Kernel
+Guess.Base.......: Pipe
+Speed.#1.........: 10875.1 kH/s (4.28ms) @ Accel:2048 Loops:1 Thr:32 Vec:1
+Recovered........: 0/1 (0.00%) Digests (total), 0/1 (0.00%) Digests (new)
+Progress.........: 258736128
+Rejected.........: 0
+Restore.Point....: 0
+Restore.Sub.#1...: Salt:0 Amplifier:0-1 Iteration:0-1
+Candidate.Engine.: Device Generator
+Candidates.#1....: 00000000000000.00000000000000.00000253231104 -> 00000000000000.00000000000000.00000258736127
+
+Session..........: hashcat
+Status...........: Running
+Hash.Mode........: 1400 (SHA2-256)
+Hash.Target......: 22c3c396875e0c79588773c55eed988454a50fd137da09ccf0d...2d2994
+Time.Started.....: Wed Jan 14 10:47:20 2026, (30 secs)
+Time.Estimated...: Wed Jan 14 10:47:50 2026, (0 secs; Runtime limited: 30 secs)
+Kernel.Feature...: Pure Kernel
+Guess.Base.......: Pipe
+Speed.#1.........: 10905.8 kH/s (4.28ms) @ Accel:2048 Loops:1 Thr:32 Vec:1
+Recovered........: 0/1 (0.00%) Digests (total), 0/1 (0.00%) Digests (new)
+Progress.........: 313786368
+Rejected.........: 0
+Restore.Point....: 0
+Restore.Sub.#1...: Salt:0 Amplifier:0-1 Iteration:0-1
+Candidate.Engine.: Device Generator
+Candidates.#1....: 00000000000000.00000000000000.00000308281344 -> 00000000000000.00000000000000.00000313786367
+
+Session..........: hashcat
+Status...........: Running
+Hash.Mode........: 1400 (SHA2-256)
+Hash.Target......: 22c3c396875e0c79588773c55eed988454a50fd137da09ccf0d...2d2994
+Time.Started.....: Wed Jan 14 10:47:20 2026, (35 secs)
+Time.Estimated...: Wed Jan 14 10:47:55 2026, (0 secs; Runtime limited: 25 secs)
+Kernel.Feature...: Pure Kernel
+Guess.Base.......: Pipe
+Speed.#1.........: 10925.0 kH/s (4.28ms) @ Accel:2048 Loops:1 Thr:32 Vec:1
+Recovered........: 0/1 (0.00%) Digests (total), 0/1 (0.00%) Digests (new)
+Progress.........: 368836608
+Rejected.........: 0
+Restore.Point....: 0
+Restore.Sub.#1...: Salt:0 Amplifier:0-1 Iteration:0-1
+Candidate.Engine.: Device Generator
+Candidates.#1....: 00000000000000.00000000000000.00000363331584 -> 00000000000000.00000000000000.00000368836607
+
+Session..........: hashcat
+Status...........: Running
+Hash.Mode........: 1400 (SHA2-256)
+Hash.Target......: 22c3c396875e0c79588773c55eed988454a50fd137da09ccf0d...2d2994
+Time.Started.....: Wed Jan 14 10:47:20 2026, (40 secs)
+Time.Estimated...: Wed Jan 14 10:48:00 2026, (0 secs; Runtime limited: 20 secs)
+Kernel.Feature...: Pure Kernel
+Guess.Base.......: Pipe
+Speed.#1.........: 10933.5 kH/s (4.28ms) @ Accel:2048 Loops:1 Thr:32 Vec:1
+Recovered........: 0/1 (0.00%) Digests (total), 0/1 (0.00%) Digests (new)
+Progress.........: 423886848
+Rejected.........: 0
+Restore.Point....: 0
+Restore.Sub.#1...: Salt:0 Amplifier:0-1 Iteration:0-1
+Candidate.Engine.: Device Generator
+Candidates.#1....: 00000000000000.00000000000000.00000418381824 -> 00000000000000.00000000000000.00000423886847
+
+Session..........: hashcat
+Status...........: Running
+Hash.Mode........: 1400 (SHA2-256)
+Hash.Target......: 22c3c396875e0c79588773c55eed988454a50fd137da09ccf0d...2d2994
+Time.Started.....: Wed Jan 14 10:47:20 2026, (45 secs)
+Time.Estimated...: Wed Jan 14 10:48:05 2026, (0 secs; Runtime limited: 15 secs)
+Kernel.Feature...: Pure Kernel
+Guess.Base.......: Pipe
+Speed.#1.........: 10944.5 kH/s (4.28ms) @ Accel:2048 Loops:1 Thr:32 Vec:1
+Recovered........: 0/1 (0.00%) Digests (total), 0/1 (0.00%) Digests (new)
+Progress.........: 478937088
+Rejected.........: 0
+Restore.Point....: 0
+Restore.Sub.#1...: Salt:0 Amplifier:0-1 Iteration:0-1
+Candidate.Engine.: Device Generator
+Candidates.#1....: 00000000000000.00000000000000.00000473432064 -> 00000000000000.00000000000000.00000478937087
+
+Session..........: hashcat
+Status...........: Running
+Hash.Mode........: 1400 (SHA2-256)
+Hash.Target......: 22c3c396875e0c79588773c55eed988454a50fd137da09ccf0d...2d2994
+Time.Started.....: Wed Jan 14 10:47:20 2026, (50 secs)
+Time.Estimated...: Wed Jan 14 10:48:10 2026, (0 secs; Runtime limited: 10 secs)
+Kernel.Feature...: Pure Kernel
+Guess.Base.......: Pipe
+Speed.#1.........: 10956.4 kH/s (4.28ms) @ Accel:2048 Loops:1 Thr:32 Vec:1
+Recovered........: 0/1 (0.00%) Digests (total), 0/1 (0.00%) Digests (new)
+Progress.........: 533987328
+Rejected.........: 0
+Restore.Point....: 0
+Restore.Sub.#1...: Salt:0 Amplifier:0-1 Iteration:0-1
+Candidate.Engine.: Device Generator
+Candidates.#1....: 00000000000000.00000000000000.00000528482304 -> 00000000000000.00000000000000.00000533987327
+
+Session..........: hashcat
+Status...........: Running
+Hash.Mode........: 1400 (SHA2-256)
+Hash.Target......: 22c3c396875e0c79588773c55eed988454a50fd137da09ccf0d...2d2994
+Time.Started.....: Wed Jan 14 10:47:20 2026, (55 secs)
+Time.Estimated...: Wed Jan 14 10:48:15 2026, (0 secs; Runtime limited: 5 secs)
+Kernel.Feature...: Pure Kernel
+Guess.Base.......: Pipe
+Speed.#1.........: 10966.8 kH/s (4.28ms) @ Accel:2048 Loops:1 Thr:32 Vec:1
+Recovered........: 0/1 (0.00%) Digests (total), 0/1 (0.00%) Digests (new)
+Progress.........: 589037568
+Rejected.........: 0
+Restore.Point....: 0
+Restore.Sub.#1...: Salt:0 Amplifier:0-1 Iteration:0-1
+Candidate.Engine.: Device Generator
+Candidates.#1....: 00000000000000.00000000000000.00000583532544 -> 00000000000000.00000000000000.00000589037567
+
+Runtime limit reached, aborting
+Session..........: hashcat
+Status...........: Aborted (Runtime)
+Hash.Mode........: 1400 (SHA2-256)
+Hash.Target......: 22c3c396875e0c79588773c55eed988454a50fd137da09ccf0d...2d2994
+Time.Started.....: Wed Jan 14 10:47:20 2026, (1 min, 0 secs)
+Time.Estimated...: Wed Jan 14 10:48:20 2026, (0 secs; Runtime limit exceeded)
+Kernel.Feature...: Pure Kernel
+Guess.Base.......: Pipe
+Speed.#1.........: 10971.1 kH/s (4.28ms) @ Accel:2048 Loops:1 Thr:32 Vec:1
+Recovered........: 0/1 (0.00%) Digests (total), 0/1 (0.00%) Digests (new)
+Progress.........: 644087808
+Rejected.........: 0
+Restore.Point....: 0
+Restore.Sub.#1...: Salt:0 Amplifier:0-1 Iteration:0-1
+Candidate.Engine.: Device Generator
+
+Session..........: hashcat
+Status...........: Aborted (Runtime)
+Hash.Mode........: 1400 (SHA2-256)
+Hash.Target......: 22c3c396875e0c79588773c55eed988454a50fd137da09ccf0d...2d2994
+Time.Started.....: Wed Jan 14 10:47:20 2026, (1 min, 0 secs)
+Time.Estimated...: Wed Jan 14 10:48:20 2026, (0 secs; Runtime limit exceeded)
+Kernel.Feature...: Pure Kernel
+Guess.Base.......: Pipe
+Speed.#1.........: 10971.1 kH/s (4.28ms) @ Accel:2048 Loops:1 Thr:32 Vec:1
+Recovered........: 0/1 (0.00%) Digests (total), 0/1 (0.00%) Digests (new)
+Progress.........: 644087808
+Rejected.........: 0
+Restore.Point....: 0
+Restore.Sub.#1...: Salt:0 Amplifier:0-1 Iteration:0-1
+Candidate.Engine.: Device Generator
+Candidates.#1....: 00000000000000.00000000000000.00000638582784 -> 00000000000000.00000000000000.00000644087807
+Runtime limit reached, aborting
+Started: Wed Jan 14 10:47:19 2026
+Stopped: Wed Jan 14 10:48:21 2026
