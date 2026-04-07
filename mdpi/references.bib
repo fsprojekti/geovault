@@ -38,7 +38,7 @@ title = {{A Random Word Generator for Pronounceable Passwords}},
 url = {http://www.dtic.mil/cgi-bin/GetTRDoc?AD=ADA017676},
 year = {1975}
 }
-@article{Mai2022,
+@article{Mai2022_dup,
 abstract = {A common need for artificial intelligence models in the broader geoscience is to encode various types of spatial data, such as points, polylines, polygons, graphs, or rasters, in a hidden embedding space so that they can be readily incorporated into deep learning models. One fundamental step is to encode a single point location into an embedding space, such that this embedding is learning-friendly for downstream machine learning models. We call this process location encoding. However, there lacks a systematic review on location encoding, its potential applications, and key challenges that need to be addressed. This paper aims to fill this gap. We first provide a formal definition of location encoding, and discuss the necessity of it for GeoAI research. Next, we provide a comprehensive survey about the current landscape of location encoding research. We classify location encoding models into different categories based on their inputs and encoding methods, and compare them based on whether they are parametric, multi-scale, distance preserving, and direction aware. We demonstrate that existing location encoders can be unified under one formulation framework. We also discuss the application of location encoding. Finally, we point out several challenges that need to be solved in the future.},
 archivePrefix = {arXiv},
 arxivId = {2111.04006},
@@ -165,12 +165,50 @@ year = {2022}
 }
 @article{Golla2017,
 abstract = {—Mobile devices, such as smartphones and tablets, frequently store confidential data, yet implementing a secure device unlock functionality is non-trivial due to restricted input methods. Graphical knowledge-based schemes have been widely used on smartphones and are generally well adapted to the touch-screen interface on small screens. Recently, graphical password schemes based on emoji have been proposed. They offer potential benefits due to the familiarity of users with emoji and the ease of expressing memorable stories. However, it is well-known from other graphical schemes that user-selected authentication secrets can substantially limit the resulting entropy of the authentication secret. In this work, we study the entropy of user-selected secrets for one exemplary instantiation of emoji-based authentication. We analyzed an implementation using 20 emoji displayed in random order on a grid, where a user selects passcodes of length 4 without further restrictions. We conducted an online user study with 795 participants, using the collected passcodes to determine the resistance to guessing based on several guessing strategies, thus estimating the selection bias. We evaluated Markov model-based guessing strategies based on the selected sequence of emoji, on its position in the grid, and combined models taking into account both features. While we find selection bias based on both the emoji as well as the position, the measured bias is lower than for similar schemes. Depending on the model, we can recover up to 7 % at 100 guessing attempts, and up to 11 % of the passcodes at 1 000 guessing attempts. (For comparison, previous work on the graphical Android Unlock pattern scheme (CCS 2013) recovered around 18 % at 100 and 50 % at 1 000 guessing attempts, despite a theoretical keyspace of more than double the size for the Android scheme.) These results demonstrate some potential for a usable and relatively secure scheme and show that the size of the theoretical keyspace is a bad predictor for the realistic guessability of passcodes.},
-author = {Golla, Maximilian and Detering, Dennis and Drmut, Markus},
+author = {Golla, Maximilian and Detering, Dennis and D{\"u}rmuth, Markus},
 doi = {10.14722/usec.2017.23024},
 file = {:C\:/Users/Marko/AppData/Local/Mendeley Ltd./Mendeley Desktop/Downloaded/Golla, Detering, D{\"{u}}rmuth - 2017 - EmojiAuth Quantifying the Security of Emoji-based Authentication.pdf:pdf},
 title = {{EmojiAuth: Quantifying the Security of Emoji-based Authentication}},
 url = {http://dx.doi.org/10.14722/usec.2017.23024},
 year = {2017}
+}
+@article{Sun2012,
+author = {Sun, Hung Min and Chen, Yao Hsin and Fang, Chiung Cheng and Chang, Shih Ying},
+doi = {10.1145/2414456.2414513},
+journal = {ASIACCS 2012 - 7th ACM Symposium on Information, Computer and Communications Security},
+pages = {99--100},
+title = {{PassMap: A map based graphical-password authentication system}},
+url = {https://doi.org/10.1145/2414456.2414513},
+year = {2012}
+}
+@article{Thorpe2013,
+author = {Thorpe, Julie and MacRae, Brent and Salehi-Abari, Amirali},
+doi = {10.1145/2501604.2501618},
+journal = {SOUPS 2013 - Proceedings of the 9th Symposium on Usable Privacy and Security},
+title = {{Usability and security evaluation of geopass: A geographic location-password scheme}},
+url = {https://doi.org/10.1145/2501604.2501618},
+year = {2013}
+}
+@inproceedings{MacRae2016,
+author = {MacRae, Brent and Thorpe, Julie and Salehi-Abari, Amirali},
+booktitle = {Proceedings of the Twelfth Symposium on Usable Privacy and Security (SOUPS 2016)},
+title = {{GeoPassNotes: Strengthening GeoPass with User Notes for Improved Memorability}},
+year = {2016}
+}
+@inproceedings{AlAmeen2014,
+author = {Al-Ameen, Mahdi Nasrullah and Wright, Matthew},
+booktitle = {Proceedings of the Tenth Symposium on Usable Privacy and Security (SOUPS 2014)},
+title = {{Security and Usability of Geographic Location-Passwords}},
+year = {2014},
+note = {TODO: verify exact title and pages}
+}
+@misc{FAO_GLC,
+author = {{Food and Agriculture Organization of the United Nations}},
+title = {{Global Land Cover SHARE (GLC-SHARE)}},
+howpublished = {FAO Geonetwork dataset},
+url = {https://www.fao.org/geonetwork/srv/en/main.home},
+year = {2014},
+note = {Accessed: 2026-03-23}
 }
 @article{Lindell2018,
 abstract = {ECDSA is a standardized signing algorithm that is widely used in TLS, code signing, cryptocurrency and more. Due to its importance, the problem of securely computing ECDSA in a distributed manner (known as threshold signing) has received considerable interest. However, despite this interest, there is still no full threshold solution for more than 2 parties (meaning that any t-out-of-n parties can sign, security is preserved for any t - 1 or fewer corrupted parties, and t = n can be any value thus supporting an honest minority) that has practical key distribution. This is due to the fact that all previous solutions for this utilize Paillier homomorphic encryption, and efficient distributed Paillier key generation for more than two parties is not known. In this paper, we present the first truly practical full threshold ECDSA signing protocol that has both fast signing and fast key distribution. This solves a years-old open problem, and opens the door to practical uses of threshold ECDSA signing that are in demand today. One of these applications is the construction of secure cryptocurrency wallets (where key shares are spread over multiple devices and so are hard to steal) and cryptocurrency custody solutions (where large sums of invested cryptocurrency are strongly protected by splitting the key between a bank/financial institution, the customer who owns the currency, and possibly a third-party trustee, in multiple shares at each). There is growing practical interest in such solutions, but prior to our work these could not be deployed today due to the need for distributed key generation.},
@@ -425,7 +463,7 @@ publisher = {The Internet Society},
 title = {{Spaced Repetition and Mnemonics Enable Recall of Multiple Strong Passwords}},
 year = {2015}
 }
-@article{Bonneau2012,
+@article{Bonneau2012_dup,
 abstract = {I'm not proposing any protocols here, I'm talking about passwords, which is what I've spent the last year or so doing now. An interesting problem, which came up in my thesis, is how to tell how strong an individual password is. There's a growing body of publications on how to assess the strength of a big pile of passwords. So if a bunch of passwords leak from a new website there are some measures that I've developed, and some things other people have worked on, to try and compare this new body of passwords to all of the passwords at a different website. But the world of analysing a single password is still in the dark ages I would say. Obviously the difference is that with a group of passwords you can start to do statistics, and you can look at how many passwords are repeated within that set, whereas if you just have one password you have to reason about what set it came from. {\textcopyright} 2012 Springer-Verlag.},
 author = {Bonneau, Joseph},
 doi = {10.1007/978-3-642-35694-0_11},
@@ -640,7 +678,7 @@ title = {{Rehearsal in Spatial Working Memory}},
 volume = {24},
 year = {1998}
 }
-@article{Konkle2010,
+@article{Konkle2010_dup,
 abstract = {Observers can store thousands of object images in visual long-term memory with high fidelity, but the fidelity of scene representations in long-term memory is not known. Here, we probed scene-representation fidelity by varying the number of studied exemplars in different scene categories and testing memory using exemplar-level foils. Observers viewed thousands of scenes over 5.5 hr and then completed a series of forced-choice tests. Memory performance was high, even with up to 64 scenes from the same category in memory. Moreover, there was only a 2% decrease in accuracy for each doubling of the number of studied scene exemplars. Surprisingly, this degree of categorical interference was similar to the degree previously demonstrated for object memory. Thus, although scenes have often been defined as a superset of objects, our results suggest that scenes and objects may be entities at a similar level of abstraction in visual long-term memory. {\textcopyright} The Author(s) 2010.},
 author = {Konkle, Talia and Brady, Timothy F. and Alvarez, George A. and Oliva, Aude},
 doi = {10.1177/0956797610385359},
