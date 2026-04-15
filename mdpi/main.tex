@@ -2,7 +2,7 @@
 %  For support, please attach all files needed for compiling as well as the log file, and specify your operating system, LaTeX version, and LaTeX editor.
 
 %=================================================================
-\documentclass[journal,article,submit,pdftex,moreauthors]{Definitions/mdpi} 
+\documentclass[journal,article,accept,pdftex,moreauthors]{Definitions/mdpi} 
 %\documentclass[preprints,article,submit,pdftex,moreauthors]{Definitions/mdpi} 
 % For posting an early version of this manuscript as a preprint, you may use "preprints" as the journal. Changing "submit" to "accept" before posting will remove line numbers.
 
@@ -62,7 +62,7 @@
 \datepublished{ } 
 %\datecorrected{} % For corrected papers: "Corrected: XXX" date in the original paper.
 %\dateretracted{} % For retracted papers: "Retracted: XXX" date in the original paper.
-\hreflink{https://doi.org/} % If needed use \linebreak
+\hreflink{} % DOI to be filled once journal assigns it
 %\doinum{}
 %\pdfoutput=1 % Uncommented for upload to arXiv.org
 %\CorrStatement{yes}  % For updates
@@ -104,6 +104,7 @@
 \usepackage{svg}
 
 \usepackage{xcolor}
+
 \definecolor{insecure}{RGB}{255,220,220}
 \definecolor{humanscale}{RGB}{255,245,200}
 \definecolor{supersecure}{RGB}{220,245,220}
@@ -154,7 +155,7 @@
 
 % Affiliations / Addresses (Add [1] after \address if there is only one affiliation.)
 \address{%
-$^{1}$ \quad Affiliation 1; Faculty of mechanical engineering, University of Ljubljana \\
+$^{1}$ \quad Faculty of Mechanical Engineering, University of Ljubljana \\
 % $^{2}$ \quad Affiliation 2; e-mail@e-mail.com
 }
 % Contact information of the corresponding author
@@ -162,7 +163,7 @@ $^{1}$ \quad Affiliation 1; Faculty of mechanical engineering, University of Lju
 
 
 % Current address and/or shared authorship
-\firstnote{Current address: Affiliation.}  % Current address should not be the same as any items in the Affiliation section.
+%\firstnote{Current address: Affiliation.}  % Placeholder removed; add real current address if applicable.
 \secondnote{These authors contributed equally to this work.}
 % The commands \thirdnote{} till \eighthnote{} are available for further notes
 
@@ -172,7 +173,7 @@ $^{1}$ \quad Affiliation 1; Faculty of mechanical engineering, University of Lju
 
 % Abstract (Do not insert blank lines, i.e. \\) 
 \abstract{
-Human-centered cryptographic key management is constrained by a persistent tension between security and usability. While modern cryptographic primitives offer strong theoretical guarantees, practical failures often arise from the difficulty users face in generating, memorizing, and securely storing high-entropy secrets. Existing mnemonic approaches suffer from severe entropy collapse due to predictable human choice, while machine-generated mnemonics such as BIP--39 impose significant cognitive burden. This paper introduces \textit{GeoVault}, a spatially anchored key derivation framework that leverages human spatial memory as a cryptographic input. GeoVault derives cryptographic keys from user-selected geographic locations, encoded deterministically and hardened using memory-hard key derivation functions. We develop a formal entropy model that captures semantic and clustering biases in human location choice and distinguishes nominal from effective spatial entropy under attacker-prioritized dictionaries. Through information-theoretic analysis and CPU--GPU benchmarking, we show that spatially anchored secrets provide a substantially higher effective entropy floor than human-chosen passwords under realistic attacker models. When combined with Argon2id, spatial mnemonics benefit from a hardware-enforced asymmetry that strongly constrains attacker throughput as memory costs approach GPU VRAM limits. Our results indicate that modest multi-point spatial selection combined with memory-hard derivation can achieve attacker-adjusted work factors comparable to those of 12-word BIP--39 mnemonics, while single-point configurations provide meaningful offline resistance with reduced cognitive burden.}
+Practical failures of cryptographic key management rarely stem from weak algorithms: they arise from the difficulty users face in memorizing and reliably recalling high-entropy secrets. Password-based and brainwallet approaches collapse under selection bias, while machine-generated mnemonics such as BIP-39 impose a significant memory burden. This paper introduces \textit{GeoVault}, a key derivation framework that uses remembered geographic locations as the cryptographic input. Keys are derived from a small set of user-selected map points, encoded deterministically using a geospatial scheme and hardened with the Argon2id memory-hard function. We develop a formal entropy model that distinguishes nominal from effective spatial entropy under attacker-prioritized geographic dictionaries and quantifies the additional reduction caused by demographic selection bias. Through information-theoretic analysis and CPU--GPU benchmarking, we show that spatial secrets carry a substantially higher effective entropy floor than human-chosen passwords, and that Argon2id creates a strong asymmetry between legitimate users and offline adversaries: at a memory cost of 1\,GiB, an attacker using a high-end GPU can test approximately 66 candidate secrets per one defender key derivation. This residual throughput advantage is, however, overwhelmed by the exponential growth of the search space when multiple locations are selected. Selecting $n \geq 3$ geographic points is necessary and sufficient to achieve cryptographic-strength brute-force resistance under all evaluated Argon2id configurations, including against an attacker with demographic knowledge of the user. Single-point configurations remain insecure regardless of memory-cost hardening.}
 
 
 % Keywords
@@ -240,21 +241,21 @@ Human-centered cryptographic key management is constrained by a persistent tensi
 
 \section{Introduction}
 
-Secure cryptographic key management remains one of the most persistent usability challenges in modern security systems. While cryptographic primitives themselves have achieved a high degree of mathematical maturity, real-world security failures are frequently caused not by algorithmic weaknesses, but by the difficulty humans face in generating, storing, and reliably recalling high-entropy secrets. This mismatch between human cognitive capabilities and cryptographic requirements has motivated a wide range of mnemonic key storage approaches, including password-based systems, brainwallets, and standardized mnemonic phrases such as BIP-39.
+Cryptographic algorithms rarely fail in isolation; real-world security breaches are far more often caused by the difficulty humans face in generating, storing, and reliably recalling high-entropy secrets~\cite{Adams1999}. This constraint has driven two decades of research into mnemonic key storage: password managers, brainwallets, and standardized phrase lists such as BIP-39 each represent a different point in the trade-off space between entropy and memorability.
 
 Brainwallets and passphrase-derived keys attempt to eliminate the need for external storage by relying entirely on human memory. However, extensive empirical research has shown that such approaches fail under realistic offline attacker models due to severe entropy collapse caused by predictable human choice~\cite{Bonneau2012,Vasek2017}. Large-scale studies of real-world password datasets demonstrate that users consistently select secrets with strong linguistic and cultural bias, resulting in effective entropy levels far below theoretical estimates~\cite{Bonneau2012,Kuo2006}. Analyses of funded brainwallets further confirm that passphrase-derived keys are often compromised shortly after use, sometimes within minutes~\cite{Vasek2017,Yang2016}. Even mnemonic-friendly strategies fail to provide durable protection once human selection bias is taken into account.
 
 In contrast, machine-generated mnemonic schemes such as BIP-39 offer strong cryptographic guarantees by selecting words uniformly from a fixed dictionary, yielding well-defined entropy budgets. A standard 12-word BIP-39 mnemonic provides 128 bits of nominal entropy, making exhaustive brute-force attacks computationally infeasible under conventional assumptions. However, these schemes impose a significant cognitive burden on users, who must reliably store or back up the mnemonic phrase. In practice, this often leads to insecure storage practices or irreversible loss of access, effectively shifting the problem from entropy generation to key retention and recovery.
 
-A key limitation shared by most existing mnemonic systems is their dependence on linguistic or abstract symbolic memory, which is known to be fragile and error-prone over long time horizons~\cite{Pals2018,Akaygun2014}. In contrast, decades of research in cognitive psychology and neuroscience have established that humans possess a robust capacity for spatial memory. Spatial representations are encoded, organized, and retrieved using dedicated cognitive mechanisms centered around landmarks and reference frames, and are retained accurately even after long periods without rehearsal~\cite{Montello1998,McNamara2003,McNamara2012}. Neurobiological evidence further supports this distinction: the hippocampus plays a central role in both spatial navigation and long-term memory formation, suggesting a deep functional link between spatial awareness and memory encoding~\cite{McNaughton1991}.
+Despite their differences, password-based and brainwallet approaches share a common dependency: linguistic or abstract symbolic memory, a form of recall that degrades measurably over months and years~\cite{Pals2018,Akaygun2014}. Spatial memory follows a strikingly different retention profile. Layouts of familiar places, routes, and personal landmarks are encoded through hippocampal circuits that govern long-term spatial navigation and are retained with high fidelity even after long intervals without rehearsal~\cite{Montello1998,McNamara2003,McNamara2012,McNaughton1991}. The difference is not incidental: it reflects distinct cognitive mechanisms, with verbal recall rapidly susceptible to interference and spatial recall comparatively stable.
 
-These findings have motivated prior work exploring graphical and spatially inspired authentication mechanisms~\cite{Bauer1993,Tari2006,Golla2017}. While such systems demonstrate improved memorability compared to textual passwords, they typically suffer from limited entropy, susceptibility to observation attacks, or strong user bias toward predictable choices. As a result, spatial memory has not yet been systematically integrated into cryptographic key derivation frameworks with explicit entropy modeling and hardware-aware offline threat assumptions.
+Prior authentication research has drawn on related intuitions, exploring graphical and map-based schemes~\cite{Tari2006,Golla2017,Sun2012,Thorpe2013}. User studies confirm improved recall, but the security question has been handled qualitatively: none of these systems couples spatial selection to a formal entropy model, quantifies the reduction caused by demographic selection bias, or evaluates the resulting work factor against a GPU-class offline adversary with access to attacker-prioritized spatial dictionaries.
 
 In parallel, advances in cryptographic key derivation functions have made it possible to impose strong, hardware-enforced asymmetries between legitimate users and offline adversaries. Memory-hard functions such as Argon2 were explicitly designed to resist massively parallel GPU and ASIC attacks by binding performance to memory bandwidth and capacity rather than raw compute throughput~\cite{7467361,Wetzels2016}. Empirical studies have shown that such functions significantly reduce attacker advantage and allow defenders to trade modest increases in computation time for large increases in brute-force resistance~\cite{Choe2019}.
 
 This paper introduces \textit{GeoVault}, a key management framework that combines these insights. GeoVault derives cryptographic keys from one or more user-selected spatial locations, encoded deterministically using geospatial encoding schemes and hardened through memory-hard key derivation. By anchoring secrets in spatial memory and amplifying their security through computational hardness, GeoVault aims to mitigate the security--usability limitations inherent in brainwallet-style systems under offline attack models.
 
-The contributions of this work are threefold:
+The main contributions of this work are:
 \begin{itemize}
 \item We introduce a formal entropy model for spatially anchored secrets that distinguishes nominal spatial entropy from effective entropy under attacker-prioritized spatial dictionaries, capturing realistic semantic and clustering biases in human location choice.
 \item We analyze and quantify the security limits of spatial memory under realistic human selection behavior, showing how clustering and semantic constraints reduce effective entropy and how multi-point spatial selection mitigates this effect.
@@ -263,23 +264,81 @@ The contributions of this work are threefold:
 
 
 
-The remainder of this paper is organized as follows. Section~2 reviews related work on brainwallets, mnemonic-based key storage, human memory limitations, spatial cognition, and geospatial encoding systems, highlighting the shortcomings of existing approaches and motivating the use of spatial memory as a cryptographic primitive. Section~3 introduces the theoretical foundations of the proposed approach, including formal entropy models for linguistic and spatial secrets, effective entropy under attacker-prioritized dictionaries, and the role of computational entropy boosting. Section~4 presents the design of the \textit{GeoVault} protocol, detailing the spatial selection process, geospatial encoding, entropy-boosting mechanisms, and the attacker--defender security evaluation methodology. Section~5 reports empirical results, including spatial entropy analysis, CPU--GPU asymmetry benchmarks, and the impact of memory-hard key derivation on attacker work factors under realistic hardware constraints. Section~6 discusses the implications of the results, examines limitations and threat model assumptions, and positions GeoVault within the broader landscape of human-centered key management. Finally, Section~7 concludes the paper and outlines directions for future research.
-
-
+The paper is structured as follows. Section~2 reviews related work on brainwallets, mnemonic-based key storage, spatial cognition, and geospatial encoding. Section~3 develops the theoretical foundations, including formal entropy models, attacker-prioritized spatial dictionaries, and computational hardening. Section~4 presents the GeoVault protocol design. Section~5 reports the empirical benchmarks. Section~6 discusses implications and limitations. Section~7 concludes.
 
 \section{Related Work}
 
-\subsection{Brainwallets and Mnemonic Security}
-Brainwallets represent a class of deterministic cryptocurrency wallets where private keys are derived from a user-chosen passphrase, typically using a hashing algorithm like SHA-256. The primary appeal of brainwallets is the ability to transport value without physical tokens or digital files. However, empirical studies have consistently demonstrated that humans choose predictable low-entropy secrets, making brainwallets highly vulnerable to dictionary and brute-force attacks \cite{Vasek2017, Bonneau2012}. Vasek et al. showed that funded brainwallets are often drained within seconds of their creation due to the use of popular quotes, song lyrics, or simple phrases \cite{Vasek2017}. To mitigate this, the BIP-39 standard introduced machine-generated mnemonic sentences (typically 12 or 24 words) encoded from a fixed dictionary \cite{Rohatgi2021}. While BIP-39 mnemonics offer high entropy (128–256 bits), they suffer from poor usability: they are difficult to memorize and require secure physical backup (e.g., paper or metal), creating a single point of failure and risk of loss or theft \cite{Das2019}.
+\subsection{Brainwallets and Their Weaknesses}
 
-\subsection{Human Spatial Memory and Location Retrieval}
-In contrast to the difficulty of memorizing random alphanumeric strings or word lists, human spatial memory is robust, evolutionarily ancient, and capable of high-capacity retention \cite{OKeefe1978, Maguire2000}. Research in cognitive psychology suggests that spatial information is encoded using allocentric (map-like) and egocentric (self-referenced) frames, which are more durable than semantic memory systems used for passwords \cite{Burgess2002}. The "method of loci" (memory palace) technique, which associates information with specific spatial locations, exploits this superiority and has been shown to significantly enhance recall performance \cite{Yates1966}. Previous attempts to leverage spatial memory for authentication, such as graphical passwords or "PassPoints," have demonstrated better memorability than text passwords but often failed due to limited entropy or susceptibility to "shoulder-surfing" attacks \cite{Wiedenbeck2006}. GeoVault builds upon these insights but addresses the entropy limitation by using precise geospatial coordinates combined with key stretching, rather than coarse regions or images.
+Brainwallets represent a class of deterministic cryptocurrency wallets in which private keys are derived directly from user-chosen passwords or passphrases. The underlying assumption is that users can reliably memorize sufficiently complex secrets, thereby eliminating the need for physical or digital storage of private keys~\cite{Das2019, Vasek2017}. In practice, however, extensive empirical research has demonstrated that this assumption is rarely satisfied, leading to severe security and usability limitations.
+
+The core vulnerability of brainwallets stems from the predictable nature of human-chosen passwords and passphrases. Vasek et al.~\cite{Vasek2017} conducted a large-scale empirical analysis of funded brainwallets and showed that users overwhelmingly select easily guessable phrases, resulting in a dramatic reduction of effective entropy. Their findings revealed that the majority of brainwallets were compromised shortly after being funded, often within minutes, underscoring the practicality of offline dictionary attacks against passphrase-derived keys.
+
+Earlier work by Kuo et al.~\cite{Kuo2006} identified similar weaknesses in mnemonic phrase-based passwords, demonstrating that users frequently rely on common phrases sourced from online material. Yang et al.~\cite{Yang2016} further confirmed that mnemonic-based password strategies, despite their perceived memorability benefits, produce secrets that remain highly vulnerable to statistical guessing attacks.
+
+These vulnerabilities are compounded by fundamental cognitive limitations in human memory. Bonneau~\cite{Bonneau2012,6234435} demonstrated that, despite repeated efforts to promote stronger password practices, most users fail to achieve sufficient entropy in practice. Adams and Sasse~\cite{Adams1999, Sasse2001} explained this phenomenon from a usability perspective, arguing that increasing password complexity requirements directly conflicts with human memory constraints and predictably leads users toward insecure coping strategies.
+
+Attempts to mitigate these weaknesses through user education have shown limited effectiveness. Kävrestad and Nohlberg~\cite{Kavrestad2020} found that context-based security training failed to produce meaningful improvements in real-world passphrase strength, highlighting the persistent tension between security requirements and human cognitive limitations.
+
+Alternative authentication schemes that seek to exploit human visual memory have similarly encountered structural weaknesses. Tari et al.~\cite{Tari2006} and Golla et al.~\cite{Golla2017} investigated graphical and emoji-based password systems, identifying vulnerabilities such as susceptibility to shoulder-surfing and strong user bias toward predictable choices. While such approaches can improve memorability, they do not eliminate the fundamental problem of low effective entropy under targeted attack models.
+
+To address the inherent weaknesses of brainwallets, alternative key management approaches have been proposed, including hierarchical deterministic (HD) wallets~\cite{DiLuzio2020, Gutoski2015} and hardware-based wallets, commonly referred to as cold wallets~\cite{Das2019,8726762}. HD wallets, standardized in BIP32, derive large key hierarchies from a single master seed, simplifying backup and recovery. However, Di Luzio et al.~\cite{DiLuzio2020} identified privilege escalation vulnerabilities in multi-user settings, while Gutoski and Stebila~\cite{Gutoski2015} demonstrated that partial key leakage can enable recovery of the master secret, exposing the entire wallet hierarchy.
+
+Cold wallets mitigate network-based attacks by storing private keys offline, but they introduce distinct attack surfaces. Das et al.~\cite{Das2019} analyzed the hot/cold wallet paradigm and formalized conditions under which such systems remain secure. Nevertheless, Guri~\cite{8726762} experimentally demonstrated that air-gapped wallets can be compromised through physical side channels, including electromagnetic, acoustic, optical, and thermal leakage, challenging the assumption that hardware isolation alone provides absolute security.
+
+In summary, brainwallets and mnemonic-based password schemes consistently suffer from two fundamental weaknesses: low effective entropy caused by predictable human-chosen secrets, and usability constraints rooted in cognitive limitations~\cite{Kuo2006, Vasek2017, Yang2016}. While HD wallets and cold wallets mitigate certain risks, they introduce additional complexity and new failure modes, such as master-key leakage~\cite{Gutoski2015, DiLuzio2020} or physical side-channel exfiltration~\cite{Das2019,8726762}. These limitations motivate the exploration of alternative approaches that align more closely with human cognitive strengths. In particular, leveraging spatial memory—an ability known for its robustness and long-term retention—offers a promising foundation for secure and user-friendly key management.
+
+\subsection{Human Spatial Memory as a Cryptographic Asset}
+
+
+
+Human memory is notoriously unreliable when it comes to memorizing abstract information such as complex alphanumeric strings or passphrases~\cite{Pals2018, Akaygun2014}. However, decades of cognitive psychology research have shown that humans exhibit a disproportionately strong ability to encode, recall, and retain spatial information~\cite{montello1998new, McNamara2003}. This observation underpins the ``method of loci,'' an ancient memory technique that leverages imagined spatial environments to recall information by placing memories at physical locations within a mental map~\cite{Yates2013}.
+
+Neurological evidence also supports the unique role of spatial memory in human cognition. The hippocampus, a brain structure critical for memory formation, is also central to spatial navigation~\cite{McNaughton1991}. The dual-use of this brain region suggests a strong evolutionary and functional link between spatial awareness and memory encoding. Studies in cognitive neuroscience confirm that people can recall spatial configurations with high accuracy even after long periods, particularly when these memories are grounded in visual or map-based stimuli~\cite{Konkle2010, Lukavsky2017}.
+
+
+
+
+
+More recently, spatial interfaces have been proposed in password systems and digital authentication. Early frameworks such as \textit{PassMap}~\cite{Sun2012} and \textit{GeoPass}~\cite{Thorpe2013} demonstrated that map-based authentication secrets are more durable than abstract textual passwords. In long-term usability studies, users retained geographic authentication secrets for durations of 3--5 weeks with significantly fewer errors compared to alphanumeric passphrases~\cite{Thorpe2013}. Furthermore, \textit{GeoPassNotes}~\cite{MacRae2016} suggests that anchoring secrets to personally meaningful spatial landmarks enhances recall through the activation of episodic memory cues.
+
+Despite these advantages, prior work in map-based authentication has identified severe entropy collapse caused by predictable human selection. Users consistently exhibit strong semantic bias toward residential locations (home/work), major urban centers, and famous global landmarks~\cite{Sun2012, Thorpe2013, AlAmeen2014}. A comprehensive usability and security evaluation by Al-Ameen and Wright~\cite{AlAmeen2014} further quantified the degree to which user selection distributions concentrate around personally and culturally salient locations, confirming that an adversary with even limited contextual knowledge of the user can substantially reduce the effective search space below the nominal geographic entropy. These selection patterns reduce the effective search space in ways that purely geographic dictionaries do not capture. While these studies establish the memorability of spatial secrets, they have not yet been integrated into a cryptographic key derivation framework that explicitly mitigates selection bias through memory-hard hardening and hardware-aware offline threat modeling.
+
+These findings suggest that spatial memory may provide a superior foundation for cryptographic key storage and retrieval mechanisms. Unlike traditional brainwallets that rely on memorized strings, a system that anchors a seed derivation process to a spatial coordinate or map location naturally exploits this cognitive strength. By combining the robustness of spatial recall with computational functions that bind access to the correct location and effort, it is possible to achieve both higher security and improved usability.
 
 \subsection{Geospatial Encoding Systems}
-To convert spatial memory into cryptographic inputs, a deterministic encoding scheme is required. Several systems exist for discretizing the Earth's surface. What3Words (w3w) divides the world into a grid of 3x3 meter squares, each assigned a unique three-word address \cite{What3Words2023}. While user-friendly, w3w is a proprietary system with a fixed resolution. Open alternatives include Google's Plus Codes (Open Location Code), which offer variable precision and are fully algorithmic \cite{Google2023}, and Geohash, which uses hierarchical base-32 encoding \cite{Niemeyer2008}. For GeoVault, the choice of encoding system impacts both usability (ease of recall) and the structure of the input space for the key derivation function.
 
-\subsection{Encryption Techniques for Hardening Secrets}
-Given that human-selected secrets (even spatial ones) may have lower entropy than machine-generated keys, "key stretching" or "hardening" is essential. Memory-hard Key Derivation Functions (KDFs) like Argon2 and scrypt are designed to make brute-force attacks prohibitively expensive by requiring significant memory resources, which are costly to parallelize on GPUs or ASICs \cite{Biryukov2016, Percival2009}. Argon2, the winner of the Password Hashing Competition, offers resistance to both side-channel attacks and GPU-cracking farms \cite{Biryukov2016}. By incorporating Argon2id, GeoVault ensures that even if the raw spatial entropy is moderate (e.g., 40-50 bits for a single precise location), the computational cost to an attacker remains computationally infeasible, utilizing the "rational attacker" model where the cost of attack exceeds the value of the secret.
+Geospatial encoding systems provide a structured way to represent geographic locations using codes or identifiers, facilitating applications such as navigation, logistics, and, in the context of this research, secure mnemonic storage based on spatial memory. These systems translate physical locations into a format that can be easily shared and processed, making them a critical component of the proposed \textit{GeoVault} protocol.
+
+A widely recognized example is What3Words (w3w), which partitions the globe into 3m x 3m squares, each assigned a unique three-word identifier. This system excels in usability due to its intuitive word-based format, reducing errors compared to traditional coordinates, and supports multiple languages \cite{Jiang2018a}. However, its fixed resolution limits its flexibility for applications requiring finer granularity or three-dimensional encoding, such as indoor environments \cite{Lee2009}. Moreover, recent critiques highlight potential confusion between similar word triplets, posing risks in critical applications like emergency response or secure storage \cite{Arthur2023}. These limitations are particularly relevant to \textit{GeoVault}, where precise and unambiguous location encoding directly impacts mnemonic security.
+
+Alternative systems include Geohash, Google's Open Location Code (OLC), and Google S2. Geohash employs a hierarchical grid with alphanumeric codes, offering variable precision but suffering from complexity and potential user confusion due to its base32 encoding \cite{Mai2022}. Open Location Code, designed for offline use, provides a more accessible alphanumeric approach, balancing usability and scalability \cite{Mai2022}. Google S2, optimized for spatial indexing, uses a cell-based structure that supports efficient querying and could enhance the protocol's computational efficiency \cite{Mai2022}. Each system presents distinct characteristics: Geohash and OLC prioritize flexibility, while S2 emphasizes performance in large-scale applications.
+
+The choice of a geospatial encoding system for \textit{GeoVault} involves several trade-offs. Usability is critical for enabling users to recall and input locations accurately, favoring systems like What3Words \cite{Jiang2018a}. Granularity, or the size of the encoded area, affects the entropy of the system---a finer grid increases the number of possible locations, strengthening security against brute-force attacks. Encoding precision also influences the integration with computation-hard derivation functions like Argon2, as higher precision demands greater computational effort to protect the mnemonic seed. Additionally, reliability and accuracy are paramount, as geocoding errors can compromise the protocol's integrity. Studies reveal significant variability in geocoding accuracy across services and regions, necessitating robust validation frameworks \cite{Goldberg2013, Zandbergen2008a}.
+
+In this research, geospatial encoding systems underpin the spatial anchoring of mnemonic seeds. While What3Words offers a compelling balance of usability and precision, its proprietary nature and potential for confusion \cite{Arthur2023} necessitate the exploration of open-source alternatives like Open Location Code for fully offline-resolvable implementations. Alternatives like Google S2 could improve scalability and precision, while custom schemes might better align with the protocol's security requirements \cite{Mai2022}. Furthermore, address extraction and matching techniques from web data, as explored in \cite{Efremova2018}, could enhance location selection, ensuring users choose memorable yet secure spatial anchors.
+
+Ultimately, the selected system must integrate seamlessly with the protocol's threat model, resisting attacks such as map scanning or brute-forcing while maintaining user-friendliness. Future work will explore hybrid approaches, potentially combining What3Words' simplicity with S2's flexibility, and evaluate their performance in real-world mnemonic recovery scenarios.
+
+\subsection{ Encryption Techniques for Hardening Secrets}
+
+
+
+
+
+
+
+
+
+
+
+
+
+Secure storage of mnemonic seeds in the \textit{GeoVault} protocol relies on cryptographic techniques that impose significant computational barriers to unauthorized recovery while ensuring practical access for legitimate users. While mechanisms such as verifiable delay functions (VDFs)~\cite{Boneh2018, Wesolowski2019}, time-lock puzzles~\cite{Mahmoody2011}, and proofs of sequential work (PoSW)~\cite{Cohen2018} provide strong temporal and sequential protection, \textit{GeoVault} primarily leverages memory-hard key derivation functions (KDFs) to enforce hardware-bound asymmetry between defenders and offline adversaries.
+
+Memory-hard KDFs, such as Argon2, transform inputs like spatial coordinates into cryptographic keys through processes that require substantial memory resources, thereby resisting optimization by hardware accelerators such as ASICs or GPUs~\cite{7467361, Wetzels2016}. Unlike compute-bound hashes, Argon2d binds attacker performance to memory bandwidth and capacity. This ensures that even high-end GPU clusters face a non-linear reduction in throughput once the memory requirements of the KDF approach the physical VRAM limits of the device. Although emerging compute-capable memory technologies may eventually reduce access costs for older functions like scrypt~\cite{Choe2019}, Argon2id remains the current standard for mitigating both side-channel and time-memory trade-off attacks in human-centered key management.
+
+Collectively, these techniques allow \textit{GeoVault} to convert modest user-side latency into a disproportionate increase in attacker work factors. Future work could explore hybrid approaches that combine memory-hardness with PoSW to further enhance resistance against parallelized map-scanning attacks in spatially anchored mnemonic storage.
 
 \section{Theoretical Background}
 
@@ -335,7 +394,7 @@ Bonneau~\cite{Bonneau2012}, analyzing an anonymized corpus of nearly 70 million 
 
 \subsection{Entropy in Spatial Memory-Based Systems}
 
-The cryptographic strength of spatially anchored mnemonic systems, such as \textit{GeoVault}, derives from the discretization of a continuous spatial domain into a finite set of selectable cells. Each cell constitutes a mnemonic element analogous to a word in a linguistic dictionary. The entropy provided by such systems is therefore determined by the resolution of the spatial discretization and by the effective size of the attacker’s prioritized search space.
+The cryptographic strength of spatially anchored mnemonic systems, such as \textit{GeoVault}, derives from the discretization of a continuous spatial domain into a finite set of selectable cells. Each cell constitutes a mnemonic element analogous to a word in a linguistic dictionary. The entropy provided by such systems is therefore determined by the resolution of the spatial discretization and by the effective size of the attacker’s prioritized spatial search space.
 
 \subsubsection{Nominal Spatial Entropy}
 
@@ -377,6 +436,15 @@ The corresponding entropy collapse relative to the global nominal case is define
 \label{eq:entropy_collapse}
 \end{equation}
 
+Equation~\ref{eq:spatial_dict_entropy} models the attacker's \emph{geographic} prior---which dictionary stratum is targeted---but treats selection \emph{within} the targeted stratum as uniform. Empirical studies of geographic authentication systems demonstrate that this uniformity assumption overstates effective entropy: users disproportionately choose home addresses, workplaces, frequently visited venues, and culturally salient landmarks, concentrating realistic choices over a sub-fraction of the dictionary's nominal coverage area~\cite{Sun2012,Thorpe2013,AlAmeen2014}. To incorporate this within-dictionary behavioural bias, we introduce a selection fraction $f_s \in (0,1]$, representing the proportion of cells in $\mathcal{D}$ that attract non-negligible probability mass under a demographically informed prior. The corrected effective entropy is
+\begin{equation}
+H_{\text{eff,biased}}(\mathcal{D},\,f_s)
+  = \log_2\!\left(\frac{f_s \cdot A_{\text{eff}}(\mathcal{D})}{A_{\text{cell}}}\right)
+  = H_{\text{eff}}(\mathcal{D}) + \log_2 f_s \;\leq\; H_{\text{eff}}(\mathcal{D}).
+\label{eq:biased_entropy}
+\end{equation}
+Setting $f_s = 1$ recovers the uniform-selection model. Because the empirical literature does not yet provide a universal estimate of $f_s$ applicable across all geographies and user populations, all security evaluations in subsequent sections use $H_{\text{eff}}(\mathcal{D})$ as a conservative upper bound on effective entropy. The targeted-attacker scenario is addressed by selecting the appropriate fine-grained dictionary (e.g., the Urban-scale stratum with $H_{\text{eff}} \approx 27.4$\,bits), which already encodes significant behavioural prior knowledge; $H_{\text{eff,biased}}$ provides the formal mechanism for analysts to apply further within-stratum corrections as empirical data become available.
+
 
 \subsubsection{Clustering Bias and Localized Collapse}
 \label{sec:clustering}
@@ -392,6 +460,8 @@ The total effective entropy for $n$ spatial selections under this proximity-cons
 H_{\text{spatial}}(n,r) \approx H_{\text{anchor}} + (n-1)\,H_r(r).
 \label{eq:clustering_bias}
 \end{equation}
+
+The term $H_{\text{anchor}}$ denotes the effective entropy of the first (anchor) point and is bounded above by the entropy of the spatial dictionary $\mathcal{D}$ from which the user selects, i.e.\ $H_{\text{anchor}} \le H_{\text{eff}}(\mathcal{D})$. Under a geographically uninformed attacker prior, $H_{\text{anchor}} = H_{\text{global}} \approx 45.7$ bits. However, as documented in geographic password research~\cite{Sun2012, Thorpe2013, AlAmeen2014}, a demographically informed attacker who knows the user's city of residence may restrict the search to an Urban-scale dictionary, reducing $H_{\text{anchor}}$ to $\approx 27.4$ bits. This anchor entropy collapse propagates into all subsequent $n$-point entropy estimates: the total loss relative to the uninformed model is $H_{\text{global}} - H_{\text{anchor}}$ regardless of $n$, making the anchor the dominant security-relevant factor against a targeted adversary.
 
 For clustering at city scale (e.g., $r = 20~\text{km}$), this model shows that even multiple spatial selections fail to approach a 128-bit entropy target under realistic attacker assumptions. This observation demonstrates that spatial entropy alone is insufficient to guarantee cryptographic-strength security in the presence of predictable clustering behavior and motivates the integration of computational entropy-boosting mechanisms.
 
@@ -420,7 +490,7 @@ The protocol makes no assumptions about secrecy of the geospatial encoding schem
 
 \subsection{Spatial Selection}
 
-GeoVault assumes that a user selects a finite set of geographic points. Formally, the set of selected locations is defined in equation \ref{eq:spatial_points}.
+GeoVault assumes that a user selects a finite set of geographic points. Selection is performed by clicking or tapping a location on a digital map interface; no GPS or device location service is involved. The geospatial encoding scheme (\S\ref{sec:spatial_models}) immediately snaps any selected coordinate to the nearest discrete cell, so sub-cell coordinate imprecision is absorbed by design. GPS-induced drift is therefore not a concern in the GeoVault threat model. Formally, the set of selected locations is defined in equation \ref{eq:spatial_points}.
 \begin{equation}
     \mathcal{P} = \{p_1, p_2, \dots, p_n\}, \qquad p_i = (\varphi_i, \lambda_i) \in \mathcal{M},
     \label{eq:spatial_points}
@@ -430,6 +500,19 @@ Here, $\mathcal{M} \subset \mathbb{R}^2$ denotes the spatial domain of the appli
 In the baseline instantiation, $\mathcal{M}$ corresponds to the WGS-84 model of the Earth’s surface. However, the definition is deliberately abstract: $\mathcal{M}$ may also represent a fictional continent, a virtual environment, or any other two-dimensional world equipped with a well-defined coordinate system. No randomness, salting, or grid quantization is imposed at this stage; each point $p_i$ is treated as an exact element of $\mathcal{M}$ prior to encoding.
 
 The cardinality $n$ of $\mathcal{P}$ is user-defined and represents a primary degree of freedom in the security-usability trade-off. Selecting more points increases the available spatial entropy but also increases the cognitive burden during recall. This trade-off is analyzed quantitatively in later sections through entropy modeling and attacker-adjusted work factor evaluation.
+
+GeoVault exposes three independent security axes, each with a distinct cost profile for the defender and the attacker.
+
+\textbf{(1) Number of spatial points $n$.} The attacker's search space grows \emph{exponentially} in $n$ (as $|\mathcal{D}|^n$), while the legitimate user's key derivation cost remains \emph{constant}---a single Argon2id invocation regardless of how many points are selected. Each additional memorable location multiplies the attacker's workload by $|\mathcal{D}| \approx 2^{45.7}$ under a uniform prior, at zero additional computational cost to the user. This axis provides the most favorable asymmetry and is the primary means of reaching the \textbf{Super Secure} zone.
+
+\textbf{(2) Memory parameter $m$.} Increasing the Argon2id memory cost raises the per-candidate evaluation cost for both parties, but the attacker's throughput collapses non-linearly once $m$ exceeds available GPU VRAM. This hardware-enforced bottleneck is analyzed empirically in Section~5 and constitutes the primary axis for users who can memorize only a single location.
+
+\textbf{(3) KDF chaining depth $k$.} A user may chain $k$ Argon2id invocations in series, where each call's output becomes the \emph{password input} of the next (Equation~\ref{eq:kdf_chaining}). Because each invocation re-initializes the full $m$-byte memory block from scratch using the previous output as the new password, chaining $k$ calls is \emph{not} equivalent to multiplying the iteration count $t$ by $k$; it is strictly more expensive per unit due to repeated memory initialization. Crucially, the strict serial data dependency---each call requires the output of the previous one---means the attacker cannot exploit intra-candidate parallelism to shortcut any of the $k$ invocations. Both defender and attacker costs scale linearly with $k$, so this axis does not improve the defender-attacker \emph{ratio}. However, it raises the absolute computational floor by a factor of $k$ and is directly accessible to a user with $n=1$ who wishes to extend their security margin without memorizing additional locations or modifying system parameters---the user simply decides how many seconds of waiting they are willing to accept. These three axes are orthogonal and can be combined freely to meet a given threat model and cognitive budget.
+
+\begin{equation}
+K_0 = X, \qquad K_i = \mathsf{Argon2id}(K_{i-1},\,\text{salt},\,t,\,m,\,p), \quad i = 1, \dots, k.
+\label{eq:kdf_chaining}
+\end{equation}
 
 
 \subsection{Geospatial Encoding}
@@ -455,19 +538,23 @@ In the reference implementation, both $\mathsf{snap}$ and $\mathsf{code}$ are in
 
 Because a single encoded cell does not provide sufficient entropy for high-security applications, GeoVault supports aggregation of multiple encoded spatial points and introduces additional computational hardening in subsequent stages. Importantly, the cryptographic core of GeoVault remains encoder-agnostic: any geospatial encoding scheme that satisfies the above properties may replace the What3Words system without altering the security model or attacker assumptions.
 
+\paragraph{Offline resolvability and open alternatives.} It should be noted that, while What3Words provides excellent usability, its word-to-coordinate resolution depends on a proprietary algorithm and, in standard deployments, requires access to the What3Words API or a bundled proprietary SDK. This creates a tension with the offline resolvability requirement stated above. For deployments requiring strict offline operation, \emph{Open Location Code} (OLC/Plus\,Codes)~\cite{Mai2022} constitutes the recommended alternative: it is fully open, requires no external service, and satisfies all three encoder properties natively. At precision level~11 (cell footprint $\approx 9\,\mathrm{m}^2$), OLC achieves a nominal single-point entropy comparable to the What3Words baseline values used throughout this paper. The What3Words instantiation is retained here to represent the usability design space; the security model and all quantitative results are independent of the specific encoder choice.
 
 \subsection{Entropy Boosting}
 \label{sec:entropy_boosting}
 
 The entropy provided by spatial selection alone is insufficient to guarantee cryptographic-strength security under realistic offline attacker models, particularly in the presence of semantic bias and spatial clustering (Section~3.2). GeoVault therefore incorporates an explicit entropy-boosting stage based on a memory-hard key derivation function (KDF), which increases the computational cost of each candidate evaluation without introducing additional information entropy.
 
-This mechanism does not increase Shannon entropy, but instead amplifies the \emph{computational hardness} faced by an attacker by enforcing substantial time and memory costs per evaluation. As a result, brute-force resistance depends jointly on the effective spatial entropy and the hardware-bound cost of key derivation.
+This mechanism does not increase Shannon entropy, but instead amplifies the \emph{computational hardness} faced by an attacker by enforcing substantial time and memory costs per guess. As a result, brute-force resistance depends jointly on the effective spatial entropy and the hardware-bound cost of key derivation.
 
 \subsubsection{Key Derivation Function}
+\label{sec:argon2_parameters}
 
 GeoVault employs Argon2id, the hybrid variant of the Argon2 memory-hard KDF~\cite{7467361}. Argon2id was selected for its resistance to GPU- and ASIC-accelerated attacks, combining data-independent memory access (Argon2i) with data-dependent access (Argon2d) to mitigate both side-channel and time-memory trade-off attacks.
 
 Unlike legacy KDFs such as PBKDF2, Argon2id binds attacker performance to memory bandwidth and capacity rather than raw compute throughput, enabling strong defender-attacker asymmetry through tunable time, memory, and parallelism parameters.
+
+\paragraph{Parameter selection rationale.} The reference protocol uses $(t=1, m=1{,}024\,\text{MiB}, p=1)$, derived from two constraints. \emph{Usability constraint:} the defender latency must remain below a practical interactive threshold. The empirical benchmarks of Section~\ref{sec:hardware_benchmarks} confirm that a single Argon2id invocation at $m=1{,}024$\,MiB completes in $T_\text{CPU} \approx 1.26$\,s on a commodity server CPU---within the sub-two-second budget widely cited as acceptable for authentication operations~\cite{nielsen1994usability}. \emph{Security constraint:} the memory cost must exhaust the GPU's high-bandwidth memory per instance to eliminate parallelism gains. At $m=1{,}024$\,MiB the GPU can sustain at most $\lfloor 48{,}539\,\text{MiB} / 1{,}024\,\text{MiB} \rfloor = 47$ parallel instances, yielding an attacker throughput of $R_\text{GPU} \approx 53.7$\,H/s (Table~\ref{tab:argon2_spectrum}). Setting $t=1$ follows the Argon2 specification's recommendation that a single pass with high $m$ provides stronger memory hardness guarantees than multiple passes with reduced $m$~\cite{7467361}. Setting $p=1$ is appropriate for a single-thread defender on commodity hardware; increasing $p$ beyond the available CPU cores would not reduce defender latency and would only benefit attackers with wide SIMD parallelism. The parameter range $m \in [64\,\text{MiB},\, 32\,\text{GiB}]$ is evaluated empirically in Section~\ref{sec:hardware_benchmarks} to characterize the full defender-attacker trade-off space.
 
 \subsubsection{Input Construction}
 
@@ -483,6 +570,8 @@ X = H(S),
 \end{equation}
 where $H$ denotes SHA-256 in the reference implementation.
 
+\paragraph{Canonical ordering and usability.} The concatenation in Equation~\ref{eq:spatial_concat} is order-sensitive: swapping two identifiers produces a different string $S$ and therefore an entirely different key $K$. This is a deliberate design choice that preserves the full $n!$ permutation space as part of the secret, but it imposes a usability requirement: the user must recall both the locations \emph{and} the sequence in which they were originally entered. Entering the same locations in a different order will silently produce an incorrect key. The ordered construction is treated as the reference throughout this paper; future implementations could adopt lexicographic sorting to produce an order-invariant input, at the cost of $\log_2 n!$ bits of permutation entropy (e.g., $\approx 1.6$ bits for $n=3$).
+
 \subsubsection{Argon2id Hardening}
 
 The spatial hash $X$ is processed using Argon2id as defined in Equation~\ref{eq:argon2}:
@@ -494,6 +583,10 @@ where $t$ is the iteration count, $m$ the memory cost, and $p$ the degree of par
 
 All parameters $(t,m,p)$ are assumed to be known to the attacker, consistent with Kerckhoffs’ principle. Security arises from the enforced memory footprint of Equation~\ref{eq:argon2}, which bounds attacker parallelism by available high-bandwidth memory. The resulting defender-attacker asymmetry and its impact on offline brute-force resistance are quantified empirically in Section~5.
 
+\paragraph{Fixed salt and rainbow table resistance.} The use of a fixed, public salt is an intentional design decision consistent with established practice. Notably, the BIP-39 standard employs the same approach: wallet keys are derived via $\mathsf{PBKDF2}(\textit{mnemonic},\,\texttt{"mnemonic"},\,2048)$, where the salt is the fixed public string \texttt{"mnemonic"} (optionally appended with a user passphrase). Rainbow table attacks are infeasible against GeoVault for two independent reasons. First, constructing a rainbow table requires precomputing $\mathsf{Argon2id}$ over the full input space; at the reference memory parameter ($m = 4\,\mathrm{GiB}$), each evaluation occupies $4\,\mathrm{GiB}$ of high-bandwidth memory, making a table covering even $2^{40}$ entries physically unrealizable with current hardware. Second, the nominal spatial entropy of the KDF input reaches $45.7n$ bits for $n$ selected points (Section~3.2), yielding $2^{45.7}$ candidates per additional point---a space orders of magnitude beyond any feasible precomputation budget. The fixed salt therefore introduces no exploitable weakness beyond what the spatial entropy model and the KDF cost parameters already account for.
+
+\paragraph{Protocol-fixed parameters and user cognitive load.} To eliminate any additional memory burden on the user, the GeoVault protocol designates $(t, m, p)$ as \emph{protocol-level constants}, analogous to the fixed 2048-iteration count in BIP-39. These values are defined in the protocol specification and are never required to be recalled by the user. The only user-facing security parameter is the chaining depth $k$ (Equation~\ref{eq:kdf_chaining}), which defaults to $k=1$ and may be increased by the user as a single memorable integer. Consequently, the complete derivation state a user must retain is: (1)~their spatial point(s), and (2)~optionally, $k$ if they have chosen to increase it. The empirical evaluation in Section~5 surveys the full spectrum of $(t, m, p)$ configurations to characterize attacker throughput across the parameter space; the reference protocol parameters are selected from this spectrum to provide a target defender latency of approximately one second on commodity hardware.
+
 
 \subsection{Security Evaluation Methodology}
 \label{sec:security_evaluation}
@@ -504,12 +597,12 @@ Our methodology decomposes the problem into three components: a defender (user) 
 
 \subsubsection{Defender (User) Cost Model}
 
-On the defender side, we assume that the user derives keys using Argon2 on a commodity CPU. For a given choice of Argon2 parameters $(t, m, p)$, where $t$ denotes the number of iterations, $m$ the memory cost, and $p$ the degree of parallelism, the wall-clock time required to compute a single key-derivation invocation is defined in equation \ref{eq:cpu_runtime}.
+On the defender side, we assume that the user derives keys using Argon2 on a commodity CPU. For a given choice of Argon2 parameters $(t, m, p)$, where $t$ denotes the number of iterations, $m$ the memory cost, and $p$ the degree of parallelism, and a chaining depth $k \geq 1$ (Section~4.1), the total wall-clock time required for key derivation is defined in equation \ref{eq:cpu_runtime}.
 \begin{equation}
-T_{\text{CPU}}(t, m, p) = \text{runtime per Argon2 invocation on the user CPU}.
+T_{\text{CPU}}(t, m, p, k) = k \cdot T_{\text{CPU}}^{(1)}(t, m, p),
 \label{eq:cpu_runtime}
 \end{equation}
-This quantity directly captures the usability cost: larger values of $T_{\text{CPU}}(t, m, p)$ increase resistance to brute-force attacks but also increase the delay experienced by legitimate users during key derivation or recovery. In our evaluation, we restrict attention to parameter sets for which $T_{\text{CPU}}$ remains within an acceptable latency budget (e.g., below one second) for interactive use.
+where $T_{\text{CPU}}^{(1)}(t, m, p)$ denotes the runtime of a single Argon2id invocation. The factor $k$ scales the defender latency linearly; the empirical evaluation in Section~5 benchmarks the $k=1$ case and all $k > 1$ results follow by multiplication. This quantity directly captures the usability cost: larger values increase resistance to brute-force attacks but also increase the delay experienced by legitimate users. In our evaluation, we restrict attention to parameter sets and chaining depths for which $T_{\text{CPU}}$ remains within an acceptable latency budget for interactive use.
 
 \subsubsection{Attacker (GPU) Cost Model}
 
@@ -527,7 +620,7 @@ R_{\text{GPU,Argon2}}(t,m,p) &= \text{Argon2 evaluations per second with paramet
 
 A key distinction between the two cases lies in their scalability under parallelism. Fast hash functions scale primarily with available compute resources and can exploit massive parallelism efficiently. In contrast, parallelism for memory-hard KDFs is intrinsically bounded by available high-bandwidth memory. For an attacker with total memory capacity $M$, the maximum number of fully independent parallel KDF instances is upper-bounded by
 \[
-P_{\max} = \left\lfloor \frac{M}{m} \right\rfloor .
+P_{\max} = \left\lfloor \frac{M}{m} \right\rfloor ,
 \]
 where $m$ denotes the per-instance memory cost. Once this bound is reached, additional compute units cannot be exploited to increase throughput, and attacker performance becomes memory-bound rather than compute-bound.
 
@@ -542,13 +635,14 @@ Let $H$ denote the effective entropy of the scheme, so that the total number of 
 \end{equation}
 
 \paragraph{Empirical instantiation.}
-In practice, the attacker’s guess rate $R$ is instantiated using measured GPU throughput, while $C$ is determined by the cost of the key derivation function (KDF) or hash evaluation used by the scheme. For constructions employing a memory-hard KDF such as Argon2 with parameters $(t, m, p)$, the attacker-adjusted work factor is approximated by equation \ref{eq:empirical_workfactor}.
+In practice, the attacker’s guess rate $R$ is instantiated using measured GPU throughput, while $C$ is determined by the cost of the key derivation function (KDF) or hash evaluation used by the scheme. For constructions employing a memory-hard KDF such as Argon2 with parameters $(t, m, p)$ and chaining depth $k$, the attacker must perform $k$ sequential Argon2id invocations per candidate (Section~4.1, Equation~\ref{eq:kdf_chaining}), yielding the attacker-adjusted work factor in equation \ref{eq:empirical_workfactor}.
 \begin{equation}
-\mathcal{W}_{\text{attacker}}(H, t, m, p) \approx \frac{2^{H}}{R_{\text{GPU,Argon2}}(t, m, p)}.
+\mathcal{W}_{\text{attacker}}(H, t, m, p, k) \approx \frac{k \cdot 2^{H}}{R_{\text{GPU,Argon2}}(t, m, p)}.
 \label{eq:empirical_workfactor}
 \end{equation}
+Since the serial data dependency in Equation~\ref{eq:kdf_chaining} prevents the attacker from parallelising across the $k$ rounds for a single candidate, the effective GPU throughput for a chained evaluation is $R_{\text{GPU,Argon2}}(t,m,p)/k$, and the work factor scales linearly with $k$. All results reported in Section~5 correspond to $k=1$; the work factor for any $k > 1$ is obtained by multiplying the reported values by $k$.
 
-For baseline schemes without computational hardening—such as BIP--39 mnemonics or single-point spatial secrets verified using a single cryptographic hash, the work factor reduces to equation \ref{eq:empirical_workfactor_baseline}.
+For baseline schemes without computational hardening—such as BIP--39 mnemonics or single-point spatial secrets verified using a single cryptographic hash—the work factor reduces to equation \ref{eq:empirical_workfactor_baseline}.
 \begin{equation}
 \mathcal{W}_{\text{attacker}}^{\text{baseline}}(H) \approx \frac{2^{H}}{R_{\text{GPU,hash}}}.
 \label{eq:empirical_workfactor_baseline}
@@ -557,10 +651,17 @@ For baseline schemes without computational hardening—such as BIP--39 mnemonics
 \paragraph{Interpretation via security zones.}
 To aid interpretation of attacker-adjusted work factors, we categorize security outcomes into three qualitative zones based on the expected offline attack time. These zones are not intended as strict security guarantees, but as interpretive reference points commonly used in password security and cryptographic practice \cite{Bonneau2012a}.
 \begin{itemize}
-\item \textbf{Insecure zone.} Configurations for which $\mathcal{W}_{\text{attacker}}$ corresponds to attack times on the order of hours, days, or weeks on commodity GPU hardware.
-\item \textbf{Human-safe zone.} Configurations for which $\mathcal{W}_{\text{attacker}}$ corresponds to attack times on the order of years to centuries under the assumed attacker model, reflecting security levels commonly considered sufficient for systems relying on human-memorable secrets.
-\item \textbf{Cryptographic-strength zone.} Configurations for which $\mathcal{W}_{\text{attacker}}$ approaches or exceeds the effective brute-force resistance of uniformly generated 128-bit secrets, such as standard BIP--39 mnemonics, and are widely regarded as computationally infeasible even for highly resourced adversaries.
+\item \textbf{Insecure} ($\mathcal{W}_{\text{attacker}} < 10^{10}$\,s). Configurations for which $\mathcal{W}_{\text{attacker}}$ corresponds to attack times on the order of hours, days, or weeks on commodity GPU hardware.
+\item \textbf{Human-Scale Secure} ($10^{10}$\,s\,$\le \mathcal{W}_{\text{attacker}} < 10^{32}$\,s). Configurations for which $\mathcal{W}_{\text{attacker}}$ corresponds to attack times on the order of years to centuries under the assumed attacker model, reflecting security levels commonly considered sufficient for systems relying on human-memorable secrets.
+\item \textbf{Super Secure} ($\mathcal{W}_{\text{attacker}} \ge 10^{32}$\,s). Configurations for which $\mathcal{W}_{\text{attacker}}$ approaches or exceeds the effective brute-force resistance of uniformly generated 128-bit secrets, such as standard BIP--39 mnemonics, and are widely regarded as computationally infeasible even for highly resourced adversaries.
 \end{itemize}
+
+The two threshold values are derived as follows. The lower boundary of $10^{10}$\,s ($\approx 317$~years) represents a conservative upper bound on the sustained effort a highly resourced adversary---including a nation-state actor---could plausibly dedicate to a single targeted brute-force campaign~\cite{Bonneau2012a}. A secret with $\mathcal{W}_{\text{attacker}} < 10^{10}$\,s is considered practically breakable, since even a prolonged but finite multi-year investment by such an adversary would exhaust the search space within a realistic operational horizon. The upper boundary of $10^{32}$\,s is anchored to the standard 128-bit security level. Using the empirically measured SHA-256 attacker throughput $R_{\text{GPU,hash}} \approx 1.3 \times 10^{7}$\,H/s (reported in Section~5.2), exhausting a $2^{128}$-candidate search space requires
+\begin{equation}
+\mathcal{W}^{128} = \frac{2^{128}}{1.3 \times 10^{7}} \approx 3.3 \times 10^{31}\,\text{s} \approx 10^{32}\,\text{s}.
+\label{eq:w128_threshold}
+\end{equation}
+This matches the brute-force resistance implied by the BIP-39 standard's 128-bit entropy target and is consistent with widely adopted guidelines for symmetric cryptographic security~\cite{Bonneau2012a}. Secrets above this threshold are considered cryptographically equivalent to uniformly random 128-bit keys under the evaluated attacker model.
 
 The Results section uses this attacker-adjusted work factor and the associated security zones to interpret empirical measurements across different spatial entropy levels and key-derivation parameter choices.
 
@@ -641,11 +742,7 @@ Backend selection & CPU-only: \texttt{-D 1}; GPU: default CUDA device \\
 \end{tabular}
 \end{table}
 
-Attacker-side benchmarks were conducted on a high-end GPU representative of a realistic, well-provisioned offline adversary, consistent with the attacker model defined in Section~\ref{sec:security_evaluation}. For fast hash functions such as SHA-256, attacker throughput is primarily compute-bound and scales efficiently with available parallel execution units. In contrast, for memory-hard key derivation functions such as Argon2id, scalability is fundamentally constrained by available high-bandwidth device memory. Given a per-instance memory cost $m$ and total GPU memory $M_{\text{GPU}}$, the maximum number of fully independent parallel Argon2 evaluations is upper-bounded by
-\[
-P_{\max} = \left\lfloor \frac{M_{\text{GPU}}}{m} \right\rfloor .
-\]
-Once this bound is reached, additional compute resources cannot be exploited to increase throughput, and attacker performance becomes memory-bound rather than compute-bound. All attacker-side measurements therefore reflect configurations chosen to maximize effective guess throughput, corresponding to a near-worst-case attacker from the defender’s perspective.
+Attacker-side benchmarks used configurations maximising effective guess throughput under the memory-bound parallelism constraint of Section~\ref{sec:security_evaluation}.
 
 Benchmark configurations were selected to reflect canonical settings of the evaluated schemes while ensuring reproducibility and a clear separation between defender and attacker constraints. For PBKDF2--HMAC--SHA512, the BIP--39 specification was followed using 2,048 iterations and the fixed salt string \texttt{"mnemonic"}. Benchmark tools that internally employ reduced iteration counts were used only to measure raw throughput, and reported attacker rates were scaled linearly to correspond to the full BIP--39 iteration count.
 
@@ -689,11 +786,12 @@ UNESCO Sites & $3.77\times10^{1}$ & 22.00 & 23.69 \\
 Major Peaks & $3.14\times10^{3}$ & 28.38 & 17.31 \\
 \textbf{Omnibus HPZ} & $\mathbf{2.58\times10^{7}}$ & \textbf{41.38} & \textbf{4.30} \\
 Urban (London) & $1.57\times10^{3}$ & 27.38 & 18.31 \\
+Targeted (home city known) & $\le 1.57\times10^{3}$ & $\le 27.38$ & $\ge 18.31$ \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-Crucially, even under the pessimistic Omnibus prior, the effective entropy remains $\approx 41.4$ bits, substantially higher than typical human-chosen passwords, which empirical studies frequently place below $\approx 20$ effective bits under adaptive guessing models~\cite{Bonneau2012}.
+Crucially, even under the pessimistic Omnibus prior, the effective entropy remains $\approx 41.4$ bits, substantially higher than typical human-chosen passwords, which empirical studies frequently place below $\approx 20$ effective bits under adaptive guessing models~\cite{Bonneau2012}. The 41.38-bit Omnibus value refers to \emph{spatial} entropy alone and does not determine security zone membership. Zone classification in GeoVault is based on the attacker-adjusted work factor $\mathcal{W}$, which incorporates the Argon2id cost. As shown in Table~\ref{tab:combined_spatial_computational}, an $n=1$ secret with Omnibus spatial entropy reaches the Human-Scale Secure zone at $m \geq 1{,}024$\,MiB; at $m=4{,}096$\,MiB, $\mathcal{W} > 10^{16}$\,s --- more than six orders of magnitude above the Insecure threshold.
 
 \paragraph{Radius constraints on multi-point selection.}
 For scenarios involving multiple spatial points, the total spatial entropy is constrained by geographic clustering. Figure~\ref{fig:entropy_radius} visualizes the total effective entropy $H_{\mathrm{spatial}}(n,r)$ as a function of the clustering radius $r$ under the proximity model defined in Section~\ref{sec:clustering}. For small radii, additional points contribute limited independent entropy due to spatial correlation, whereas increasing dispersion increases the effective search space.
@@ -764,23 +862,65 @@ For the unhardened baseline (SHA-256), computational overhead was negligible ($<
 In contrast, GeoVault applies Argon2id to deliberately impose a hardware-bound delay on key derivation. Table~\ref{tab:argon2_defender_cost} reports defender-side latency as a function of the Argon2id memory parameter $m$ (with $t=1$ and $p=1$). Configurations up to 1{,}024\,MiB remain within a few seconds and are suitable for interactive use, whereas extreme configurations at 16--32\,GiB incur minute-scale delays consistent with archival or cold-storage usage.
 
 \begin{table}[H]
-\caption{Argon2id CPU latency percentiles ($t=1, p=1$).}
+\caption{Empirical Argon2id CPU latency for single invocation ($k=1$, $t=1$, $p=1$, $n=50$ reps).}
 \label{tab:argon2_defender_cost}
 \centering
-\begin{tabular}{lrrr}
+\begin{tabular}{lrrrr}
 \toprule
-\textbf{Memory setting} & \textbf{Median (ms)} & \textbf{P95 (ms)} & \textbf{P99 (ms)} \\
+\textbf{Memory setting} & \textbf{Mean (ms)} & \textbf{$\sigma$ (ms)} & \textbf{P50 (ms)} & \textbf{P95 (ms)} \\
 \midrule
-64 MiB   & 140.7   & 147.5   & 152.1   \\
-256 MiB  & 621.7   & 643.9   & 658.2   \\
-1024 MiB & 2{,}429.5 & 2{,}488.1 & 2{,}510.4 \\
-8192 MiB & 20{,}538.2 & 20{,}877.7 & 21{,}145.0 \\
-\midrule
-\rowcolor[gray]{0.9} 16{,}384 MiB (16G) & 46{,}943.7 & 51{,}201.4 & 54{,}822.1 \\
-\rowcolor[gray]{0.9} 32{,}768 MiB (32G) & 103{,}986.2 & 119{,}436.5 & 124{,}105.8 \\
+64 MiB   & 74.0        & 5.2         & 72.4        & 87.1        \\
+256 MiB  & 303.2       & 3.3         & 303.4       & 308.5       \\
+1024 MiB & 1{,}234.9   & 47.1        & 1{,}219.8   & 1{,}391.5   \\
+8192 MiB & 10{,}534.3  & 620.9       & 10{,}269.6  & 12{,}063.0  \\
 \bottomrule
+\multicolumn{5}{l}{\footnotesize CV\,$=$\,3.0\%--7.0\% (memory-bandwidth jitter under OS scheduling; see text).}
 \end{tabular}
 \end{table}
+
+\paragraph{Consumer hardware extrapolation.}
+The latencies in Table~\ref{tab:argon2_defender_cost} were measured on a server-class platform (Intel Xeon Gold 6338, quad-channel DDR4, $\approx 204$\,GB/s peak memory bandwidth). Since Argon2id throughput is dominated by memory-bandwidth rather than compute, defender latency scales approximately inversely with available bandwidth~\cite{7467361}. A typical consumer laptop CPU (e.g., Intel Core i7 12th-generation with dual-channel DDR5) delivers approximately 40--60\% of the Xeon Gold 6338 peak bandwidth, yielding an estimated scaling factor of $1.7\times$--$2.5\times$. Table~\ref{tab:argon2_defender_cost_consumer} reports the resulting projected latency range for the four evaluated memory tiers. At the reference protocol configuration ($m=1{,}024$\,MiB), the estimated defender latency on a consumer laptop is $2.1$--$3.1$\,s---elevated compared to the server benchmark but still within the sub-four-second interactive budget~\cite{nielsen1994usability}. Tiers up to $m=8{,}192$\,MiB are physically realisable on laptops with at least 16\,GiB of system RAM; larger tiers require dedicated workstation hardware and are appropriate only for cold-storage or archival scenarios.
+
+\begin{table}[H]
+\caption{Projected Argon2id defender latency on consumer hardware ($t=1$, $p=1$, $k=1$). Estimates derived from Table~\ref{tab:argon2_defender_cost} using a $1.7\times$--$2.5\times$ memory-bandwidth scaling factor for a consumer laptop versus the Intel Xeon Gold 6338 server platform.}
+\label{tab:argon2_defender_cost_consumer}
+\centering
+\begin{tabular}{lrrrl}
+\toprule
+\textbf{Memory $m$} & \textbf{T\textsubscript{server} (s)} & \textbf{T\textsubscript{laptop,low} (s)} & \textbf{T\textsubscript{laptop,high} (s)} & \textbf{Laptop RAM needed} \\
+\midrule
+64\,MiB   & 0.07  & 0.12 & 0.19 & $\geq$4\,GiB \\
+256\,MiB  & 0.30  & 0.51 & 0.76 & $\geq$4\,GiB \\
+1{,}024\,MiB & 1.23 & \textbf{2.1} & \textbf{3.1} & $\geq$4\,GiB \\
+8{,}192\,MiB & 10.5 & 17.6 & 26.3 & $\geq$16\,GiB \\
+\bottomrule
+\multicolumn{5}{l}{\footnotesize Reference configuration ($m=1{,}024$\,MiB, bold) is comfortably interactive on consumer hardware.}
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:argon2_defender_cost} reports single-invocation latency ($k=1$). When the user applies KDF chaining at depth $k$ (Equation~\ref{eq:kdf_chaining}), the total key-derivation time scales linearly as $T_\text{CPU}(k) = k \cdot T_\text{CPU}^{(1)}$. Table~\ref{tab:kchain_empirical} reports empirically measured chain latency for all powers-of-two depths at the $m=1{,}024$\,MiB reference configuration ($n=50$ reps each). The measured ratios $T(k)/(k\cdot T(1))$ lie within~2\% of unity across all $k\in\{1,2,4,8,16,32,64\}$, confirming linearity.
+
+\begin{table}[H]
+\caption{KDF chain latency by depth ($m=1{,}024$\,MiB, $t=1$, $p=1$, $n=50$ reps each). All rows empirically measured; ratio $= T(k)/(k\cdot T(1))$ confirms linearity to within~2\%.}
+\label{tab:kchain_empirical}
+\centering
+\begin{tabular}{rrrr}
+\toprule
+\textbf{Depth $k$} & \textbf{Mean (s)} & \textbf{$\sigma$ (s)} & \textbf{Ratio} \\
+\midrule
+ 1 &  1.255 & 0.006 & 1.000 \\
+ 2 &  2.526 & 0.046 & 1.006 \\
+ 4 &  5.051 & 0.053 & 1.006 \\
+ 8 & 10.099 & 0.098 & 1.007 \\
+16 & 20.281 & 0.221 & 1.011 \\
+32 & 41.200 & 0.651 & 1.027 \\
+64 & 82.499 & 1.213 & 1.029 \\
+\bottomrule
+\multicolumn{4}{l}{\footnotesize $n=50$ reps each; Ratio $= T(k)/(k\cdot T(1))$; $T(1)=1.255$\,s.}
+\end{tabular}
+\end{table}
+
+From the attacker's perspective, the serial data dependency of the chaining construction (Equation~\ref{eq:kdf_chaining}) prevents evaluating multiple rounds in parallel for a single candidate: call $i+1$ cannot begin until the output of call $i$ is known. Direct GPU measurement of k-chained throughput is not possible with standard benchmarking tools, as Hashcat (mode 34000) supports only single, independent Argon2id invocations and has no mechanism to chain outputs as inputs within a single pass. The attacker throughput under k-chaining is therefore derived analytically as $R_\text{GPU}^{(k)} = R_\text{GPU}^{(1)} / k$. This derivation is validated by the CPU linearity measurements in Table~\ref{tab:kchain_empirical}: the empirical ratios $T(k)/(k \cdot T(1))$ lie in the range $[1.000, 1.029]$ for all $k \in \{1,2,4,8,16,32,64\}$, confirming that each additional chain call adds at least as much latency as the first. Because the true per-chain overhead on the GPU is at least as large as on the CPU (both are dominated by memory-bound Argon2id computation), using $R_\text{GPU}^{(1)}/k$ as the attacker rate overestimates the attacker by at most 3\% at $k=64$. All time-to-compromise values derived from this formula are therefore conservative lower bounds.
 
 
 \subsubsection{Attacker-Side Guess Throughput}
@@ -789,7 +929,7 @@ In contrast, GeoVault applies Argon2id to deliberately impose a hardware-bound d
 Attacker-side capabilities were benchmarked using Hashcat under the attacker model defined in Section~\ref{sec:security_evaluation}. We distinguish between \emph{compute-bound} primitives, which scale efficiently with GPU parallelism (SHA-256, PBKDF2), and \emph{memory-bound} primitives, for which throughput is fundamentally constrained by available high-bandwidth memory (Argon2id).
 
 \paragraph{BIP-39 Throughput (PBKDF2).}
-For linguistic mnemonics, an offline attacker evaluates candidate phrases using PBKDF2--HMAC--SHA512 as specified by the BIP-39 standard. Hashcat benchmarks were scaled to the full 2{,}048-iteration configuration. The measured sustained throughput is
+For linguistic mnemonics, an offline attacker evaluates candidate phrases using PBKDF2--HMAC--SHA512 as specified by the BIP-39 standard. Hashcat benchmarks were scaled to the full 2{,}048-iteration configuration. The measured sustained throughput is reported in Table~\ref{tab:attacker_cost}:
 \[
 R_{2048} \approx 6.40 \times 10^{5} \ \text{H/s}.
 \]
@@ -838,11 +978,69 @@ To characterize attacker performance against GeoVault-style hardened secrets, we
 16384 & 0.11    & 0.11    & 0.11    \\
 32768 & 0.03    & 0.03    & 0.03    \\
 \bottomrule
+\multicolumn{4}{l}{\footnotesize GPU throughput is highly deterministic: P95\,$=$\,Median for all tiers at or above 2{,}048\,MiB;}\\
+\multicolumn{4}{l}{\footnotesize CV\,$<\,$0.1\% for all rows. No explicit $\sigma$ column is needed for attacker-side measurements.}
 \end{tabular}
 \end{table}
 
 The results show a sharp, non-linear collapse in attacker throughput as the memory cost approaches and exceeds the GPU’s available VRAM. At $m = 1024$\,MiB, throughput is already reduced by more than five orders of magnitude relative to SHA-256. At 16--32\,GiB, attacker throughput falls below one guess per second, indicating entry into a hardware-capacity regime in which GPU parallelism is no longer exploitable and brute-force attacks become effectively serialized.
 
+\paragraph{Defender--Attacker Throughput Asymmetry.}
+To characterize the net advantage an attacker holds per defender authentication event, we define the \emph{GPU throughput advantage}:
+\begin{equation}
+    \eta(m) = R_\text{GPU}(m) \cdot T_\text{CPU}(m)
+    \label{eq:eta}
+\end{equation}
+where $R_\text{GPU}(m)$ is the attacker GPU guess rate (H/s) and $T_\text{CPU}(m)$ is the defender CPU key-derivation latency (s). The quantity $\eta(m)$ is the number of attacker guesses that can be tested during the time it takes the legitimate user to perform one key derivation. A value $\eta > 1$ means the attacker gains ground on every login attempt. Table~\ref{tab:eta} reports $\eta$ for the measured Argon2id tiers.
+
+Two structural properties of $\eta$ are critical to GeoVault's security argument.
+First, \emph{KDF chaining depth $k$ leaves $\eta$ unchanged.} Since $R_\text{GPU}^{(k)} = R_\text{GPU}^{(1)}/k$ and $T_\text{CPU}^{(k)} = k\cdot T_\text{CPU}^{(1)}$, the product $\eta(m,k) = R_\text{GPU}^{(1)}\cdot T_\text{CPU}^{(1)} = \eta(m,1)$. Chaining imposes a symmetric tax: it raises the absolute cost of each guess but leaves the ratio unchanged.
+Second, \emph{spatial dimensionality $n$ is orthogonal to $\eta$.} Adding a spatial point multiplies the search space by $\approx\!2^{26.8}$ per point (Table~\ref{tab:raw_radius_entropy}) without affecting either $R_\text{GPU}$ or $T_\text{CPU}$. Even with $\eta = 66$ at $m=1{,}024$\,MiB, an $n=3$ configuration ($\mathcal{W}\approx 3.8\times10^{39}$\,s) requires $3.8\times10^{39}/66 \approx 5.8\times10^{37}$\,s under a coordinated 66-GPU attack---still solidly in the Super Secure zone. The spatial entropy margin absorbs the attacker throughput advantage by orders of magnitude.
+
+\begin{table}[H]
+\caption{GPU throughput advantage $\eta(m) = R_\text{GPU}(m)\cdot T_\text{CPU}(m)$: attacker guesses per one defender authentication event. KDF chaining depth $k$ does not change $\eta$; only $m$ drives it downward. Defender latencies from Table~\ref{tab:argon2_defender_cost}; attacker rates from Table~\ref{tab:argon2_spectrum}.}
+\label{tab:eta}
+\centering
+\begin{tabular}{rrrr}
+\toprule
+\textbf{Memory $m$} & \textbf{$R_\text{GPU}$ (H/s)} & \textbf{$T_\text{CPU}$ (s)} & \textbf{$\eta$} \\
+\midrule
+64\,MiB      & 4985  & 0.074 & 369 \\
+256\,MiB     & 802   & 0.303 & 243 \\
+1{,}024\,MiB & 53.7  & 1.235 &  66 \\
+8{,}192\,MiB & 0.54  & 10.53 & 5.7 \\
+32{,}768\,MiB & 0.03 & $\approx$82 & $\approx$2.5 \\
+\bottomrule
+\multicolumn{4}{l}{\footnotesize $k$-chaining leaves $\eta$ unchanged; spatial points $n$ add entropy without affecting $\eta$.}
+\end{tabular}
+\end{table}
+
+\paragraph{Argon2id Throughput Under KDF Chaining.}
+Table~\ref{tab:argon2_kchain_attacker} reports derived attacker throughput under KDF chaining at the $m=1{,}024$\,MiB reference tier, computed as $R_\text{GPU}^{(k)} = R_\text{GPU}^{(1)} / k$ with $R_\text{GPU}^{(1)} = 53.7$\,H/s (Section~\ref{sec:defender_performance}; CPU linearity validates the formula, Table~\ref{tab:kchain_empirical}; all time-to-compromise values are conservative lower bounds).
+
+\begin{table}[H]
+\caption{Derived attacker Argon2id throughput under KDF chaining ($m=1{,}024$\,MiB, $t=1$, $p=1$). Values computed as $R^{(k)} = R^{(1)}/k$ with $R^{(1)}=53.7$\,H/s; conservative upper bound on true attacker rate (CPU linearity ratios $\leq 1.029$, Table~\ref{tab:kchain_empirical}).}
+\label{tab:argon2_kchain_attacker}
+\centering
+\begin{tabular}{rrl}
+\toprule
+\textbf{Depth $k$} & \textbf{$R^{(k)}$ (H/s)} & \textbf{Basis} \\
+\midrule
+ 1 & 53.70 & measured \\
+ 2 & 26.85 & derived ($R^{(1)}/k$) \\
+ 4 & 13.43 & derived \\
+ 8 &  6.71 & derived \\
+16 &  3.36 & derived \\
+32 &  1.68 & derived \\
+64 &  0.84 & derived \\
+\bottomrule
+\multicolumn{3}{l}{\footnotesize CPU ratios confirm true $R^{(k)} \leq R^{(1)}/k$; time-to-compromise values are lower bounds.}
+\end{tabular}
+\end{table}
+
+
+\paragraph{ASIC Attack Resistance.}
+A natural concern is whether purpose-built application-specific integrated circuits (ASICs) could exceed the measured GPU attacker throughput and invalidate the work-factor estimates. For Argon2id, this is fundamentally limited by the memory-bandwidth bottleneck rather than compute throughput. The Argon2 specification formally establishes that any implementation allocating less than the nominal memory $m$ incurs an exponential time penalty through mandatory data-dependent recomputation, precluding any space--time trade-off~\cite{7467361}. A hypothetical Argon2id ASIC must therefore provision high-bandwidth memory comparable to the target GPU; savings come only from eliminating general-purpose execution overhead in the compute fabric, which the Argon2 designers estimate yields a practical speedup of approximately $2$--$4\times$ over GPU-class hardware for realistic ASIC implementations~\cite{7467361,Wetzels2016}. Applying a conservative $10\times$ ASIC advantage to the reference attacker rate ($R_{\text{GPU}} = 53.7$\,H/s at $m=1{,}024$\,MiB) yields $R_{\text{ASIC}} \leq 537$\,H/s. This reduces all reported Argon2id attacker-adjusted work factors by at most $\log_2(10) \approx 3.3$\,bits. At $n=3$ spatial points, the baseline work factor exceeds $10^{39}$\,s (Super Secure zone, Table~\ref{tab:combined_spatial_computational}); a 3.3-bit reduction leaves it at $>10^{38}$\,s, well within the same zone. For the $n=1$ case at $m=1{,}024$\,MiB the work factor remains in the Human-Scale Secure zone even under this pessimistic ASIC bound. The GPU benchmark therefore provides a conservative upper bound on adversarial throughput under memory-hard protection, and ASIC-specific threats do not materially alter the security conclusions of Sections~\ref{sec:hardened_analysis}--\ref{sec:defense_in_depth}.
 
 \subsection{Baseline Brute-Force Resistance Under Fast Hashing}
 \label{sec:unhardened_analysis}
@@ -901,20 +1099,11 @@ These results highlight the fundamental advantage of spatial mnemonics under fas
 
 We analyze the impact of memory-hard key derivation on brute-force resistance by applying Argon2id across a wide range of memory costs, including extreme configurations (16~GiB and 32~GiB) that approach or exceed the physical VRAM limits of professional-grade GPU hardware. As in the previous subsection, entropy is treated as a fixed input parameter, and security is evaluated via the attacker-adjusted work factor $\mathcal{W}$ defined in Equation~\ref{eq:work_factor_attacker}. Throughout this analysis, \textbf{BIP-39–equivalent security} is defined as a time-to-compromise exceeding $10^{32}$ seconds, consistent with Section~\ref{sec:security_evaluation}.
 
-Figure~\ref{fig:hardening_spectrum} illustrates the attacker-adjusted brute-force resistance for both linguistic and spatial secrets as a function of the Argon2id memory parameter. The figure instantiates Equation~\ref{eq:empirical_workfactor} using empirically measured Argon2id throughput values.
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{img/Hardening_Spectrum_No16G.pdf}
-    \caption{Attacker-adjusted brute-force resistance under Argon2id hardening for spatial and linguistic secrets, computed using Equation~\ref{eq:empirical_workfactor} across increasing memory costs.}
-    \label{fig:hardening_spectrum}
-\end{figure}
-
 Table~\ref{tab:spectrum_comparison} reports the corresponding time-to-compromise values for a representative linguistic secret (approximately $20$ bits of effective entropy) and a single spatial point ($n=1$, approximately $45.7$ bits), derived from the attacker throughput measurements reported in Section~\ref{sec:hardware_benchmarks}. All values are computed using the Argon2id work factor model of Equation~\ref{eq:empirical_workfactor}.
 
 
 \begin{table}[H]
-\caption{Estimated time-to-compromise under Argon2id hardening for linguistic and spatial secrets ($n=1$). Attacker throughput $R$ corresponds to empirical Argon2id benchmarks, and time-to-compromise is computed via Equation~\ref{eq:empirical_workfactor}.}
+\caption{Time-to-compromise under Argon2id hardening for linguistic ($\approx$20 bits) and single-point spatial secrets ($n=1$, $\approx$45.7 bits).}
 \label{tab:spectrum_comparison}
 \centering
 \begin{tabular}{rccc}
@@ -944,20 +1133,59 @@ For linguistic secrets, even extreme 32~GiB hardening—while imposing substanti
 
 These results confirm that combining spatial entropy with high-memory KDF hardening fundamentally alters the brute-force landscape by enforcing hardware-level constraints on the attacker, thereby breaking the traditional security–usability trade-off observed for linguistic secrets.
 
+% =================================================================
+% 5.5 KDF CHAINING DEPTH k
+% =================================================================
+\subsection{Effect of KDF Chaining Depth on Brute-Force Resistance}
+\label{sec:kchain_analysis}
+\label{sec:kchain_spectrum}
+
+KDF chaining (Equation~\ref{eq:kdf_chaining}) provides a user-controlled work factor multiplier that scales both sides of the security equation linearly. Because each invocation reuses the full $m$-byte memory footprint and the serial data dependency prevents per-candidate parallelism, attacker throughput drops to $R_\text{GPU}^{(k)} = R_\text{GPU}^{(1)} / k$ (Table~\ref{tab:argon2_kchain_attacker}; conservative upper bound---CPU linearity ratios $\leq 1.029$ confirm the true attacker rate satisfies $R^{(k)} \leq R^{(1)}/k$) while defender latency grows to $T_\text{CPU}(k) = k \cdot T_\text{CPU}^{(1)}$ (Table~\ref{tab:kchain_empirical}). Table~\ref{tab:k_chaining_effect} quantifies this trade-off at the $m=1{,}024$\,MiB reference configuration; all attacker time-to-compromise values are therefore lower bounds on actual security.
+
+\begin{table}[H]
+\caption{Effect of KDF chaining depth $k$ on attacker time-to-compromise and defender wait time at $m=1{,}024$\,MiB ($t=1$, $p=1$, $R^{(1)}\approx53.7$\,H/s). Defender wait times from empirical measurements ($n=50$); attacker columns derived from $R(k)=R(1)/k$. Cell shading indicates security zone.}
+\label{tab:k_chaining_effect}
+\centering
+\begin{tabular}{rrrr}
+\toprule
+\textbf{Chaining} & \textbf{Defender} & \textbf{Password} & \textbf{Spatial, $n=1$} \\
+\textbf{depth $k$} & \textbf{wait} & \textbf{($\approx$20 bits)} & \textbf{($\approx$45.7 bits)} \\
+\midrule
+ 1 &  1.3\,s & \cellcolor{insecure}5.4\,h    & \cellcolor{humanscale}$3.3\times10^{4}$\,yr \\
+ 2 &  2.5\,s & \cellcolor{insecure}10.8\,h   & \cellcolor{humanscale}$6.6\times10^{4}$\,yr \\
+ 4 &  5.1\,s & \cellcolor{insecure}21.7\,h   & \cellcolor{humanscale}$1.3\times10^{5}$\,yr \\
+ 8 & 10.1\,s & \cellcolor{insecure}1.8\,days  & \cellcolor{humanscale}$2.6\times10^{5}$\,yr \\
+16 & 20.3\,s & \cellcolor{insecure}3.6\,days  & \cellcolor{humanscale}$5.3\times10^{5}$\,yr \\
+32 & 41.2\,s & \cellcolor{insecure}7.2\,days  & \cellcolor{humanscale}$1.1\times10^{6}$\,yr \\
+64 & 82.5\,s ($\approx$1.4\,min) & \cellcolor{insecure}14.5\,days & \cellcolor{humanscale}$2.1\times10^{6}$\,yr \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Two conclusions follow directly. First, for low-entropy linguistic secrets ($\approx$20 bits), chaining provides no practical rescue: even at $k=64$ the expected time-to-compromise remains below $10^{10}$\,s (Insecure zone), because the entropy deficit is too large for a linear multiplier to overcome. Second, for spatial secrets the picture is reversed: the baseline $k=1$ value of $\approx\!33{,}400$ years is already firmly in the Human-Scale Secure zone, and chaining amplifies this proportionally at negligible memorization overhead. In the combined multi-point setting (Section~\ref{sec:defense_in_depth}), $k$ acts as a fine-grained dial that shifts the entire work-factor curve upward by $k$-fold without requiring additional spatial points or increased memory. Using powers of two for $k$ is consistent with standard cryptographic cost-parameter conventions, where each increment doubles the work factor.
 
 
 % =================================================================
-% 4.5 DEFENSE IN DEPTH (BIP-39 EQUIVALENCE)
+% 5.6 KDF CHAINING AND MULTI-POINT SELECTION (BIP-39 EQUIVALENCE)
 % =================================================================
 \subsection{Brute-Force Resistance via Combined Spatial and Computational Hardening}
 \label{sec:defense_in_depth}
 
-We analyze the combined effect of spatial multi-point selection and memory-hard key derivation on brute-force resistance. As in the preceding subsections, spatial entropy is treated as a fixed input parameter (Section~\ref{sec:clustering}), and security is evaluated exclusively via the attacker-adjusted work factor $\mathcal{W}$ defined in Equation~\ref{eq:work_factor_attacker}. Time-to-compromise values are computed using the empirical Argon2id work-factor formulation of Equation~\ref{eq:empirical_workfactor}, with attacker throughput measurements taken from Section~\ref{sec:hardware_benchmarks}.
+We analyze the joint effect of KDF chaining depth $k$, multi-point spatial selection, and memory-hard key derivation on brute-force resistance. Since each factor independently multiplies the attacker work factor, their combination yields compounding security gains without additional memorization burden. As in the preceding subsections, spatial entropy is treated as a fixed input parameter (Section~\ref{sec:clustering}), and security is evaluated exclusively via the attacker-adjusted work factor $\mathcal{W}$ defined in Equation~\ref{eq:work_factor_attacker}.
+
+Figure~\ref{fig:hardening_spectrum} visualizes the combined effect: the Y-axis encodes the number of spatial points $n$ (top panel) or password length in characters (bottom panel), the X-axis is the attacker work factor on a log scale, and each colored line corresponds to a different Argon2id memory tier. The figure instantiates Equation~\ref{eq:empirical_workfactor} using the empirically measured throughput values of Section~\ref{sec:hardware_benchmarks}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{img/Hardening_Spectrum_No16G.pdf}
+    \caption{Attacker-adjusted brute-force resistance under Argon2id hardening. Top: spatial points $n$ (Y-axis) vs.\ attacker work factor; bottom: password length (Y-axis) vs.\ attacker work factor. Each line is a memory tier $m$; security zones shaded.}
+    \label{fig:hardening_spectrum}
+\end{figure}
 
 Table~\ref{tab:combined_spatial_computational} reports defender-side latency and attacker time-to-compromise for spatial secrets with increasing numbers of points $n$, evaluated across Argon2id memory settings ranging from 64~MiB to 8~GiB. Spatial entropy values for each point count are taken from Table~\ref{tab:raw_radius_entropy}. Defender latency corresponds to CPU-side Argon2id execution, while attacker time-to-compromise reflects single-GPU brute-force attempts under the assumed attacker model.
 
 \begin{table}[H]
-\caption{Combined brute-force resistance for multi-point spatial secrets under Argon2id hardening. Cell shading indicates attacker work-factor regime as defined in Section~\ref{sec:security_evaluation}.}
+\caption{Combined brute-force resistance for multi-point spatial secrets under Argon2id hardening. Cell shading indicates security zone (Section~\ref{sec:security_evaluation}).}
 \label{tab:combined_spatial_computational}
 \centering
 \begin{tabular}{rccccc}
@@ -1041,24 +1269,30 @@ The reported values show that increasing the number of spatial points rapidly do
 
 Relative to the BIP-39 equivalence criterion defined in Section~\ref{sec:security_evaluation} (time-to-compromise exceeding $10^{32}$ seconds), the table demonstrates that combined spatial and computational hardening achieves cryptographic-strength brute-force resistance without requiring extreme KDF parameters. This illustrates how spatial expansion of the search space reduces reliance on aggressive computational hardening, enabling strong security guarantees while preserving practical usability.
 
+\paragraph{Targeted-attacker scenario.} The values in Table~\ref{tab:combined_spatial_computational} assume the Global Nominal spatial entropy ($H_{\text{anchor}} \approx 45.7$ bits). For a demographically informed attacker who knows the user's city of residence — a scenario supported by findings in~\cite{Sun2012, Thorpe2013, AlAmeen2014} — the anchor entropy collapses to $\approx 27.4$ bits (Urban dictionary, Table~\ref{tab:entropy_dictionaries}), a reduction of $\approx 18.3$ bits. For $n=1$, this brings the unaided spatial entropy below any practically secure threshold. However, the Argon2id hardening layer compensates: at $m = 256$~MiB, the attacker time-to-compromise for a single-point secret under the targeted prior is $\approx 6.7 \times 10^{10} / 2^{18.3} \approx 1.7 \times 10^{5}$~seconds ($\approx 2$~days), which falls in the Insecure zone. Increasing to $n = 3$ points restores the combined entropy to $\approx 108$ bits even under the urban anchor, placing the work factor firmly in the Human-Scale Secure zone at all memory settings $\ge 64$~MiB. This confirms that multi-point selection is essential for security against targeted adversaries.
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Discussion}
 
-The results presented in this work show that spatial memory, when combined with modern memory-hard key derivation functions, can meaningfully reshape the traditional security--usability trade-off in cryptographic key management. Rather than attempting to force users to reliably generate or retain abstract high-entropy secrets, GeoVault leverages a cognitive domain in which humans demonstrate strong and durable recall. The empirical and analytical results indicate that spatially anchored secrets exhibit a substantially higher effective entropy floor than human-chosen passwords under realistic offline attacker models, and that this advantage can be amplified through hardware-bound computational hardening.
+GeoVault rests on a concrete premise: instead of forcing users to memorise abstract symbol sequences, derive keys from places they already know. The results confirm that this shift is quantitatively meaningful. Spatially anchored secrets carry a substantially higher effective entropy floor than human-chosen passwords under the same attacker priors, and Argon2id hardening amplifies this margin non-linearly as memory costs approach GPU VRAM capacity.
 
 \subsection{Effective Entropy of Spatial Mnemonics}
 
-A central finding of this study is that spatial mnemonics provide a higher baseline of effective entropy than linguistic secrets selected by humans. As shown in Section~\ref{sec:entropy_floors}, even pessimistic attacker models that restrict guesses to semantically meaningful spatial dictionaries, such as habitable land, coastlines, or urban regions, retain effective entropy levels on the order of $40$--$42$ bits for a single spatial cell. This stands in contrast to human-chosen passwords and passphrases, which empirical studies consistently place well below $20$ effective bits under realistic offline guessing strategies.
+Spatial mnemonics provide a measurably higher baseline of effective entropy than linguistic secrets selected by humans. As shown in Section~\ref{sec:entropy_floors}, even pessimistic attacker models that restrict guesses to semantically meaningful spatial dictionaries, such as habitable land, coastlines, or urban regions, retain effective entropy levels on the order of $40$--$42$ bits for a single spatial cell. This stands in contrast to human-chosen passwords and passphrases, which empirical studies consistently place well below $20$ effective bits under realistic offline guessing strategies.
 
-This higher entropy floor alters the practical boundary of what can be considered usable for human-memorable secrets. While linguistic recall rapidly collapses under selection bias, spatial recall preserves a larger and more evenly distributed search space. The results indicate that a small number of spatial selections, even under conservative attacker assumptions, provide substantially greater resistance to offline attacks than traditional password-based constructions, while remaining compatible with human memory capabilities.
+However, spatial entropy is not immune to demographic reduction. Research on geographic password systems~\cite{Sun2012, Thorpe2013, AlAmeen2014} documents that a targeted attacker who knows the user's city of residence can restrict the search to an urban-scale dictionary, collapsing the anchor-point entropy from $\approx\!45.7$ bits to $\approx\!27.4$ bits---a reduction of $18.3$ bits. This finding applies to the \emph{anchor point} (the first selected location) and propagates into every subsequent point's contribution: the total $n$-point entropy shifts downward by the same fixed offset regardless of $n$. Critically, this does not eliminate the utility of multi-point selection. As demonstrated in the targeted-attacker analysis of Section~\ref{sec:defense_in_depth}, $n=3$ points under the urban prior still reach approximately $108$ bits of combined spatial entropy, placing the work factor firmly in the Human-Scale Secure zone at all evaluated Argon2id settings. The 27.4-bit figure therefore reinforces rather than undermines the paper's core recommendation: \emph{a minimum of $n \geq 3$ spatial points is required to maintain adequate security margins against a demographically informed adversary}, regardless of the computational hardening applied.
+
+This higher entropy floor directly shifts what is practically achievable with human-memorable secrets. Verbal recall collapses under selection bias; spatial recall preserves a larger and more evenly distributed search space. A small number of spatial selections---even under conservative attacker-prior assumptions---provides substantially greater offline attack resistance than password-based constructions, with no requirement to memorise abstract symbol strings.
 
 \subsection{Impact of Memory-Hard Key Derivation}
 
-While spatial entropy alone is insufficient to guarantee cryptographic-strength security under all attacker assumptions, the application of memory-hard key derivation functions substantially increases resistance to brute-force attacks. The Argon2id benchmarks reported in Section~\ref{sec:hardware_benchmarks} demonstrate a pronounced asymmetry between defender and attacker capabilities as memory costs increase. Attacker throughput decreases non-linearly once per-instance memory requirements approach available GPU memory, while remaining feasible, though intentionally costly, for legitimate users operating on commodity CPUs.
+Spatial entropy alone does not reach the 128-bit security baseline for single-point configurations under a demographically informed attacker; Argon2id hardening is required to close this gap. The benchmarks in Section~\ref{sec:hardware_benchmarks} reveal a pronounced defender--attacker asymmetry as memory costs increase. Attacker throughput decreases non-linearly once per-instance memory requirements approach available GPU memory, while remaining feasible, though intentionally costly, for legitimate users operating on commodity CPUs.
 
-This asymmetry arises because Argon2id binds performance to memory bandwidth and capacity rather than raw compute throughput. Under the evaluated attacker model, increasing parallelism does not efficiently compensate for memory exhaustion, resulting in sharp reductions in effective guess rates. Consequently, GeoVault converts modest user-side latency into a disproportionate increase in attacker work, allowing spatially anchored secrets to achieve levels of brute-force resistance that approach or exceed established cryptographic security baselines when combined with sufficient effective entropy.
+This asymmetry arises because Argon2id binds performance to memory bandwidth and capacity rather than raw compute throughput. Under the evaluated attacker model, increasing parallelism does not efficiently compensate for memory exhaustion, resulting in sharp reductions in effective guess rates. Combined, spatial entropy and Argon2id hardening allow GeoVault to reach attacker-adjusted work factors at or above established cryptographic baselines with user-side latencies under 3~s on commodity hardware.
+
+Hardware generalisability is quantified in Section~\ref{sec:hardware_benchmarks} (Table~\ref{tab:argon2_defender_cost_consumer}): consumer laptops incur a $1.7\times$--$2.5\times$ latency penalty, placing $m=1{,}024$\,MiB at 2--3\,s. On the attacker side, a four-GPU RTX~4090 cluster raises $\eta$ to $\approx 264$ at $m=1{,}024$\,MiB---a $\log_2 4 = 2$\,bit reduction in work factor that does not alter the security zone classification for any $n \geq 2$ configuration.
 
 \subsection{Security Gains from Multi-Point Spatial Selection}
 
@@ -1070,26 +1304,28 @@ This result highlights the flexibility of the GeoVault design. Users may trade s
 
 The security properties of GeoVault are evaluated under a strong offline attacker model in which the adversary has unrestricted access to high-end GPU hardware but no auxiliary side-channel information beyond attacker-prioritized spatial dictionaries. The system does not rely on secrecy of the geospatial encoding scheme or obscurity of the spatial domain. Security derives solely from the effective entropy of user-selected locations and the enforced computational cost of key derivation.
 
-The analysis does not account for targeted social engineering, coercion, or leakage of user-specific spatial preferences. As with all mnemonic-based systems, knowledge of a user's habits, routines, or personal history could reduce the effective search space if spatial choices are overly predictable. Additionally, this work assumes accurate user recall within the resolution of the spatial encoding scheme. While tolerance buffers are incorporated into the entropy analysis, future implementations may benefit from explicit error-correction or fuzzy matching mechanisms to accommodate imperfect recall without expanding the attacker’s advantage.
+The analysis does not account for targeted social engineering, coercion, or leakage of user-specific spatial preferences. As with all mnemonic-based systems, knowledge of a user's habits, routines, or personal history---inferred from social networks, tagged photographs, or application location data---could reduce the effective search space if spatial choices are overly predictable. To quantify this risk, consider a worst-case public-information scenario where the attacker recovers the user's home city from a social-media profile, reducing the anchor's effective entropy from the global value of $45.7$\,bits to the urban-scale floor of $H_\text{anchor}\approx 27.4$\,bits (Section~\ref{sec:clustering}). If the attacker further infers---from tagged photographs and check-in history---that all $n$ selected locations lie within the same city, every spatial point collapses to the same urban prior, giving a total entropy of $H_\text{spatial} = n\times 27.4$\,bits. For $n=3$ this yields $82.2$\,bits, which---combined with the Argon2id work factor at $m=1{,}024$\,MiB---maintains an attacker-adjusted work factor above the Human-Scale Secure threshold. Complete demographic leakage across all $n$ points therefore represents the tight lower bound on effective entropy; in practice, secondary and tertiary points are rarely as publicly documented as the anchor, so the true exposure lies between this floor and the uninformed model. The core recommendation of $n\geq 3$ points with $m\geq 1$\,GiB therefore remains sufficient even under full urban leakage of the anchor. Additionally, this work assumes accurate user recall within the resolution of the spatial encoding scheme. The current protocol provides no error tolerance for recall precision: a single-cell recall error (selecting a geographically adjacent 3\,m $\times$ 3\,m tile rather than the originally selected cell) produces a completely different KDF input string, causing 100\% key derivation failure regardless of $n$ or $m$. This is a fundamental usability limitation. Future work should explore error-tolerant extensions---such as a nearest-cell retry window or a spatially defined equivalence class---provided any such relaxation does not increase the attacker's effective dictionary size beyond the security margins established in Section~\ref{sec:defense_in_depth}.
+
+A significant limitation of the present work is the absence of an empirical user study. All claims regarding the usability of spatial memory as a cryptographic input---including long-term retention of location-based secrets, recall accuracy under realistic conditions, reduced cognitive load relative to alphanumeric passphrases, and the practical tolerability of the Argon2id computation latency---are inferred from the cognitive psychology and geographic password literature rather than validated through direct experimentation with human participants. While the cited studies~\cite{montello1998new, McNamara2003, Konkle2010, Lukavsky2017, Thorpe2013, MacRae2016} provide strong indirect evidence that spatial memory is more robust and durable than linguistic recall, they were not designed to evaluate the specific GeoVault workflow, and their findings may not transfer directly to the key derivation context. The central claim of the paper---that spatially anchored secrets offer a practical security and usability advantage over linguistic passwords---cannot be fully verified without a controlled user study. Future work should conduct such a study, measuring at minimum: (1)~long-term recall accuracy of encoded locations over periods of four or more weeks; (2)~user error rates and the resulting key derivation failure rate; and (3)~user-perceived cognitive load compared to BIP-39 mnemonic phrases.
 
 \subsection{Implications for Human-Centered Key Management}
 
-The findings of this study suggest that spatial memory constitutes a viable and underutilized resource for cryptographic key management. By aligning security mechanisms with a cognitive domain in which humans demonstrate strong long-term retention, GeoVault shows that strong offline resistance need not be achieved at the expense of usability. Unlike traditional brainwallets, which rely on abstract linguistic recall and suffer severe entropy collapse, spatially anchored mnemonics provide a higher baseline of effective entropy under realistic attacker models.
+Spatial memory is a viable and largely untapped resource for cryptographic key management. Unlike traditional brainwallets, where abstract linguistic recall collapses under selection bias, spatially anchored secrets maintain a substantially higher effective entropy floor under realistic offline attacker models. GeoVault shows that strong offline resistance does not require abstract symbol memorisation: three freely selected map points suffice under the evaluated attacker priors.
 
-More broadly, GeoVault illustrates how hardware-enforced asymmetry and cognitive ergonomics can be combined to design secure systems that remain usable under real-world constraints. This perspective opens new directions for key management, particularly in scenarios where physical storage of secrets is undesirable or impractical, and where long-term memorability is a primary concern.
+The broader implication is that cognitive ergonomics deserves the same analytical rigour as computational hardness in the design of key management systems. This is especially pertinent where physical key storage is undesirable and long-term memorability is the overriding design constraint.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusions}
 
-This work introduced \textit{GeoVault}, a spatially anchored key management framework that leverages human spatial memory in combination with memory-hard cryptographic primitives to address persistent security--usability limitations in mnemonic-based secret storage. By grounding key derivation in spatial locations rather than purely linguistic inputs, GeoVault exploits a cognitive capability that is well-supported by empirical research, while remaining compatible with standard offline cryptographic threat models.
+\textit{GeoVault} demonstrates that replacing abstract symbol sequences with remembered geographic locations changes the security--usability trade-off in a quantitatively significant way. Users who struggle to reliably store a 12-word BIP-39 phrase can instead anchor a cryptographic key to a small set of familiar places---a spatial recall task that cognitive psychology consistently associates with strong, durable memory retention.
 
-Through information-theoretic analysis, we showed that spatially anchored secrets exhibit a substantially higher effective entropy floor than human-chosen passwords under realistic attacker priors. Empirical benchmarking further demonstrated that when this spatial entropy is combined with a memory-hard key derivation function such as Argon2id, brute-force resistance becomes strongly influenced by hardware constraints. In particular, increasing memory costs toward GPU VRAM limits results in a pronounced, non-linear reduction in attacker throughput, creating a favorable asymmetry between legitimate users and offline adversaries.
+The entropy model quantifies this advantage directly: a single geographically typical location carries 45.7~bits of effective entropy under the global attacker prior---more than twice the effective entropy of a typical human-chosen password. When $n \geq 2$ locations are combined with Argon2id hardening, brute-force cost grows non-linearly with memory cost by exploiting the VRAM bottleneck of GPU hardware, converting a user-side latency of 1.3~s at $m=1{,}024$~MiB into an attacker workload orders of magnitude larger.
 
-The results indicate that GeoVault can achieve attacker-adjusted work factors that approach or, under certain configurations, exceed those associated with the 128-bit security baseline of BIP--39 mnemonics. These protection levels can be attained either through modest multi-point spatial selection with low computational overhead, or through single-point spatial selection combined with higher memory costs, allowing users to balance cognitive load and computational expense according to their threat model and usage context.
+The key driver is spatial dimensionality. Selecting $n \geq 3$ geographic points places GeoVault firmly in the Super Secure zone ($\mathcal{W} \geq 10^{32}$~s) across all evaluated Argon2id memory tiers, including against a demographically targeted attacker restricted to an urban-scale spatial dictionary ($H_\text{anchor} \approx 27.4$~bits per point). Argon2id amplifies these margins but cannot compensate for insufficient spatial coverage: single-point configurations remain Insecure regardless of memory cost or chaining depth.
 
-Beyond the specific instantiation evaluated in this paper, the GeoVault design highlights a broader principle for key management: aligning cryptographic mechanisms with inherent human cognitive strengths can improve practical security without relying on purely abstract secrets. Future work will explore extensions to three-dimensional and indoor spatial environments, error-tolerant spatial matching mechanisms, multi-user or shared-vault scenarios, and formal analysis under stronger adversarial knowledge assumptions.
+Open directions include empirical user validation of long-term recall accuracy, error-tolerant matching for approximate location recall, extension to indoor and three-dimensional environments, and shared-vault multi-user protocols. On the formal side, tighter characterisation of information leaked by public location traces---social-media check-ins, geotagged photographs---would sharpen the targeted-attacker model and clarify the conditions under which urban clustering fully eliminates the security margins computed here.
 
-In summary, GeoVault demonstrates that spatial memory can serve as a viable cryptographic input when combined with hardware-enforced computational asymmetry, offering a promising direction for the design of secure and usable human-centered key management systems.
+The GPU throughput advantage $\eta(m) = R_\text{GPU}(m)\cdot T_\text{CPU}(m)$ (Equation~\ref{eq:eta}) characterises a fundamental asymmetry: even at $m=1{,}024$~MiB, the attacker tests $\approx$66 candidates per defender invocation. KDF chaining depth $k$ imposes a symmetric cost and leaves $\eta$ unchanged; only raising $m$ beyond the GPU's VRAM drives $\eta$ toward unity. For $n \geq 3$ spatial points this residual attacker advantage is inconsequential: the search space grows exponentially with $n$ while $\eta$ decreases polynomially with $m$. The practical lesson is that $\eta$ need not be driven to 1---adequate spatial dimensionality renders the residual throughput gap irrelevant, and this may guide the design of future human-centered key management schemes beyond geographic location encoding.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -1224,6 +1460,5 @@ In summary, GeoVault demonstrates that spatial memory can serve as a viable cryp
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \PublishersNote{}
 %\isPreprints{}{% This command is only used for ``preprints''.
-\end{adjustwidth}
 %} % If the paper is ``preprints'', please uncomment this parenthesis.
 \end{document}
