@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.5.12)  12 MAY 2026 10:48
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.5.12)  12 MAY 2026 12:46
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1159,7 +1159,7 @@ Package: transparent-nometadata 2025-06-23 v1.6 Transparency via pdfTeX's color
 Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
 )))
 Package translations Info: No language package found. I am going to use `englis
-h' as default language. on input line 231.
+h' as default language. on input line 246.
 
 (C:\Users\marko\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hyperref.sty
 Package: hyperref 2025-07-12 v7.01o Hypertext links for LaTeX
@@ -1284,32 +1284,32 @@ Package cleveref Info: always capitalise cross-reference names on input line 78
 Package cleveref Info: no abbreviation of names on input line 7852.
 )
 ==> First Aid for cleveref.sty applied!
-LaTeX Font Info:    Trying to load font information for T1+ppl on input line 23
-1.
+LaTeX Font Info:    Trying to load font information for T1+ppl on input line 24
+6.
 (C:\Users\marko\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\t1ppl.fd
 File: t1ppl.fd 2001/06/04 font definitions for T1/ppl.
 )
 (mathematics-4223233.aux)
 \openout1 = `mathematics-4223233.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 231.
-LaTeX Font Info:    ... okay on input line 231.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 231.
-LaTeX Font Info:    ... okay on input line 231.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 231.
-LaTeX Font Info:    ... okay on input line 231.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 231.
-LaTeX Font Info:    ... okay on input line 231.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 231.
-LaTeX Font Info:    ... okay on input line 231.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 231.
-LaTeX Font Info:    ... okay on input line 231.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 231.
-LaTeX Font Info:    ... okay on input line 231.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 231.
-LaTeX Font Info:    ... okay on input line 231.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 231.
-LaTeX Font Info:    ... okay on input line 231.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 246.
+LaTeX Font Info:    ... okay on input line 246.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 246.
+LaTeX Font Info:    ... okay on input line 246.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 246.
+LaTeX Font Info:    ... okay on input line 246.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 246.
+LaTeX Font Info:    ... okay on input line 246.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 246.
+LaTeX Font Info:    ... okay on input line 246.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 246.
+LaTeX Font Info:    ... okay on input line 246.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 246.
+LaTeX Font Info:    ... okay on input line 246.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 246.
+LaTeX Font Info:    ... okay on input line 246.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 246.
+LaTeX Font Info:    ... okay on input line 246.
 
 (C:\Users\marko\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mk
 ii
@@ -1326,13 +1326,13 @@ ii
 \makeMPintoPDFobject=\count416
 \everyMPtoPDFconversion=\toks63
 )
-LaTeX Info: Redefining \microtypecontext on input line 231.
-Package microtype Info: Applying patch `item' on input line 231.
-Package microtype Info: Applying patch `toc' on input line 231.
-Package microtype Info: Applying patch `eqnum' on input line 231.
-Package microtype Info: Applying patch `footnote' on input line 231.
-Package microtype Info: Applying patch `verbatim' on input line 231.
-LaTeX Info: Redefining \microtypesetup on input line 231.
+LaTeX Info: Redefining \microtypecontext on input line 246.
+Package microtype Info: Applying patch `item' on input line 246.
+Package microtype Info: Applying patch `toc' on input line 246.
+Package microtype Info: Applying patch `eqnum' on input line 246.
+Package microtype Info: Applying patch `footnote' on input line 246.
+Package microtype Info: Applying patch `verbatim' on input line 246.
+LaTeX Info: Redefining \microtypesetup on input line 246.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
@@ -1352,7 +1352,7 @@ File: translations-basic-dictionary-english.trsl (english translation file `tra
 nslations-basic-dictionary')
 )
 Package translations Info: loading dictionary `translations-basic-dictionary' f
-or `english'. on input line 231.
+or `english'. on input line 246.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: subfig package v1.3 is loaded.
 Package caption Info: hyperref package is loaded.
@@ -1395,7 +1395,7 @@ Package caption Info: End \AtBeginDocument code.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 Package newfloat Info: `float' package detected.
-Package hyperref Info: Link coloring ON on input line 231.
+Package hyperref Info: Link coloring ON on input line 246.
 (mathematics-4223233.out) (mathematics-4223233.out)
 \@outlinefile=\write4
 \openout4 = `mathematics-4223233.out'.
@@ -1409,71 +1409,71 @@ pdf>
 (epstopdf)                    size: 16748 bytes
 (epstopdf)             Command: <miktex-epstopdf --outfile=Definitions/logo-upd
 ates-eps-converted-to.pdf Definitions/logo-updates.eps>
-(epstopdf)             \includegraphics on input line 231.
+(epstopdf)             \includegraphics on input line 246.
 Package epstopdf Info: Output file is already uptodate.
 <Definitions/logo-updates-eps-converted-to.pdf, id=223, 223.83624pt x 43.16125p
 t>
 File: Definitions/logo-updates-eps-converted-to.pdf Graphic file (type pdf)
 <use Definitions/logo-updates-eps-converted-to.pdf>
 Package pdftex.def Info: Definitions/logo-updates-eps-converted-to.pdf  used on
- input line 231.
+ input line 246.
 (pdftex.def)             Requested size: 88.53558pt x 17.07182pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 231--231
+Underfull \hbox (badness 10000) in paragraph at lines 246--246
 
  []
 
 LaTeX Font Info:    Trying to load font information for TS1+ppl on input line 2
-31.
+46.
 (C:\Users\marko\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ts1ppl.fd
 File: ts1ppl.fd 2001/06/04 font definitions for TS1/ppl.
 )
 LaTeX Font Info:    Trying to load font information for OT1+ppl on input line 2
-31.
+46.
 
 (C:\Users\marko\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ot1ppl.fd
 File: ot1ppl.fd 2001/06/04 font definitions for OT1/ppl.
 )
 LaTeX Font Info:    Trying to load font information for OML+zplm on input line 
-231.
+246.
 
 (C:\Users\marko\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\omlzplm.fd
 File: omlzplm.fd 2002/09/08 Fontinst v1.914 font definitions for OML/zplm.
 )
 LaTeX Font Info:    Trying to load font information for OMS+zplm on input line 
-231.
+246.
 
 (C:\Users\marko\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\omszplm.fd
 File: omszplm.fd 2002/09/08 Fontinst v1.914 font definitions for OMS/zplm.
 )
 LaTeX Font Info:    Trying to load font information for OMX+zplm on input line 
-231.
+246.
 
 (C:\Users\marko\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\omxzplm.fd
 File: omxzplm.fd 2002/09/08 Fontinst v1.914 font definitions for OMX/zplm.
 )
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 10.42007pt on input line 231.
+(Font)              scaled to size 10.42007pt on input line 246.
 
 (C:\Users\marko\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 7.91925pt on input line 231.
+(Font)              scaled to size 7.91925pt on input line 246.
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 6.25204pt on input line 231.
+(Font)              scaled to size 6.25204pt on input line 246.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 10.42007pt on input line 231.
+(Font)              scaled to size 10.42007pt on input line 246.
 
 (C:\Users\marko\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 7.91925pt on input line 231.
+(Font)              scaled to size 7.91925pt on input line 246.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 6.25204pt on input line 231.
+(Font)              scaled to size 6.25204pt on input line 246.
 LaTeX Font Info:    Trying to load font information for OT1+zplm on input line 
-231.
+246.
 
 (C:\Users\marko\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ot1zplm.fd
 File: ot1zplm.fd 2002/09/08 Fontinst v1.914 font definitions for OT1/zplm.
@@ -1486,81 +1486,81 @@ Package microtype Info: Loading generic protrusion settings for font family
 (C:\Users\marko\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-eur.cfg
 File: mt-eur.cfg 2006/07/31 v1.1 microtype config. file: AMS Euler Roman (RS)
 )
-LaTeX Font Info:    Redeclaring symbol font `AMSb' on input line 231.
+LaTeX Font Info:    Redeclaring symbol font `AMSb' on input line 246.
 LaTeX Font Info:    Overwriting symbol font `AMSb' in version `normal'
-(Font)                  U/msb/m/n --> U/msb/m/n on input line 231.
+(Font)                  U/msb/m/n --> U/msb/m/n on input line 246.
 LaTeX Font Info:    Overwriting symbol font `AMSb' in version `bold'
-(Font)                  U/msb/m/n --> U/msb/m/n on input line 231.
+(Font)                  U/msb/m/n --> U/msb/m/n on input line 246.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\leavevmode@ifvmode' on input line 231.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                \kern 1.66702pt
-(hyperref)                removed on input line 231.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 231.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\geq' on input line 231.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 231.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 231.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 231.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 231.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 231.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 231.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 231.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 231.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\approx' on input line 231.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 231.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\leavevmode@ifvmode' on input line 231.
+(hyperref)                removing `\leavevmode@ifvmode' on input line 246.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                \kern 1.66702pt
-(hyperref)                removed on input line 231.
+(hyperref)                removed on input line 246.
 
-Package marginnote Info: Margin note 1.1 is on absolute page 1 on input line 23
-1.
-Package marginnote Info: right page because not two side mode on input line 231
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 246.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\geq' on input line 246.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 246.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 246.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 246.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 246.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 246.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 246.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 246.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 246.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\approx' on input line 246.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 246.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\leavevmode@ifvmode' on input line 246.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                \kern 1.66702pt
+(hyperref)                removed on input line 246.
+
+Package marginnote Info: Margin note 1.1 is on absolute page 1 on input line 24
+6.
+Package marginnote Info: right page because not two side mode on input line 246
 .
 Package epstopdf Info: Source file: <Definitions/logo-updates.eps>
 (epstopdf)                    date: 2025-12-15 03:07:05
@@ -1571,19 +1571,19 @@ pdf>
 (epstopdf)                    size: 16748 bytes
 (epstopdf)             Command: <miktex-epstopdf --outfile=Definitions/logo-upd
 ates-eps-converted-to.pdf Definitions/logo-updates.eps>
-(epstopdf)             \includegraphics on input line 231.
+(epstopdf)             \includegraphics on input line 246.
 Package epstopdf Info: Output file is already uptodate.
 File: Definitions/logo-updates-eps-converted-to.pdf Graphic file (type pdf)
 <use Definitions/logo-updates-eps-converted-to.pdf>
 Package pdftex.def Info: Definitions/logo-updates-eps-converted-to.pdf  used on
- input line 231.
+ input line 246.
 (pdftex.def)             Requested size: 88.53558pt x 17.07182pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 231--231
+Underfull \hbox (badness 10000) in paragraph at lines 246--246
 
  []
 
-Package marginnote Info: xpos seems to be 167.01753pt on input line 231.
+Package marginnote Info: xpos seems to be 167.01753pt on input line 246.
 Package epstopdf Info: Source file: <Definitions/mathematics-logo.eps>
 (epstopdf)                    date: 2025-12-15 03:11:59
 (epstopdf)                    size: 430890 bytes
@@ -1593,7 +1593,7 @@ Package epstopdf Info: Source file: <Definitions/mathematics-logo.eps>
 (epstopdf)                    size: 16641 bytes
 (epstopdf)             Command: <miktex-epstopdf --outfile=Definitions/mathemat
 ics-logo-eps-converted-to.pdf Definitions/mathematics-logo.eps>
-(epstopdf)             \includegraphics on input line 231.
+(epstopdf)             \includegraphics on input line 246.
 Package epstopdf Info: Output file is already uptodate.
 <Definitions/mathematics-logo-eps-converted-to.pdf, id=228, 544.0325pt x 140.52
 5pt>
@@ -1601,7 +1601,7 @@ File: Definitions/mathematics-logo-eps-converted-to.pdf Graphic file (type pdf)
 
 <use Definitions/mathematics-logo-eps-converted-to.pdf>
 Package pdftex.def Info: Definitions/mathematics-logo-eps-converted-to.pdf  use
-d on input line 231.
+d on input line 246.
 (pdftex.def)             Requested size: 132.18091pt x 34.14322pt.
 Package epstopdf Info: Source file: <Definitions/logo-mdpi.eps>
 (epstopdf)                    date: 2025-12-15 03:07:05
@@ -1612,27 +1612,27 @@ Package epstopdf Info: Source file: <Definitions/logo-mdpi.eps>
 (epstopdf)                    size: 13216 bytes
 (epstopdf)             Command: <miktex-epstopdf --outfile=Definitions/logo-mdp
 i-eps-converted-to.pdf Definitions/logo-mdpi.eps>
-(epstopdf)             \includegraphics on input line 231.
+(epstopdf)             \includegraphics on input line 246.
 Package epstopdf Info: Output file is already uptodate.
 <Definitions/logo-mdpi-eps-converted-to.pdf, id=230, 74.2775pt x 49.18375pt>
 File: Definitions/logo-mdpi-eps-converted-to.pdf Graphic file (type pdf)
 <use Definitions/logo-mdpi-eps-converted-to.pdf>
 Package pdftex.def Info: Definitions/logo-mdpi-eps-converted-to.pdf  used on in
-put line 231.
+put line 246.
 (pdftex.def)             Requested size: 42.96877pt x 28.45274pt.
 <Definitions/logo-orcid.pdf, id=232, 102.3825pt x 102.3825pt>
 File: Definitions/logo-orcid.pdf Graphic file (type pdf)
 <use Definitions/logo-orcid.pdf>
-Package pdftex.def Info: Definitions/logo-orcid.pdf  used on input line 231.
+Package pdftex.def Info: Definitions/logo-orcid.pdf  used on input line 246.
 (pdftex.def)             Requested size: 9.10509pt x 9.10466pt.
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 8.33606pt on input line 231.
+(Font)              scaled to size 8.33606pt on input line 246.
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 5.21004pt on input line 231.
+(Font)              scaled to size 5.21004pt on input line 246.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 8.33606pt on input line 231.
+(Font)              scaled to size 8.33606pt on input line 246.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 5.21004pt on input line 231.
+(Font)              scaled to size 5.21004pt on input line 246.
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 20.0pt, for example:
@@ -1762,24 +1762,24 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-6.18001pt}.
 
 [14]
-LaTeX Font Info:    Calculating math sizes for size <9.2> on input line 635.
+LaTeX Font Info:    Calculating math sizes for size <9.2> on input line 667.
 
 
 LaTeX Font Warning: Font shape `OT1/cmss/m/n' in size <5.52005> not available
-(Font)              size <6> substituted on input line 635.
+(Font)              size <6> substituted on input line 667.
 
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 9.58646pt on input line 635.
+(Font)              scaled to size 9.58646pt on input line 667.
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 7.28564pt on input line 635.
+(Font)              scaled to size 7.28564pt on input line 667.
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 5.75192pt on input line 635.
+(Font)              scaled to size 5.75192pt on input line 667.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 9.58646pt on input line 635.
+(Font)              scaled to size 9.58646pt on input line 667.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 7.28564pt on input line 635.
+(Font)              scaled to size 7.28564pt on input line 667.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 5.75192pt on input line 635.
+(Font)              scaled to size 5.75192pt on input line 667.
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 18.18001pt, for example:
@@ -1804,7 +1804,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-6.18001pt}.
 
 [17]
-Underfull \hbox (badness 10000) in alignment at lines 763--763
+Underfull \hbox (badness 10000) in alignment at lines 804--804
 [][] 
  []
 
@@ -1827,17 +1827,17 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 <img/w3w_entropy_vs_radius.pdf, id=606, 507.8975pt x 413.545pt>
 File: img/w3w_entropy_vs_radius.pdf Graphic file (type pdf)
 <use img/w3w_entropy_vs_radius.pdf>
-Package pdftex.def Info: img/w3w_entropy_vs_radius.pdf  used on input line 830.
+Package pdftex.def Info: img/w3w_entropy_vs_radius.pdf  used on input line 871.
 
 (pdftex.def)             Requested size: 355.52583pt x 289.4795pt.
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 9.37807pt on input line 831.
+(Font)              scaled to size 9.37807pt on input line 872.
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 7.29405pt on input line 831.
+(Font)              scaled to size 7.29405pt on input line 872.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 9.37807pt on input line 831.
+(Font)              scaled to size 9.37807pt on input line 872.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 7.29405pt on input line 831.
+(Font)              scaled to size 7.29405pt on input line 872.
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1847,7 +1847,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-6.18001pt}.
 
 [20 <./img/w3w_entropy_vs_radius.pdf>]
-Underfull \hbox (badness 10000) in alignment at lines 906--906
+Underfull \hbox (badness 10000) in alignment at lines 947--947
 [][][][][] 
  []
 
@@ -1859,12 +1859,12 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-6.18001pt}.
 
 [21]
-Underfull \hbox (badness 10000) in alignment at lines 925--925
+Underfull \hbox (badness 10000) in alignment at lines 966--966
 [][][][] 
  []
 
 
-Underfull \hbox (badness 10000) in alignment at lines 947--947
+Underfull \hbox (badness 10000) in alignment at lines 988--988
 [][][][] 
  []
 
@@ -1884,12 +1884,12 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-6.18001pt}.
 
 [23]
-Underfull \hbox (badness 10000) in alignment at lines 1038--1038
+Underfull \hbox (badness 10000) in alignment at lines 1079--1079
 [][][][] 
  []
 
 
-Underfull \hbox (badness 10000) in alignment at lines 1069--1069
+Underfull \hbox (badness 10000) in alignment at lines 1110--1110
 [][][] 
  []
 
@@ -1914,7 +1914,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 <img/resultsNoKDF_II.pdf, id=725, 1179.40625pt x 724.7075pt>
 File: img/resultsNoKDF_II.pdf Graphic file (type pdf)
 <use img/resultsNoKDF_II.pdf>
-Package pdftex.def Info: img/resultsNoKDF_II.pdf  used on input line 1106.
+Package pdftex.def Info: img/resultsNoKDF_II.pdf  used on input line 1148.
 (pdftex.def)             Requested size: 386.46643pt x 237.47337pt.
 
 
@@ -1933,7 +1933,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-6.18001pt}.
 
 [27]
-Underfull \hbox (badness 10000) in alignment at lines 1203--1203
+Underfull \hbox (badness 10000) in alignment at lines 1245--1245
 [][][][][][] 
  []
 
@@ -1951,7 +1951,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 File: img/Hardening_Spectrum_No16G.pdf Graphic file (type pdf)
 <use img/Hardening_Spectrum_No16G.pdf>
 Package pdftex.def Info: img/Hardening_Spectrum_No16G.pdf  used on input line 1
-223.
+265.
 (pdftex.def)             Requested size: 354.91728pt x 424.10118pt.
 
 
@@ -2041,11 +2041,11 @@ Package rerunfilecheck Info: File `mathematics-4223233.out' has not changed.
 (rerunfilecheck)             Checksum: 8D2FD4D876D8C9CBE57395F6145B67D6;10898.
  ) 
 Here is how much of TeX's memory you used:
- 37011 strings out of 467871
- 700066 string characters out of 5418376
+ 37015 strings out of 467871
+ 700448 string characters out of 5418376
  1211213 words of memory out of 5000000
- 64139 multiletter control sequences out of 15000+600000
- 772767 words of font info for 790 fonts, out of 8000000 for 9000
+ 64140 multiletter control sequences out of 15000+600000
+ 772916 words of font info for 792 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  123i,16n,121p,5054b,905s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/marko/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
@@ -2067,7 +2067,7 @@ TeX/fonts/type1/urw/palatino/uplb8a.pfb><C:/Users/marko/AppData/Local/Programs/
 MiKTeX/fonts/type1/urw/palatino/uplbi8a.pfb><C:/Users/marko/AppData/Local/Progr
 ams/MiKTeX/fonts/type1/urw/palatino/uplr8a.pfb><C:/Users/marko/AppData/Local/Pr
 ograms/MiKTeX/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on mathematics-4223233.pdf (37 pages, 665647 bytes).
+Output written on mathematics-4223233.pdf (37 pages, 665316 bytes).
 PDF statistics:
  1123 PDF objects out of 1200 (max. 8388607)
  189 named destinations out of 1000 (max. 500000)

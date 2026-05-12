@@ -147,6 +147,16 @@
 
 % Authors, for the paper (add full first names)
 \Author{Marko Corn\orcidA{} * and Primož Podržaj}
+%MDPI: Please carefully check the accuracy of names and affiliations.
+%MDPI: If there is only one affiliation, it should not be numbered. We have thus removed this affiliation number. Please confirm.
+%MDPI: According to AE's comment, the corresponding author should be based on the system, so we moved the * to this author according to those submitted online at susy.mdpi.com. Please confirm.
+%MDPI: We removed the empty ``\orcidA{}'', please confirm.
+%MDPI: The sentence ``These authors contributed equally to this work.'' should be used for more than one front note; we changed ‡ to a shared † for both authors. Please confirm.
+% AUTHOR REPLY 1a: Confirmed. Names are correct.
+% AUTHOR REPLY 1b: Confirmed. One affiliation only; no number needed.
+% AUTHOR REPLY 1c: Confirmed. Marko Corn is the corresponding author.
+% AUTHOR REPLY 1d: ORCID iD restored: 0000-0003-1679-5306. \orcidA{} added back after author name.
+% AUTHOR REPLY 1e: Equal contribution note removed entirely. No dagger on either author.
  
 %\longauthorlist{yes}
 
@@ -157,6 +167,10 @@
 
 % Affiliations / Addresses (Add [1] after \address if there is only one affiliation.)
 \address[1]{Faculty of Mechanical Engineering, University of Ljubljana, 1000 Ljubljana, Slovenia; primoz.podrzaj@fs.uni-lj.si}
+%MDPI: We added city, post code and country name (1000 Ljubljana, Slovenia), please confirm.
+%MDPI: We added the email addresses here according to the submitting system (primoz.podrzaj@fs.uni-lj.si). Please confirm.
+% AUTHOR REPLY 1f: Confirmed. 1000 Ljubljana, Slovenia is correct.
+% AUTHOR REPLY 1g: Confirmed. primoz.podrzaj@fs.uni-lj.si is correct.
 
 
 % Contact information of the corresponding author
@@ -184,7 +198,8 @@
 
 % The fields PACS, MSC, and JEL may be left empty or commented out if not applicable
 %\PACS{J0101}
-\MSC{94A17; 94A60; 68P25}
+\MSC{94A17; 94A60; 68P25} %MDPI: MSC field is necessary for the Mathematics journal. We added: 94A17; 94A60; 68P25. Please confirm.
+% AUTHOR REPLY 9: Confirmed. MSC codes accepted. Duplicate braces and trailing spaces cleaned: \MSC{{94A17; 94A60; 68P25  }} -> \MSC{94A17; 94A60; 68P25}
 %\JEL{}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -308,8 +323,12 @@ Neurological evidence also supports the unique role of spatial memory in human c
 %\remove{These findings suggest that spatial memory may provide a superior foundation for cryptographic key storage and retrieval mechanisms. Unlike traditional brainwallets that rely on memorized strings, a system that anchors a seed derivation process to a spatial coordinate or map location would naturally exploit this cognitive strength. Such systems could offer both better security and usability, reducing the cognitive load while maintaining high entropy—especially when combined with computational functions that bind access to the correct location and effort.}
 
 {Map-based authentication has been explored since at least \textit{PassMap}~\cite{Sun2012} and \textit{GeoPass}~\cite{Thorpe2013}, which showed that geographic secrets are retained for 3--5~weeks with fewer errors than alphanumeric passphrases. \textit{GeoPassNotes}~\cite{MacRae2016} further showed that personally meaningful landmarks improve recall by activating episodic memory cues.}
+%MDPI: Comment 2 — Please confirm if italics are necessary for \textit{GeoVault}, \textit{PassMap}, \textit{GeoPass}, \textit{GeoPassNotes}; if not, please remove them. Also check the long \emph{} quoted question (``if a user is willing to spend...'').
+% AUTHOR REPLY 2: Italics kept for GeoVault, PassMap, GeoPass, GeoPassNotes (system names, used consistently). Italics removed from the long quoted question.
 
 {Despite these advantages, prior work in map-based authentication has identified severe entropy collapse caused by predictable human selection. Users consistently exhibit strong semantic bias toward residential locations (home/work), major urban centers, and famous global landmarks~\cite{Sun2012, Thorpe2013, AlAmeen2014}. A comprehensive usability and security evaluation by Al-Ameen and Wright~\cite{AlAmeen2014} further quantified the degree to which user selection distributions concentrate around personally and culturally salient locations, confirming that an adversary with even limited contextual knowledge of the user can substantially reduce the effective search space below the nominal geographic entropy. These selection patterns reduce the effective search space in ways that purely geographic dictionaries do not capture. While these studies establish the memorability of spatial secrets, they have not yet been integrated into a cryptographic key derivation framework that explicitly mitigates selection bias through memory-hardening and hardware-aware offline threat modeling.}
+%MDPI: Comment 13 (English editor note) — ``Please check that intended meaning has been retained.'' Flagged at the sentence above about map-based authentication not being integrated into a cryptographic KDF framework.
+% AUTHOR REPLY 13: Intended meaning retained. The sentence correctly states that prior work has not been integrated into a full cryptographic KDF framework that explicitly mitigates selection bias through memory-hardening and hardware-aware offline threat modeling. No change needed.
 
 {These findings suggest that spatial memory may provide a superior foundation for cryptographic key storage and retrieval mechanisms. Unlike traditional brainwallets that rely on memorized strings, a system that anchors a seed derivation process to a spatial coordinate or map location naturally exploits this cognitive strength. By combining the robustness of spatial recall with computational functions that bind access to the correct location and effort, it is possible to achieve both higher security and improved usability.}
 
@@ -371,9 +390,15 @@ T = \frac{2^{128}}{10^{9}} \text{ s} \approx 3.4 \times 10^{29} \text{ s},
 \label{eq:bip39_bruteforce_time}
 \end{equation}
 \noindent This corresponds to approximately $1.08 \times 10^{22}$ years, vastly exceeding the age of the universe. Consequently, uniformly generated BIP-39 mnemonics are effectively immune to brute-force attacks under realistic computational assumptions.
+%MDPI: Comment 11 — After Equation~(2), ``This'' is capitalised. Should there be an indent for this paragraph? Please check and apply the same format throughout the article.
+% AUTHOR REPLY 11: \hl{This} was the only instance of a new sentence starting immediately after a displayed equation. Capitalisation already correct. \noindent added to suppress paragraph indent per MDPI style. All other post-equation text uses ``where'', ``which'', or ``Here'' — no indent produced.
 
 
 In contrast, password- and passphrase-based brainwallets derive cryptographic keys directly from user-chosen secrets. From a theoretical perspective, if a password or passphrase was selected uniformly at random from a dictionary of size $N$, each symbol would contribute $\log_2 N$ bits of nominal entropy. The minimum length $L$ required to reach a target of 128 bits of nominal entropy is given by Equation \eqref{eq:password_length_entropy}.
+%MDPI: Comment 5 — Please confirm whether variables in the text are consistent with those in the equations (italics, bold, subscript, superscript). Check all variables throughout the manuscript.
+% AUTHOR REPLY 5 (A+B): Password length variable renamed from $w$ to $L$ here and in Section 3.1, resolving a mismatch with Table~1 header and a collision with buffer width $w$ used in Section 4.4.
+% AUTHOR REPLY 5 (C): Benchmark run count renamed from $N$ to $n_{\text{rep}}$ in Table header; point anchor count renamed from $N$ to $N_{\text{anc}}$ in equation, avoiding collision with dictionary size $N$ and candidate count $N=2^H$.
+% AUTHOR REPLY 5 (D): Local entropy function $H_r(r)$ renamed to $H_{\text{local}}(r)$ to eliminate the subscript/argument symbol collision.
 \begin{equation}
 L = \Bigl\lceil \frac{128}{\log_2 N} \Bigr\rceil .
 \label{eq:password_length_entropy}
@@ -542,6 +567,8 @@ Here, $\mathsf{snap}: \mathcal{M} \rightarrow \mathcal{C}$ partitions the spatia
 The identifier strings themselves are not assumed to contribute cryptographic entropy; GeoVault relies exclusively on the unpredictability of the underlying spatial selections. Consequently, the encoding scheme must satisfy three core properties. First, \emph{injectivity}: distinct spatial cells must map to distinct identifiers. Second, \emph{determinism}: the same spatial point must always yield the same identifier. Third, \emph{offline resolvability}: the encoding must be computable without access to a trusted online service. Beyond these requirements, the encoding need not be cryptographically random or secret and may be designed primarily for human usability.
 
 \subsubsection{Baseline Encoder (What3Words)}
+%MDPI: Comment 10 — \paragraph is only allowed for level-4 headings and is not permitted below a level-2 heading. The following headings were converted from \paragraph to \subsubsection with section numbers added: ``Baseline Encoder (What3Words)'', ``Offline Resolvability and Open Alternatives'', ``Radius Constraints on Multi-Point Selection'', ``Targeted Attacker Model'', ``Quantum Resistance''. Please confirm.
+% AUTHOR REPLY 10: Confirmed. All five \paragraph -> \subsubsection conversions accepted. \highlighting{} wrappers removed from all five headings.
 In the reference implementation, both $\mathsf{snap}$ and $\mathsf{code}$ are instantiated using the \emph{What3Words} grid and lexicon. The spatial domain is partitioned into $3 \times 3\,\mathrm{m}$ cells, each mapped to a unique three-word phrase. For a single unconstrained cell, substituting the Earth’s surface area $A_{\mathcal{M}} \approx 5.1 \times 10^{14}\,\mathrm{m}^2$ and cell area $A_{\mathrm{cell}} = 9\,\mathrm{m}^2$ yields a nominal entropy of approximately $45.7$ bits, as derived previously in Equation \eqref{eq:entropy_single_w3w}. This value reflects the size of the global cell index and is independent of the linguistic structure of the identifier.
 
 Because a single encoded cell does not provide sufficient entropy for high-security applications, GeoVault supports aggregation of multiple encoded spatial points and introduces additional computational hardening in subsequent stages. Importantly, the cryptographic core of GeoVault remains encoder-agnostic: any geospatial encoding scheme that satisfies the above properties may replace the What3Words system without altering the security model or attacker assumptions.
@@ -563,7 +590,12 @@ GeoVault employs Argon2id, the hybrid variant of the Argon2 memory-hard KDF~\cit
 
 Unlike legacy KDFs such as PBKDF2, Argon2id binds attacker performance to memory bandwidth and capacity rather than raw compute throughput, enabling strong defender--attacker asymmetry through tunable time, memory, and parallelism parameters.
 
-\paragraph*{Parameter Selection Rationale} 
+\paragraph*{Parameter Selection Rationale}
+%MDPI: Comment 6 — Tables are cited out of numerical order: Table~10 is cited before Table~4 in Section~4.2 (parameter selection rationale) and Table~16 before Table~4 in Sections~5.1 and 5.2. Please confirm and modify so all table citations appear in numerical order.
+% AUTHOR REPLY 6: Three forward table references replaced with section references to restore sequential order:
+%   Section 4.3: Table~\ref{tab:argon2_spectrum} (Table 10) -> Section~\ref{sec:hardware_benchmarks}
+%   Section 5.1: Table~\ref{tab:combined_spatial_computational} (Table 16) -> Section~\ref{sec:defense_in_depth}
+%   Section 5.2: Table~\ref{tab:combined_spatial_computational} (Table 16) -> Section~\ref{sec:defense_in_depth}
 
 {The reference protocol uses $(t=1, m=1024\,\text{MiB}, p=1)$, derived from two constraints. \emph{Usability constraint:} The defender latency must remain below a practical interactive threshold. The empirical benchmarks of Section~\ref{sec:hardware_benchmarks} confirm that a single Argon2id invocation at $m=1024$\,MiB completes in $T_\text{CPU} \approx 1.26$\,s on a commodity server CPU within the sub-two-second budget widely cited as acceptable for authentication operations~\cite{nielsen1994usability}. \emph{Security constraint:} The memory cost must exhaust the GPU's high-bandwidth memory per instance to eliminate parallelism gains. At $m=1024$\,MiB the GPU can sustain at most $\lfloor 48{,}539\,\text{MiB}/1024\,\text{MiB} \rfloor = 47$ parallel instances, yielding an attacker throughput of $R_\text{GPU} \approx 53.7$\,H/s (Section~\ref{sec:hardware_benchmarks}).
 Setting $t=1$ follows the Argon2 specification's recommendation that a single pass with high $m$ provides stronger memory hardness guarantees than multiple passes with reduced $m$~\cite{7467361}. Setting $p=1$ is appropriate for a single-thread defender on commodity hardware; increasing $p$ beyond the available CPU cores would not reduce defender latency and would only benefit attackers with wide SIMD parallelism. The parameter range $m \in [64\,\text{MiB},\, 32\,\text{GiB}]$ is evaluated empirically in Section~\ref{sec:hardware_benchmarks} to characterize the full defender--attacker trade-off space.}
@@ -689,7 +721,11 @@ The Results Section uses this attacker-adjusted work factor and the associated s
 
 \subsection{Construction of Spatial Dictionaries}
 
-All spatial dictionaries use a fixed cell resolution of $3\times3~\text{m}$, corresponding to a cell area of $A_{\text{cell}} = 9 \times 10^{-6}\,\text{km}^2$. To account for tolerance in human spatial recall and imprecision in location memory, semantic features are expanded using an orientable buffer of width $w = 100~\text{m}$. This buffer models the fact that users may recall locations approximately rather than with exact geometric precision.
+All spatial dictionaries use a fixed cell resolution of $3\times3~\text{m}$, corresponding to a cell area of $A_{\text{cell}} = 9 \times 10^{-6}\,\text{km}^2$.
+%MDPI: Comment 4a — $x$ revised to $\times$ (\texttimes, U+00D7) in ``3\,m $\times$ 3\,m''. Please confirm.
+%MDPI: Comment 4b — Unit ``seconds'' in equations revised to ``s''. Please confirm.
+% AUTHOR REPLY 4a: Confirmed. \times retained for ``3\,m $\times$ 3\,m''.
+% AUTHOR REPLY 4b: Confirmed. Unit ``s'' retained in equations. To account for tolerance in human spatial recall and imprecision in location memory, semantic features are expanded using an orientable buffer of width $w = 100~\text{m}$. This buffer models the fact that users may recall locations approximately rather than with exact geometric precision.
 
 For areal regions, including the global surface, terrestrial land, habitable land, and urban boundaries, the effective area $A_{\text{eff}}$ is set directly to the reported surface area of the corresponding region, as obtained from established geographic datasets~\cite{FAO_GLC,Venter2016}. These dictionaries represent attacker strategies that restrict guesses to broad but semantically meaningful regions.
 
@@ -727,7 +763,8 @@ Table~\ref{tab:exp_setup} summarizes the hardware platform, operating system, GP
 \toprule
 \textbf{Category} & \textbf{Specification} \\
 \midrule
-\multicolumn{2}{c}{Hardware} \\
+\multicolumn{2}{c}{Hardware} \\ %MDPI: Comment 3 — Please confirm if bold formatting is necessary for the table section headers (Hardware, Operating System \& Drivers, Software Tools, Benchmark Configuration); if not, please remove it.
+% AUTHOR REPLY 3: Bold removed from all flagged instances: table section headers, Omnibus HPZ row, security zone names (Insecure, Human-Scale Secure, Super Secure), numbered axis headings (1)(2)(3), and list item labels. All \textbf{\hl{...}} converted to plain text.
 \midrule
 CPU & Intel Xeon Gold 6338 (Ice Lake), 32 cores @ 2.0\,GHz \\
 GPU & NVIDIA RTX A6000 (GA102GL), 48\,GB GDDR6 \\
@@ -744,7 +781,10 @@ OpenCL (CPU) & PoCL 5.0 (LLVM 16) \\
 \multicolumn{2}{c}{Software Tools} \\
 \midrule
 Hashcat & v6.2.6 (benchmark mode) \\
-Benchmark mode (PBKDF2) & \texttt{-b -m 12100} \\
+Benchmark mode (PBKDF2) & \texttt{-b -m 12100} \\ %MDPI: Comment 7 — In \texttt{-b -m 12100}, should the ``-'' characters be proper minus signs ($-$, U+2212)? Please confirm.
+%MDPI: Comment 12 — Should ``12100'' have a comma (``12,100'')? See also Comment~8.
+% AUTHOR REPLY 7: The hyphens are command-line option flags, not mathematical minus signs. Kept as-is; correct for CLI flag notation.
+% AUTHOR REPLY 12: 12100 is a Hashcat mode identifier used as a CLI argument, not a quantity. Adding a comma would break the command; left as-is. Similarly, 34000 in running text is an identifier — kept without comma.
 Benchmark mode (Argon2id) & \texttt{-b -m 8200} \\
 OpenSSL & v3.x (reference PBKDF2 implementation) \\
 Shell environment & GNU bash 5.x \\
@@ -753,7 +793,8 @@ Shell environment & GNU bash 5.x \\
 \midrule
 PBKDF2 algorithm & PBKDF2-HMAC-SHA512 (BIP-39 standard) \\
 PBKDF2 iteration baseline & 999 (hashcat default) \\
-PBKDF2 target scaling & 2048 iterations (BIP-39 specification) \\
+PBKDF2 target scaling & 2048 iterations (BIP-39 specification) \\ %MDPI: Comment 8 — Commas removed from four-digit numbers (e.g., 2048 not 2,048). Commas are only used for numbers with five or more digits. Please confirm throughout the article.
+% AUTHOR REPLY 8: Confirmed. MDPI style uses commas only for 5+ digit numbers. The only affected instance was 2048 (PBKDF2 iterations), which had no comma to begin with. Numbers 16,384 and 32,768 (five digits) retain their commas correctly.
 Argon2 algorithm & Argon2id \\
 Argon2 parameters & $(t,m,p)$ selected as described in Section~\ref{sec:argon2_parameters} \\
 Salt (PBKDF2) & \texttt{``mnemonic''} (BIP-39 standard) \\
@@ -1092,7 +1133,8 @@ To transition from the Insecure zone into the Super Secure (BIP-39) regime witho
 \begin{equation}
 L = \left\lceil \frac{128}{\log_2(94)} \right\rceil = \left\lceil \frac{128}{6.55} \right\rceil = 20 \ \text{characters}.
 \end{equation}
-Such strings (e.g., \texttt{7\&y\#B9@q!x2\$LpZ*5mW1})
+Such strings (e.g., \texttt{7\&y\#B9@q!x2\$LpZ*5mW1}) %MDPI: Comment 14 — ``Please check if this is correct?''
+% AUTHOR REPLY 14: The string 7\&y\#B9@q!x2\$LpZ*5mW1 is exactly 20 characters, matching $L = \lceil 128/\log_2(94) \rceil = 20$. It is correct.
 substantially exceed typical human cognitive limits for reliable recall, illustrating the well-known usability barrier of high-entropy linguistic secrets.
 
 \subsubsection{Brute-Force Resistance of Spatial Secrets}
