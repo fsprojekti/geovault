@@ -1,0 +1,27 @@
+Dear Editor,
+
+Thank you for the decision letter and for the opportunity to submit a major revision of manuscript GeoVault: Spatially Anchored Cryptographic Key Derivation Using Human Spatial Memory and Memory-Hard Functions.
+
+We have carried out a thorough revision addressing all points raised by both reviewers. A detailed point-by-point response is enclosed. Below we summarise how each of the three specific requirements from the editorial decision has been met.
+
+
+1. New (sub)section on related work (Reviewer 1, Comment 1)
+
+Section 2.2 has been substantially extended. The four works identified by Reviewer 1 — PassMap (Sun et al., 2012), GeoPass (Thorpe et al., 2013), GeoPassNotes (MacRae et al., 2016), and the comprehensive evaluation by Al-Ameen and Wright (2014) — have been added with full bibliographic entries. A dedicated comparative paragraph explains explicitly how GeoVault differs from each: none of these prior schemes couples spatial selection to a formal entropy model, quantifies the reduction caused by demographic selection bias, or evaluates the resulting work factor against a GPU-class offline adversary using attacker-prioritised spatial dictionaries. This new subsection also directly motivates the selection-fraction parameter f_s introduced in Section 3.2.
+
+
+2. All issues raised by both reviewers addressed
+
+All 13 comments from Reviewer 1 and all 13 comments from Reviewer 2 have been addressed. Major changes include: the entropy model extended with the f_s bias parameter and a corrected effective entropy formula (R1.6); the threat model extended with a fully worked quantitative social-footprint example (R1.10); the proximity clustering model corrected so the anchor entropy is bounded by the demographic dictionary rather than the global nominal value (R1.11); empirical defender latency extended to consumer laptop and smartphone hardware (R1.12, R2.10); formal derivation of the Insecure / Human-Scale Secure / Super Secure zone thresholds (R2.7); ASIC resistance argument grounded in the Argon2id TMTO-security proof with a conservative 10x bound (R2.8); and standard deviations added to all benchmark tables (R2.11). Two incorrect citations (Bauer 1993, Garden 2002) have been removed and their host paragraphs deleted (R1.2, R1.8). Open Location Code is now explicitly recommended as the offline-capable open encoder alternative to What3Words (R1.4, R2.2).
+
+
+3. All open questions answered
+
+Every question that remained open in the original submission has been answered or formally scoped. The absence of an empirical user study is now explicitly acknowledged as a limitation in Section 6.4, with four minimum measurements specified for future work (R1.3). The fixed-salt design is justified with a two-part physical impossibility argument at GiB-scale memory (R1.5, R2.5). The 41.38-bit Omnibus HPZ value is clarified as spatial entropy only, with zone membership determined by the attacker-adjusted work factor (R2.9). A formal entropy bracket [27.4n, 41.38n] bits is stated in Section 5.1 (R3.11). The quantum adversary scenario (Grover, Shor) and physical side-channel attacks are scoped in Section 6.4 (R3.3, R3.4).
+
+All changes are marked in the enclosed main_track_changes.pdf using the track-changes macros.
+
+We hope the revised manuscript now meets the requirements for publication and look forward to the editors' and reviewers' further assessment.
+
+Yours sincerely,
+[Authors]
